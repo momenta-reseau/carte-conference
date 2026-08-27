@@ -58,6 +58,56 @@ TAKE_HOME = {
     "source": "Marie-Claude Viau, fondatrice de Momenta",
 }
 
+# ── Qui parle ────────────────────────────────────────────────────────────────
+#
+# ✏️ David, 2026-08-27, rapportant MC : « ça fait 15 ans que je suis dans le
+# milieu des conférences, 10 ans dans le milieu de la formation dont 10 à
+# l'Institut de leadership où j'ai cofondé le programme Femmes Leaders. Ça fait
+# 20 ans que je suis dans le milieu des affaires. » Et la consigne : « on veut
+# faire comprendre aux acheteurs que MC est une figure crédible dans le domaine
+# de la transition parentale. Sans surcharger la page. »
+#
+# 🔴 Ce que la carte n'avait pas du tout : une raison de la croire. Elle disait
+# où MC avait parlé et ce qu'elle raconte, jamais ce qui la rend légitime sur ce
+# sujet-là. Un acheteur qui hésite entre deux conférencières tranche là-dessus.
+#
+# 🔴 LE POINT LE PLUS FORT EST LA CERTIFICATION, et il ne figurait nulle part.
+# Sans elle, MC est une femme qui raconte ce qui lui est arrivé, ce qui est
+# émouvant et remplaçable. Avec elle, elle a traversé la transition ET elle en
+# connaît la littérature. C'est ce qui sépare le témoignage de l'expertise, et
+# c'est exactement ce qu'un acheteur cherche à savoir.
+#
+# 🟡 « 15 ans en conférence » n'a AUCUNE trace dans le wiki. Source unique : ce
+# message de David rapportant MC, le 2026-08-27. À confirmer avec elle.
+#
+# ⚠️ Écart connu et assumé : la page « À propos » du site public dit « depuis
+# neuf ans » là où MC dit dix. Le message de David est la source la plus récente
+# et la plus directe. À aligner sur le site, ou à corriger ici.
+#
+# ⛔ Ce qui n'entre PAS ici : le nom du conférencier avec qui MC a travaillé.
+# Elle est d'accord pour en parler, elle n'y voit « pas de plus-value » pour le
+# moment. Une carte publique n'est pas l'endroit d'un nom qu'on n'a pas tranché.
+QUI_PARLE = {
+    "jalons": [
+        ("20 ans", "dans le milieu des affaires"),
+        ("15 ans", "dans le milieu de la conférence"),
+        ("10 ans", "à former des femmes en leadership"),
+    ],
+    "parcours": "À l’Institut de leadership, Marie-Claude Viau a cofondé le programme "
+                "Femmes Leaders. C’est là, cohorte après cohorte, qu’elle a vu revenir "
+                "le même angle mort : la transition parentale, que personne n’outille.",
+    "certification": "Elle est certifiée en transition parentale par le Center for "
+                     "Parental Leave Leadership, l’organisme américain fondé par "
+                     "Amy Beacom (Ph. D.). Elle a traversé cette transition et elle en "
+                     "connaît la littérature.",
+    "engagements": "Momenta est liée à la Fondation Mères avec Pouvoir, qui soutient "
+                   "les cheffes de famille monoparentale à faible revenu ayant de jeunes "
+                   "enfants. Marie-Claude est impliquée dans le Bromont Ultra, un "
+                   "événement philanthropique annuel.",
+    "source": "Institut de leadership, Center for Parental Leave Leadership, "
+              "momentareseau.com",
+}
+
 # La phrase qui ferme la carte, comme elle ferme la conference.
 FERMETURE = {
     "phrase": "L’État mesure si je reviens.<br>Personne ne mesure si je reste.",

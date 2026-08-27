@@ -154,6 +154,11 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 .appuis{{display:flex; flex-wrap:wrap; gap:26px; margin-top:22px}}
 .appui .n{{font-size:26px; font-weight:700; color:var(--corail); line-height:1}}
 .appui p{{margin:4px 0 0; font-size:13px; color:var(--vert2); max-width:210px}}
+/* Les trois jalons de « Qui parle » ouvrent une section : ils portent plus que
+   les appuis d'un tableau de résultats, d'où la taille et l'espace au-dessous. */
+.jalons{{margin:4px 0 22px}}
+.jalons .n{{font-size:clamp(28px,5vw,34px)}}
+.jalons p{{font-size:14px; max-width:225px}}   /* « dans le milieu de la conférence » sur une ligne */
 
 /* ── Le mur de logos ─────────────────────────────────────────────────────
    Hauteur EGALE pour les trois, marges transparentes deja rognees a la source :
@@ -251,6 +256,8 @@ def rendre():
 
     appuis = "".join(f'<div class="appui"><div class="n">{e(n)}</div><p>{e(t)}</p></div>'
                      for n, t in C.RESULTATS["appuis"])
+    jalons = "".join(f'<div class="appui"><div class="n">{e(n)}</div><p>{e(t)}</p></div>'
+                     for n, t in C.QUI_PARLE["jalons"])
 
     etiq = "".join(
         f'<img src="{src}" alt="{e(alt)}" width="{w}" height="{h}" loading="lazy">'
@@ -315,6 +322,15 @@ def rendre():
   <p class="phrase">{e(C.TAKE_HOME['phrase'])}</p>
   <p class="mineur">{e(C.TAKE_HOME['appui'])}</p>
   <div class="source">{e(C.TAKE_HOME['source'])}</div>
+</div></section>
+
+<section><div class="enveloppe">
+  <h2>Qui parle</h2>
+  <div class="appuis jalons">{jalons}</div>
+  <p class="mineur">{e(C.QUI_PARLE['parcours'])}</p>
+  <p class="mineur">{e(C.QUI_PARLE['certification'])}</p>
+  <p class="mineur">{e(C.QUI_PARLE['engagements'])}</p>
+  <div class="source">{e(C.QUI_PARLE['source'])}</div>
 </div></section>
 
 <section><div class="enveloppe">
