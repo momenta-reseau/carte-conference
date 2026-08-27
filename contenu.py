@@ -57,7 +57,11 @@ MC = {
 # par le manque plutôt que par l'objectif, ce qui est exactement ce qu'on
 # cherchait.
 TAKE_HOME = {
-    "phrase": "Je bâtis ce que j’aurais voulu trouver<br>"
+    # 🐛 L'espace AVANT le <br> n'est pas décoratif. Le saut est neutralisé sous
+    # 640 px, et sans cet espace les deux moitiés se collaient : « voulu
+    # trouverlors de ma propre ». Un navigateur ignore une espace en fin de ligne
+    # quand le saut s'affiche, et s'en sert quand il ne s'affiche pas.
+    "phrase": "Je bâtis ce que j’aurais voulu trouver <br>"
               "lors de ma propre transition parentale.",
     "appui": "Ce que je cherchais, ce n’était pas un soin. C’était un réseau. "
              "Sentir que je n’étais pas la seule.",
