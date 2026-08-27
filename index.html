@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Marie-Claude Viau · Le retour au travail</title>
+<meta name="description" content="Une conférence sur la transition parentale, racontée par quelqu’un qui l’a traversée avant de bâtir ce qui lui a manqué.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --vert:#01282b; --vert2:#3e5b5d; --corail:#ff706b;
+  --creme:#f2f0eb; --blanc:#fcfcfa; --gris:#ded9d4;
+  --rayon:12px; --large:820px;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--creme); color:var(--vert);
+  font-family:Montserrat,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px; line-height:1.5; font-weight:400;
+}
+.enveloppe{max-width:var(--large); margin:0 auto; padding:0 20px}
+section{padding:56px 0}
+section+section{border-top:1px solid var(--gris)}
+h1,h2,h3{line-height:1.15; margin:0; font-weight:700; letter-spacing:-.01em}
+h2{font-size:clamp(22px,4.4vw,28px); margin-bottom:10px}
+h3{font-size:17px}
+p{margin:0 0 14px}
+p:last-child{margin-bottom:0}
+.mineur{color:var(--vert2)}
+.source{font-size:12px; color:var(--vert2); margin-top:6px}
+
+/* ── En-tête ─────────────────────────────────────────────────────────── */
+header{background:var(--vert); color:var(--blanc); padding:44px 0 40px}
+header .logo{height:26px; width:auto; display:block; margin-bottom:34px}
+header h1{font-size:clamp(30px,7vw,46px)}
+header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px)}
+
+/* ── Les boutons de contact, le geste le plus important de la page ───── */
+.contacts{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}
+.contacts a{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:13px 20px; border-radius:25px; text-decoration:none;
+  font-size:15px; font-weight:600; border:2px solid transparent;
+  transition:background .2s,color .2s;
+}
+.principal{background:var(--corail); color:#fff}
+.principal:hover{background:#ff8a86}
+.secondaire{border-color:var(--gris); color:var(--blanc)}
+.secondaire:hover{background:rgba(255,255,255,.08)}
+.contacts svg{width:17px;height:17px;flex:none;fill:currentColor}
+
+/* ── Le message à retenir ────────────────────────────────────────────── */
+.retenir p.phrase{
+  font-size:clamp(26px,5.6vw,38px); font-weight:700; line-height:1.18;
+  letter-spacing:-.015em; margin-bottom:18px;
+}
+
+/* ── Les chiffres ────────────────────────────────────────────────────── */
+.chiffres{display:grid; gap:14px; grid-template-columns:1fr}
+@media(min-width:640px){.chiffres{grid-template-columns:1fr 1fr}}
+.chiffre{background:var(--blanc); border-radius:var(--rayon); padding:24px}
+.chiffre .n{font-size:clamp(32px,7vw,42px); font-weight:700; color:var(--corail);
+  line-height:1; letter-spacing:-.02em}
+.chiffre p{margin:12px 0 0; font-size:15px}
+.chiffre.fort{background:var(--vert); color:var(--blanc)}
+.chiffre.fort .source{color:var(--gris)}
+@media(min-width:640px){.chiffre.fort{grid-column:1/-1}}
+
+/* ── Les résultats ───────────────────────────────────────────────────── */
+.res{background:var(--blanc); border-radius:var(--rayon); padding:24px; margin-top:18px}
+.ligne{display:flex; align-items:baseline; gap:12px; padding:11px 0}
+.ligne+.ligne{border-top:1px solid var(--gris)}
+.ligne .lib{flex:1; font-size:15px; color:var(--vert2)}
+.ligne .av{color:var(--vert2); font-size:15px}
+.ligne .fl{color:var(--gris)}
+.ligne .ap{font-weight:700; font-size:18px; min-width:44px; text-align:right}
+.ligne.vedette .lib{color:var(--vert); font-weight:600}
+.ligne.vedette .ap{color:var(--corail); font-size:26px}
+.appuis{display:flex; flex-wrap:wrap; gap:26px; margin-top:22px}
+.appui .n{font-size:26px; font-weight:700; color:var(--corail); line-height:1}
+.appui p{margin:4px 0 0; font-size:13px; color:var(--vert2); max-width:210px}
+
+/* ── Preuve de scène ─────────────────────────────────────────────────── */
+.etiquettes{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 22px}
+.etiquettes span{background:var(--gris); border-radius:25px; padding:7px 15px; font-size:13px}
+.scene{padding:12px 0}
+.scene+.scene{border-top:1px solid var(--gris)}
+.scene p{margin:3px 0 0; font-size:14px; color:var(--vert2)}
+
+/* ── Offre ───────────────────────────────────────────────────────────── */
+.offre{background:var(--blanc); border-radius:var(--rayon); padding:24px; margin-bottom:14px}
+.offre p{font-size:15px; margin:9px 0 0}
+.offre .modalite{font-size:13px; color:var(--vert2); margin-top:11px}
+
+/* ── Honnêteté ───────────────────────────────────────────────────────── */
+.honnete{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:26px}
+.honnete p{font-size:16px; margin:0}
+
+/* ── Pied ────────────────────────────────────────────────────────────── */
+footer{background:var(--vert); color:var(--gris); padding:38px 0; font-size:14px}
+footer a{color:var(--blanc); text-decoration:none; border-bottom:1px solid var(--vert2)}
+footer .logo{height:22px; margin-bottom:20px; display:block}
+
+/* ── Impression : MC veut que la page devienne la pièce jointe ───────── */
+@media print{
+  body{background:#fff; font-size:11pt}
+  header,footer,.honnete,.chiffre.fort{background:#fff!important; color:#01282b!important}
+  header .role,footer,.chiffre.fort .source{color:#3e5b5d!important}
+  .contacts{display:none}
+  section{padding:16px 0; break-inside:avoid}
+  .chiffre,.res,.offre{border:1px solid #ded9d4}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="enveloppe">
+    <img class="logo" src="assets/logo-light.png" alt="Momenta">
+    <h1>Marie-Claude Viau</h1>
+    <div class="role">Fondatrice de Momenta · Conférencière</div>
+    <div class="contacts">
+      <a class="principal" href="mailto:mcviau@momentareseau.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Écrire à Marie-Claude</a>
+      <a class="secondaire" href="tel:+15148899649"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.6 3.5 1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
+      <a class="secondaire" href="https://www.linkedin.com/company/momentareseau"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 21h4V9H3v12zM9 21h4v-6.5c0-1.7 2-1.8 2 0V21h4v-7.9c0-4.5-4.9-4.3-6-2.1V9H9v12z"/></svg>LinkedIn</a>
+      <a class="secondaire" href="https://www.momentareseau.com"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-2.9a15.6 15.6 0 00-1.4-3.7A8 8 0 0118.9 8zM12 4c.8 1.1 1.4 2.5 1.8 4h-3.6C10.6 6.5 11.2 5.1 12 4zM4.3 14a8 8 0 010-4h3.3a17 17 0 000 4H4.3zm.8 2h2.9c.3 1.3.8 2.6 1.4 3.7A8 8 0 015.1 16zm2.9-8H5.1a8 8 0 014.3-3.7A15.6 15.6 0 008 8zm4 12c-.8-1.1-1.4-2.5-1.8-4h3.6c-.4 1.5-1 2.9-1.8 4zm2.2-6H9.8a15 15 0 010-4h4.4a15 15 0 010 4zm.4 5.7c.6-1.1 1.1-2.4 1.4-3.7h2.9a8 8 0 01-4.3 3.7zM16.4 14a17 17 0 000-4h3.3a8 8 0 010 4h-3.3z"/></svg>momentareseau.com</a>
+    </div>
+  </div>
+</header>
+
+<section class="retenir"><div class="enveloppe">
+  <p class="phrase">L’État mesure si je reviens.<br>Personne ne mesure si je reste.</p>
+  <p class="mineur">88 % des mères canadiennes reviennent au travail après leur congé. Le retour n’est pas l’enjeu. C’est ce qui se passe dans les mois qui suivent.</p>
+  <div class="source">Statistique Canada, Enquête sur la couverture de l’assurance-emploi</div>
+</div></section>
+
+<section><div class="enveloppe">
+  <h2>La conférence : Le retour au travail</h2>
+  <p class="mineur">Une conférence sur la transition parentale, racontée par quelqu’un qui l’a traversée avant de bâtir ce qui lui a manqué.</p>
+  <ul class="mineur"><li>Ce que vivent les femmes dans les mois qui suivent le retour, et pourquoi personne ne le mesure.</li><li>Pourquoi ce n’est plus une question de bien faire, mais de rétention.</li><li>Ce que la recherche prouve, et ce qu’elle ne prouve pas encore.</li></ul>
+  <div class="source">Formats et disponibilités sur demande.</div>
+</div></section>
+
+<section><div class="enveloppe">
+  <h2>Les chiffres de la présentation</h2>
+  <p class="mineur">À reprendre tels quels. Chacun porte sa source.</p>
+  <div class="chiffres"><div class="chiffre"><div class="n">88 %</div><p>des mères canadiennes reviennent au travail après leur congé parental</p><div class="source">Statistique Canada</div></div><div class="chiffre"><div class="n">33 %</div><p>perdent confiance en leurs capacités professionnelles au retour</p><div class="source">Benefits Canada, 1 000 femmes</div></div><div class="chiffre"><div class="n">30 000 $</div><p>le coût moyen du remplacement d’une employée qui ne revient pas, et plus de 100 000 $ pour 15 % des employeurs</p><div class="source">Randstad Canada, 2024</div></div><div class="chiffre fort"><div class="n">0</div><p>étude canadienne qui mesure si elles sont encore là douze mois après le retour</p><div class="source">RQAP et Statistique Canada mesurent le retour, personne ne mesure le maintien</div></div></div>
+</div></section>
+
+<section><div class="enveloppe">
+  <h2>Ce que le parcours donne</h2>
+  <p class="mineur">Cohorte du printemps 2026. Sondage de fin de parcours auprès de 22 des 42 participantes, avant et après.</p>
+  <div class="res"><div class="ligne vedette"><span class="lib">Sentiment d’être soutenue</span><span class="av">4,3</span><span class="fl">→</span><span class="ap">8,1</span></div><div class="ligne"><span class="lib">Posture de leadership en transition</span><span class="av">5,0</span><span class="fl">→</span><span class="ap">7,6</span></div><div class="ligne"><span class="lib">Clarté sur la prochaine étape professionnelle</span><span class="av">4,9</span><span class="fl">→</span><span class="ap">7,3</span></div><div class="ligne"><span class="lib">Charge mentale et équilibre</span><span class="av">4,6</span><span class="fl">→</span><span class="ap">7,1</span></div><div class="ligne"><span class="lib">Confiance en sa valeur professionnelle</span><span class="av">6,6</span><span class="fl">→</span><span class="ap">8,2</span></div><div class="appuis"><div class="appui"><div class="n">73</div><p>Net Promoter Score</p></div><div class="appui"><div class="n">91 %</div><p>estiment que leur organisation bénéficierait du programme</p></div><div class="appui"><div class="n">78 %</div><p>des participantes géraient une équipe ou des projets</p></div></div></div>
+  <div class="source">Auto-évaluation sur 10. n = 22 sur 42.</div>
+</div></section>
+
+<section><div class="enveloppe">
+  <h2>Où Marie-Claude a porté le sujet</h2>
+  <p class="mineur">Marie-Claude porte le sujet dans les médias québécois depuis 2026.</p>
+  <div class="etiquettes"><span>Radio-Canada</span><span>LCN</span><span>Noovo Info</span><span>TVA Nouvelles</span><span>Journal de Montréal</span><span>La Voix de l’Est</span><span>M105</span><span>107.7 Estrie</span></div>
+  <div class="scene"><h3>Panel de l’Ordre des CRHA</h3><p>SST, Loi 27 et risques psychosociaux · juin 2026</p></div><div class="scene"><h3>Journée immersive Momenta</h3><p>Première édition, Bromont · juin 2026</p></div><div class="scene"><h3>Six webinaires publics</h3><p>Série gratuite avec personnalités invitées</p></div>
+  <div class="etiquettes" style="margin-top:22px"><span>Elles, le balado</span><span>Bon Papa</span><span>Startop</span><span>UMEA</span></div>
+  <div class="source">Prix coup de cœur au Défi OSEntreprendre 2026, volet régional Haute-Yamaska et Brome-Missisquoi</div>
+</div></section>
+
+<section><div class="enveloppe">
+  <h2>L’offre Momenta</h2>
+  <p class="mineur">Au-delà de la conférence, Momenta accompagne la transition parentale dans les organisations.</p>
+  <div class="offre"><h3>Le parcours Essentielle</h3><p>Cinq mois de développement du leadership, en cohorte, animé par des sommités québécoises. Deux heures aux deux semaines, sur l’heure du dîner, séances enregistrées.</p><div class="modalite">1 495 $ · reconnu par l’Ordre des CRHA pour 14 heures de formation continue, donc admissible au budget de formation et à la loi du 1 %</div></div><div class="offre"><h3>Pour les organisations</h3><p>Le même parcours offert aux employées, avec un volet pour les gestionnaires qui reçoivent quelqu’un au retour.</p><div class="modalite">Sur mesure</div></div><div class="offre"><h3>La Journée immersive</h3><p>Une journée en présentiel : ateliers, conférences, réseautage, plein air.</p><div class="modalite">Deuxième édition · 6 novembre 2026 · Bromont</div></div><div class="offre"><h3>Formation en entreprise et accompagnement individuel</h3><p>Ateliers pour les équipes de gestion, et du un pour un quand la cohorte ne suffit pas.</p><div class="modalite">Sur demande</div></div>
+</div></section>
+
+<section><div class="enveloppe">
+  <div class="honnete"><p>Ce qu’on ne peut pas prouver encore : qu’un accompagnement retient les femmes. Aucune étude avec groupe témoin n’existe, ni au Québec ni au Canada. Ce qui est mesuré, c’est que la pénalité existe et que la plupart des femmes traversent ce moment sans aucun soutien formel.</p></div>
+</div></section>
+
+<footer><div class="enveloppe">
+  <img class="logo" src="assets/logo-light.png" alt="Momenta">
+  <p>Marie-Claude Viau · Bromont, Québec<br>
+  <a href="mailto:mcviau@momentareseau.com">mcviau@momentareseau.com</a> ·
+  <a href="tel:+15148899649">514 889-9649</a></p>
+  <p><a href="https://www.linkedin.com/company/momentareseau">LinkedIn</a> · <a href="https://www.momentareseau.com">momentareseau.com</a></p>
+</div></footer>
+
+</body></html>
