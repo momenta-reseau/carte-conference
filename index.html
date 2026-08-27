@@ -171,6 +171,14 @@ footer a:hover{color:var(--blanc)}
   font-size:var(--t-affiche); font-weight:700; line-height:1.18;
   letter-spacing:-.015em; margin-bottom:16px;
 }
+/* 🐛 Mesuré dans Chrome, pas déduit : l'accroche tenait sur QUATRE lignes sur un
+   téléphone, même après être descendue à 26 px. La cause n'était pas la taille
+   mais le `<br>` du contenu, écrit pour couper la phrase en deux sur un écran
+   large. Sur 390 px, chacune de ses deux moitiés se recassait, et une accroche
+   sur quatre lignes ne s'accroche plus, elle se lit.
+   Le saut forcé est neutralisé sous 640 px : la phrase se coupe où la largeur le
+   décide, ce qui la ramène à trois lignes. */
+@media(max-width:640px){.retenir p.phrase br{display:none}}
 /* ── La signature d'un auteur, qui n'est PAS une attribution de source ──────
    ✏️ David, 2026-08-27 : « Marie-Claude Viau, fondatrice de Momenta, c'est trop
    petit ». Puis, quelques heures plus tard : « la hiérarchie de ça est mauvaise »,
