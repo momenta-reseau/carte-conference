@@ -1,4 +1,4 @@
-# Passer à mc.momentareseau.com
+# Passer à info.momentareseau.com
 
 Aujourd'hui la page vit à `momenta-reseau.github.io/carte-conference/`. Le mot
 « github » y est visible, et l'adresse fait cinquante caractères.
@@ -20,7 +20,7 @@ noms sont `ns-cloud-c1` à `c4.googledomains.com`). Il faut y ajouter :
 
 ```
 Type   : CNAME
-Nom    : mc
+Nom    : info
 Valeur : momenta-reseau.github.io.
 TTL    : 3600
 ```
@@ -31,7 +31,7 @@ GoHighLevel derrière Cloudflare, n'est pas affecté.
 ### 2. Vérifier que ça répond
 
 ```bash
-dig +short mc.momentareseau.com
+dig +short info.momentareseau.com
 ```
 
 La réponse doit contenir `momenta-reseau.github.io` puis les quatre adresses de
@@ -40,10 +40,10 @@ GitHub (185.199.108.153 à 111.153). Compter de quelques minutes à deux heures.
 ### 3. Seulement ensuite, le dépôt
 
 ```bash
-echo "mc.momentareseau.com" > CNAME
-git add CNAME && git commit -m "Domaine : mc.momentareseau.com" && git push
+echo "info.momentareseau.com" > CNAME
+git add CNAME && git commit -m "Domaine : info.momentareseau.com" && git push
 gh api -X PUT repos/momenta-reseau/carte-conference/pages \
-  -f "cname=mc.momentareseau.com" -F "https_enforced=true"
+  -f "cname=info.momentareseau.com" -F "https_enforced=true"
 ```
 
 Le certificat HTTPS met jusqu'à quinze minutes. Tant qu'il n'est pas prêt, le
@@ -53,7 +53,7 @@ navigateur avertit : c'est normal, il ne faut pas revenir en arrière.
 
 ```bash
 python3 ~/Obsidian/Momenta/scripts/deck/qr_momenta.py \
-  "https://mc.momentareseau.com" \
+  "https://info.momentareseau.com" \
   ~/Obsidian/Momenta/Boite-a-outils/Ressources/QR_Carte_Conference.png
 ```
 
@@ -64,8 +64,8 @@ réponde** : un QR qui mène à une erreur est pire qu'un QR long.
 
 | | aujourd'hui | après |
 |---|---|---|
-| Adresse | momenta-reseau.github.io/carte-conference | **mc.momentareseau.com** |
-| Longueur | 50 caractères | **28** |
+| Adresse | momenta-reseau.github.io/carte-conference | **info.momentareseau.com** |
+| Longueur | 50 caractères | **30** |
 | Code QR | version 6, 49 × 49 modules | **version 4, 41 × 41** |
 
 Le code se simplifie de deux versions. Moins de modules veut dire des carrés plus
@@ -78,8 +78,8 @@ le vrai gain, au-delà du nom.
 marque ; un domaine séparé coûte tous les ans et la détache.
 
 **Choisir un nom long.** `conference.momentareseau.com` fait trente-six
-caractères et ramène le code à la version 5. `mc` se dicte au téléphone, se tape
-sans faute, et tient sous un code QR.
+caractères et ramène le code à la version 5. `info` se dicte au téléphone, se
+tape sans faute, et tient sous un code QR.
 
 **Toucher au domaine racine ou à `www`.** Ils servent le site GoHighLevel. Le
 sous-domaine `mc` est indépendant.
