@@ -76,12 +76,24 @@ ACCROCHE = {
 
 # Trois demandes, et pas un catalogue. Chacune est une case différente dans une
 # programmation, avec un budget et un risque différents.
+# ✏️ David : « donne un peu plus de détails » sur la conférence, et « une place
+# comme PANÉLISTE, pas en panel ».
+#
+# 🔴 Il a raison sur les deux plans. « En panel » calque l'anglais et nomme un
+# format ; « comme panéliste » nomme une PERSONNE, ce qu'un planificateur cherche
+# quand il remplit une table ronde. On n'achète pas un panel, on invite quelqu'un.
+#
+# 📄 Le détail du récit vient du deck : le postpartum non diagnostiqué, la
+# remontée par la course, et ce qu'elle a quitté pour fonder Momenta. Tout est
+# déjà public (LinkedIn, Noovo, la lettre ouverte).
 DEMANDES = [
     ("Une conférence d’inspiration",
-     "Mon récit, seule sur scène, en ouverture ou en clôture de journée."),
-    ("Une place en panel",
+     "Mon récit, seule sur scène : le postpartum que je n’ai pas vu venir, la "
+     "remontée par la course, et ce que j’ai quitté pour bâtir Momenta. En "
+     "ouverture ou en clôture de journée."),
+    ("Une place comme panéliste",
      "Mon expertise sur la transition parentale et l’accomplissement personnel, "
-     "dans un format de discussion."),
+     "en discussion et sans support."),
     ("De la formation sur mesure",
      "En entreprise, sur la conciliation travail-famille, en particulier pour les "
      "femmes en transition parentale."),
@@ -122,8 +134,12 @@ FORMATRICES = [
      "autrice de « Par amour du stress »"),
     ("Lory Zéphyr",
      "Ph. D., psychologue en périnatalité, autrice aux Éditions de l’Homme"),
+    # 🐛 « Conseillère EN orientation » est une déformation d'un titre réservé.
+    # L'OCCOQ est formel : seul « conseillère d'orientation » (c.o.) est réservé
+    # par l'article 36 du Code des professions, et personne ne peut s'attribuer un
+    # titre approchant. Le site de Momenta porte la même erreur, à signaler à MC.
     ("Marylise Champagne",
-     "Conseillère en orientation, fondatrice de Dix mille matins"),
+     "Conseillère d’orientation, fondatrice de Dix mille matins"),
     ("Mylène Houle Morency",
      "Formatrice agréée et autrice en conciliation travail-famille"),
     ("Marie-Hélène Langlois",
@@ -469,11 +485,11 @@ header .role{color:var(--gris); margin-top:10px}
 .appel .doux{color:var(--gris)}
 .appel .source{color:var(--gris)}
 
-footer{background:var(--vert); color:var(--gris); padding:32px 0;
-  font-size:var(--t-source)}
-footer .logo{height:22px; display:block; margin-bottom:20px}
-footer a{color:inherit; text-decoration:underline; text-underline-offset:2px}
-footer a:hover{color:var(--blanc)}
+/* Le pied ne porte plus qu'un logo, centré. Il prolonge le vert nuit de l'appel
+   sans filet entre les deux : la page se termine sur un aplat, pas sur une
+   dernière rangée d'informations. */
+footer{background:var(--vert); padding:36px 0 40px}
+footer .logo{height:24px; display:block; margin:0 auto}
 
 /* La page imprimée devient la pièce jointe qu'on fait suivre à son comité. */
 @media print{
@@ -590,7 +606,6 @@ def rendre():
   <p class="doux">Le parcours que j’ai bâti est animé par des sommités
      québécoises. Elles interviennent aussi en entreprise.</p>
   <div class="gens">{gens}</div>
-  <div class="source">momentareseau.com, parcours Essentielle</div>
 </div></section>
 
 <section class="appel"><div class="dedans">
@@ -605,13 +620,19 @@ def rendre():
   </div>
 </div></section>
 
+<!-- ✏️ David : « le call to action et le pied de page sont fusionnés en ce moment.
+     On enlève la section du bas, on met un petit logo Momenta centré en bas
+     complètement. »
+
+     🔴 Deux blocs vert nuit qui se suivent lisaient comme un seul, et le second
+     répétait des coordonnées déjà données deux fois : dans l'en-tête et dans le
+     bouton juste au-dessus. Une page qui redit ses coordonnées trois fois n'en
+     donne aucune, elle donne une liste.
+
+     Le pied ne porte plus qu'une signature de marque. Il n'a plus de titre, plus
+     de lien, rien à lire : il ferme. -->
 <footer><div class="dedans">
   <img class="logo" src="assets/logo-light.png" alt="Momenta">
-  <p>{e(MC['nom'])} · {e(MC['ville'])}<br>
-    <a href="mailto:{MC['courriel']}">{e(MC['courriel'])}</a> ·
-    <a href="tel:{MC['tel_lien']}">{e(MC['tel'])}</a></p>
-  <p><a href="{MC['linkedin']}">LinkedIn</a> ·
-     <a href="{MC['site']}">momentareseau.com</a></p>
 </div></footer>
 
 </body></html>
