@@ -47,6 +47,26 @@
      🟡 L'étiquette reste à 12 px. Elle ne porte que des attributions de source,
      qu'on lit une fois, jamais pendant la lecture. Ce qui prouvait quelque chose
      (le prix OSEntreprendre) en est sorti et monte d'un cran. */
+  /* ── Les crans d'AFFICHAGE ────────────────────────────────────────────
+     ✏️ David, 2026-08-27 : « c'est encore disproportionné, le nom de MC est plus
+     gros que sa citation ». Mesuré : le nom sortait à 46 px, la phrase à 38.
+
+     🐛 Ma passe précédente n'avait rien changé ici, et pour une raison qui compte :
+     j'avais rationalisé les crans de TEXTE en laissant quatre crans d'AFFICHAGE
+     (46, 38, 34, 28) tels qu'ils étaient depuis la première version. Pire, le
+     vérificateur les autorisait explicitement, parce qu'ils vivent en `clamp()`.
+     J'avais créé une zone que le contrôle ne regardait pas.
+
+     🔴 ET L'ORDRE N'ÉTAIT PAS DÉCIDÉ, il était hérité. Sur une carte de visite,
+     le nom domine. Sur cette page, ce qui doit rester dans la tête d'un acheteur
+     est la PHRASE, pas le nom : il a le nom partout ailleurs, dans les boutons,
+     dans le pied, dans la signature. La phrase, il ne l'a qu'une fois. */
+  --t-affiche: clamp(1.875rem, 5.6vw, 2.625rem);  /* 30-42 px  ce qui doit rester */
+  /* 🐛 Le plancher du nom valait 1.625rem, soit exactement `--t-titre`. Sur un
+     téléphone, les deux clamps touchent leur plancher et le nom se retrouvait à
+     la même taille qu'un intertitre : la hiérarchie tenait sur écran large et
+     s'écrasait là où la page est le plus lue. Un clamp se vérifie aux DEUX bouts. */
+  --t-nom: clamp(1.75rem, 4.6vw, 2.125rem);       /* 28-34 px  qui parle, un jalon */
   --t-titre: 1.625rem;      /* 26 px  le nom d'une section                     */
   --t-section: 1.25rem;     /* 20 px  un intertitre, un titre de bloc          */
   --t-corps: 1.0625rem;     /* 17 px  TOUT le texte qu'on lit                  */
@@ -76,7 +96,7 @@ body{
 section{padding:40px 0}                    /* etait 56 : 18 px x 2 x 11 sections */
 section+section{border-top:1px solid var(--gris)}
 h1,h2,h3{line-height:1.15; margin:0; font-weight:700; letter-spacing:-.01em}
-h2{font-size:clamp(var(--t-titre),4.4vw,1.75rem); margin-bottom:8px}
+h2{font-size:var(--t-titre); margin-bottom:8px}
 h3{font-size:var(--t-section)}
 p{margin:0 0 12px}
 p:last-child{margin-bottom:0}
@@ -89,7 +109,7 @@ p:last-child{margin-bottom:0}
 /* ── En-tête ─────────────────────────────────────────────────────────── */
 header{background:var(--vert); color:var(--blanc); padding:40px 0 36px}
 header .logo{height:26px; width:auto; display:block; margin-bottom:28px}
-header h1{font-size:clamp(30px,7vw,46px)}
+header h1{font-size:var(--t-nom)}
 header .role{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps),2.6vw,var(--t-section))}
 
 /* La feuille : elle se pose sur le fond, sans cadre ni ombre. 🔴 Le masque est
@@ -132,7 +152,7 @@ footer a:hover{color:var(--blanc)}
 
 /* ── Le message à retenir ────────────────────────────────────────────── */
 .retenir p.phrase{
-  font-size:clamp(26px,5.6vw,38px); font-weight:700; line-height:1.18;
+  font-size:var(--t-affiche); font-weight:700; line-height:1.18;
   letter-spacing:-.015em; margin-bottom:16px;
 }
 /* ── La signature d'un auteur, qui n'est PAS une attribution de source ──────
@@ -160,7 +180,7 @@ footer a:hover{color:var(--blanc)}
 .chiffres{display:grid; gap:14px; grid-template-columns:1fr}
 @media(min-width:640px){.chiffres{grid-template-columns:1fr 1fr}}
 .chiffre{background:var(--blanc); border-radius:var(--rayon); padding:22px}
-.chiffre .n{font-size:clamp(32px,7vw,42px); font-weight:700; color:var(--corail);
+.chiffre .n{font-size:var(--t-nom); font-weight:700; color:var(--corail);
   line-height:1; letter-spacing:-.02em}
 .chiffre p{margin:12px 0 0; font-size:var(--t-corps)}
 .chiffre.fort{background:var(--vert); color:var(--blanc)}
@@ -183,7 +203,7 @@ footer a:hover{color:var(--blanc)}
 /* Les trois jalons de « Qui parle » ouvrent une section : ils portent plus que
    les appuis d'un tableau de résultats, d'où la taille et l'espace au-dessous. */
 .jalons{margin:4px 0 16px}
-.jalons .n{font-size:clamp(28px,5vw,34px)}
+.jalons .n{font-size:var(--t-nom)}
 .jalons p{font-size:var(--t-corps); max-width:235px}   /* « dans le milieu de la conférence » sur une ligne */
 
 /* ── Le mur de logos ─────────────────────────────────────────────────────
@@ -259,7 +279,7 @@ footer a:hover{color:var(--blanc)}
 .panel p{font-size:var(--t-corps); margin:0; color:var(--gris)}
 .panel .source{color:var(--gris)}
 .cite-clair{margin:16px 0 0; border-left-color:var(--corail)}
-.cite-clair p{color:var(--blanc); font-size:clamp(var(--t-corps),3vw,var(--t-section))}
+.cite-clair p{color:var(--blanc)}
 
 /* Les trois titres de conférence, réduits au titre et à la case. */
 .titres{display:grid; gap:12px; grid-template-columns:1fr; margin:18px 0 10px}
@@ -274,7 +294,7 @@ footer a:hover{color:var(--blanc)}
 
 /* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
 .cite{margin:0 0 18px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}
-.cite p{font-size:clamp(var(--t-section),3.4vw,1.375rem); font-weight:600; margin:0; line-height:1.3}
+.cite p{font-size:var(--t-titre); font-weight:600; margin:0; line-height:1.3}
 
 /* ── Honnêteté ───────────────────────────────────────────────────────── */
 .honnete{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:24px}

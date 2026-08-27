@@ -67,7 +67,13 @@ if re.search(r"[—–]", texte):
 # et son nom accueillait n'importe quoi. Quatre crans, un par rôle. Si ce
 # contrôle échoue sur un cran inconnu, la bonne réponse est de rattacher la règle
 # à un rôle existant, jamais d'ajouter une entrée ici.
-CRANS = {"var(--t-titre)", "var(--t-section)", "var(--t-corps)", "var(--t-source)"}
+# 🐛 Troisième passe. Les crans d'AFFICHAGE manquaient à cette liste, et le
+# contrôle laissait passer tout ce qui vivait en `clamp()`. Résultat : quatre
+# tailles jamais revues depuis la première version (46, 38, 34, 28) ont survécu à
+# deux ménages typographiques, et le nom de MC est resté plus gros que sa citation
+# pendant tout ce temps. Une exception dans un contrôle devient une zone d'ombre.
+CRANS = {"var(--t-affiche)", "var(--t-nom)", "var(--t-titre)",
+         "var(--t-section)", "var(--t-corps)", "var(--t-source)"}
 PLANCHER_PX = 15   # `--t-source`. Legge et Bigelow 2011 : 14 px passent sous la
                    # plage de lecture fluente dès que le téléphone s'éloigne.
 
@@ -75,11 +81,14 @@ for m in re.finditer(r"font-size:\s*([^;}\n]+)", brut):
     v = m.group(1).strip()
     if any(c in v for c in CRANS) or v.endswith("pt"):
         continue
+    if v.startswith("clamp("):          # un clamp qui n'appelle aucun cran
+        fautes.append(f"font-size:{v} — clamp hors des crans nommés")
+        continue
     px = re.match(r"^(\d+(?:\.\d+)?)px$", v)
     if px and float(px.group(1)) < PLANCHER_PX:
         fautes.append(f"font-size:{v} — sous le plancher de {PLANCHER_PX} px")
-    elif px and float(px.group(1)) <= 26:
-        fautes.append(f"font-size:{v} — taille en dur hors des cinq crans")
+    elif px:
+        fautes.append(f"font-size:{v} — taille en dur hors des crans nommés")
 
 # ── Une attribution ne pèse jamais plus que ce qu'elle attribue ──────────────
 #
@@ -103,6 +112,29 @@ for m in re.finditer(r"([^{}\n]*\.source[^{}\n]*)\{([^}]*)\}", brut):
         fautes.append(
             f"`{sel}` redéfinit la taille ou la graisse d'une attribution — "
             "une classe se définit par son rôle, jamais par son emplacement")
+
+# 🔴 L'ORDRE DES DEUX PLUS GROS CRANS SE VÉRIFIE, parce que c'est lui que David a
+# vu et qu'aucun contrôle de taille ne l'aurait attrapé : les deux valeurs étaient
+# légitimes séparément. Sur cette page, la phrase doit dominer le nom.
+# 🐛 Et un clamp se vérifie AUX DEUX BOUTS. Le plancher du nom valait exactement
+# `--t-titre` : sur téléphone, les deux touchaient leur plancher et le nom tombait
+# au niveau d'un intertitre. La hiérarchie tenait sur écran large et s'écrasait là
+# où la page est le plus lue.
+def bornes(nom):
+    m = re.search(rf"{nom}:\s*clamp\(\s*([\d.]+)rem[^,]*,[^,]+,\s*([\d.]+)rem\)", brut)
+    return (float(m.group(1)), float(m.group(2))) if m else None
+
+aff, nom = bornes("--t-affiche"), bornes("--t-nom")
+m_titre = re.search(r"--t-titre:\s*([\d.]+)rem", brut)
+titre = float(m_titre.group(1)) if m_titre else None
+if aff and nom:
+    for i, bout in enumerate(("plancher", "plafond")):
+        if aff[i] <= nom[i]:
+            fautes.append(f"au {bout}, --t-affiche ({aff[i]}rem) ne domine plus "
+                          f"--t-nom ({nom[i]}rem) — la phrase pèse plus que le nom")
+    if titre and nom[0] <= titre:
+        fautes.append(f"au plancher, --t-nom ({nom[0]}rem) tombe au niveau de "
+                      f"--t-titre ({titre}rem) — la hiérarchie s'écrase sur téléphone")
 
 if fautes:
     print("\nPUBLICATION REFUSÉE\n" + "-" * 19)
