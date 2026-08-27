@@ -34,11 +34,13 @@
   --vert:#01282b; --vert2:#3e5b5d; --corail:#ff706b;
   --creme:#f2f0eb; --blanc:#fcfcfa; --gris:#ded9d4;
   --rayon:12px; --large:900px;
-  /* ✏️ David : « on peut rétrécir un peu la police, l'écriture aussi ». C'est ce
-     qui débloque la phrase : à 42 px, « Momenta accompagne » débordait à quatre
-     lignes sur iPhone quelle que soit la coupe. À 38, elle en tient trois.
-     L'écart avec `--t-nom` reste de 4 px aux deux bouts, la hiérarchie tient. */
-  --t-affiche: clamp(1.5rem, 3.1vw, 2.375rem);    /* 24-38  ce qui doit rester */
+  /* 🔄 L'affiche remonte à 26-42. Elle était descendue à 24-38 pour faire entrer
+     « Momenta accompagne le moment que personne ne prépare » ; la formulation
+     retenue est plus courte de huit signes et tient à toutes les tailles
+     essayées, jusqu'à 46. On reprend donc la valeur qui donne son poids à
+     l'affiche sans écraser le nom : l'écart reste de 6 px au plancher et 8 au
+     plafond. */
+  --t-affiche: clamp(1.625rem, 3.4vw, 2.625rem);  /* 26-42  ce qui doit rester */
   --t-nom:     clamp(1.25rem, 2.8vw, 2.125rem);   /* 20-34  qui parle, un jalon */
   --t-titre:   clamp(1.25rem, 2vw, 1.625rem);     /* 20-26  le nom d'une section */
   --t-section: 1.25rem;                           /* 20     un titre de bloc     */
@@ -128,10 +130,10 @@ header .role{color:var(--gris); margin-top:10px}
 /* L'appui se cale sur le filet, sans le prolonger : il commente la phrase, il
    n'en fait pas partie. */
 .apres-citation{padding-left:25px; margin-top:16px}
-/* Le saut est écrit pour couper la phrase en deux sur un écran large. Sur un
-   téléphone chaque moitié se recasse, et une accroche sur quatre lignes ne
-   s'accroche plus, elle se lit. */
-@media(max-width:640px){.phrase br{display:none}}
+/* 🔄 Le saut n'est plus neutralisé sur téléphone. Il l'était quand il servait à
+   couper une phrase trop longue : là où il tombait n'avait pas d'importance, et
+   le supprimer évitait quatre lignes. Depuis que la phrase oppose deux
+   propositions, le saut EST la phrase, et il tient à toutes les largeurs. */
 /* 🔴 La signature a disparu avec l'appui : dès lors que la page entière est
    écrite au « je », elle est signée de bout en bout et une attribution sous la
    citation redirait le nom qui est déjà dans l'en-tête. */
@@ -240,8 +242,8 @@ footer a:hover{color:var(--blanc)}
 </div></header>
 
 <section><div class="dedans">
-  <p class="phrase citation">« Momenta accompagne le moment <br>que personne ne prépare. »</p>
-  <p class="doux apres-citation">Le retour au travail après un congé parental. J’ai bâti ce que j’aurais voulu trouver lors du mien, pour les femmes comme pour leurs organisations.</p>
+  <p class="phrase citation">On prépare toujours le départ.<br>Jamais le retour.</p>
+  <p class="doux apres-citation">Le retour au travail après un congé parental : j’ai bâti ce que j’aurais voulu trouver à ce moment-là, pour les femmes et les organisations qui traversent cette transition.</p>
 </div></section>
 
 <section><div class="dedans">

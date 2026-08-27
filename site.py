@@ -52,60 +52,26 @@ MC = {
 # L'appui a sauté avec la même consigne : « ce n'est pas nécessaire ». Il glosait
 # la citation, et la signature devenait inutile dès lors que la page entière est
 # écrite à sa voix.
-# ✏️ David, 2026-08-27 : la grande phrase dit désormais la MISSION, au « je »,
-# et « j'ai bâti » passe dessous, au passé, « parce que c'est déjà construit ».
+# ✏️ David, 2026-08-27, sa formulation, retenue telle quelle.
 #
-# 📄 La mission, telle que `Strategie/Mission-positionnement.md` la porte :
-# « transformer la transition du congé parental en tremplin », et « soutenir les
-# femmes, et leurs organisations ». Les deux publics restent dans la phrase : ce
-# sont les organisations qui achètent, et les nommer dit à un acheteur qu'il est
-# concerné. Le « levier stratégique d'engagement et de propulsion de carrière »
-# du site ne monte pas ici : c'est du jargon de plan d'affaires, personne ne
-# parle comme ça et surtout pas elle.
+# 🔴 Elle tient en deux temps et c'est le SAUT qui fait la phrase : le premier
+# membre pose l'habitude, le second retire tout. Une opposition a besoin de deux
+# lignes pour se voir ; mise en flux, elle devient une remarque.
 #
-# 🔴 « Transition parentale » ne se répète pas dans l'appui. La grande phrase le
-# nomme, la petite dit « la mienne » : l'enchaînement fait le travail et le mot
-# ne revient pas deux fois en trois lignes.
+# 📄 C'est le geste de sa diapo 6 : « on prépare les femmes à devenir leaders, on
+# prépare les entreprises à performer. Mais personne ne prépare le retour. »
+#
+# 🔴 Pas de guillemets ici, contrairement aux versions précédentes : ce n'est plus
+# une parole à la première personne mais un constat. Le filet corail suffit à la
+# poser, et le « je » revient dans l'appui, qui dit ce qu'elle en a fait.
 ACCROCHE = {
-    # 🔴 L'espace avant le saut n'est pas décorative : le saut est neutralisé sur
-    # téléphone, et sans elle les deux moitiés se collent.
-    # 🐛 Mesuré, pas jugé : la version qui portait les deux publics dans la
-    # grande phrase tenait sur QUATRE lignes en écran large et CINQ sur
-    # téléphone. Une affiche de cinq lignes n'est plus une affiche, elle se lit.
-    # Sept formulations ont été rendues et comptées ; celle-ci est la seule qui
-    # tienne en deux lignes aux deux largeurs sans perdre le « je ».
-    #
-    # 🔴 Les organisations descendent donc dans l'appui, et n'y perdent rien :
-    # c'est la ligne que lit un acheteur qui se demande si ça le concerne, et il
-    # la lit de toute façon puisqu'elle est juste dessous.
-    # ✏️ David, 2026-08-27 : « Momenta accompagne le moment que personne
-    # n'accompagne, on travaille autour de ça ».
-    #
-    # 🔴 « Accompagner » plutôt que « préparer » : c'est son métier, c'est le mot
-    # du wiki, et la répétition fait toute la phrase. Elle pose un manque au lieu
-    # de décrire un service, ce qu'un planificateur retient mieux.
-    #
-    # 🐛 « Momenta accompagne » ne rentre pas. Mesuré aux deux coupes possibles :
-    # quatre lignes sur iPhone dans les deux cas, contre trois pour le « je ». Un
-    # mot de plus et l'affiche devient un paragraphe. Momenta est de toute façon
-    # nommé trois fois ailleurs : le logo, le rôle sous le nom, et le pied.
-    #
-    # 🔴 La phrase seule ne dit pas DE QUEL moment il s'agit. L'appui le nomme en
-    # premier mot, avant tout le reste : sans lui, l'accroche est une devinette.
-    # ✏️ « Je n'aime pas la redite ». Juste : « accompagne… n'accompagne » se
-    # voulait une figure et se lisait comme un bégaiement. Le second verbe devient
-    # « prépare », qui est de toute façon son verbatim : « on prépare les femmes à
-    # devenir leaders, on prépare les entreprises à performer, mais personne ne
-    # prépare le retour ».
-    #
-    # 🔴 Et « Momenta » revient en tête, comme David l'avait écrit : la police
-    # rétrécie lui fait la place que 42 px lui refusait. La marque agit dans la
-    # phrase, elle raconte dans l'appui juste dessous. C'est le seul endroit de la
-    # page où Momenta est sujet d'un verbe.
-    "phrase": "« Momenta accompagne le moment <br>que personne ne prépare. »",
-    "appui": "Le retour au travail après un congé parental. J’ai bâti ce que "
-             "j’aurais voulu trouver lors du mien, pour les femmes comme pour "
-             "leurs organisations.",
+    # 🔴 Ce saut-là ne se neutralise PAS sur téléphone. Les précédents coupaient
+    # une phrase trop longue et pouvaient tomber ailleurs sans dommage ; celui-ci
+    # sépare deux propositions qui s'opposent. Le supprimer casserait la phrase.
+    "phrase": "On prépare toujours le départ.<br>Jamais le retour.",
+    "appui": "Le retour au travail après un congé parental : j’ai bâti ce que "
+             "j’aurais voulu trouver à ce moment-là, pour les femmes et les "
+             "organisations qui traversent cette transition.",
 }
 
 # Trois demandes, et pas un catalogue. Chacune est une case différente dans une
@@ -334,11 +300,13 @@ CSS = """
   --vert:#01282b; --vert2:#3e5b5d; --corail:#ff706b;
   --creme:#f2f0eb; --blanc:#fcfcfa; --gris:#ded9d4;
   --rayon:12px; --large:900px;
-  /* ✏️ David : « on peut rétrécir un peu la police, l'écriture aussi ». C'est ce
-     qui débloque la phrase : à 42 px, « Momenta accompagne » débordait à quatre
-     lignes sur iPhone quelle que soit la coupe. À 38, elle en tient trois.
-     L'écart avec `--t-nom` reste de 4 px aux deux bouts, la hiérarchie tient. */
-  --t-affiche: clamp(1.5rem, 3.1vw, 2.375rem);    /* 24-38  ce qui doit rester */
+  /* 🔄 L'affiche remonte à 26-42. Elle était descendue à 24-38 pour faire entrer
+     « Momenta accompagne le moment que personne ne prépare » ; la formulation
+     retenue est plus courte de huit signes et tient à toutes les tailles
+     essayées, jusqu'à 46. On reprend donc la valeur qui donne son poids à
+     l'affiche sans écraser le nom : l'écart reste de 6 px au plancher et 8 au
+     plafond. */
+  --t-affiche: clamp(1.625rem, 3.4vw, 2.625rem);  /* 26-42  ce qui doit rester */
   --t-nom:     clamp(1.25rem, 2.8vw, 2.125rem);   /* 20-34  qui parle, un jalon */
   --t-titre:   clamp(1.25rem, 2vw, 1.625rem);     /* 20-26  le nom d'une section */
   --t-section: 1.25rem;                           /* 20     un titre de bloc     */
@@ -428,10 +396,10 @@ header .role{color:var(--gris); margin-top:10px}
 /* L'appui se cale sur le filet, sans le prolonger : il commente la phrase, il
    n'en fait pas partie. */
 .apres-citation{padding-left:25px; margin-top:16px}
-/* Le saut est écrit pour couper la phrase en deux sur un écran large. Sur un
-   téléphone chaque moitié se recasse, et une accroche sur quatre lignes ne
-   s'accroche plus, elle se lit. */
-@media(max-width:640px){.phrase br{display:none}}
+/* 🔄 Le saut n'est plus neutralisé sur téléphone. Il l'était quand il servait à
+   couper une phrase trop longue : là où il tombait n'avait pas d'importance, et
+   le supprimer évitait quatre lignes. Depuis que la phrase oppose deux
+   propositions, le saut EST la phrase, et il tient à toutes les largeurs. */
 /* 🔴 La signature a disparu avec l'appui : dès lors que la page entière est
    écrite au « je », elle est signée de bout en bout et une attribution sous la
    citation redirait le nom qui est déjà dans l'en-tête. */
