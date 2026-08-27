@@ -167,6 +167,15 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .formatrice+.formatrice{border-top:1px solid var(--gris)}
 .formatrice strong{font-size:16px; min-width:210px}
 .formatrice span{font-size:14px; color:var(--vert2); flex:1}
+/* 🐛 Sur téléphone, le `min-width` du nom laissait au titre un rail d'environ
+   130 px : « Ph. D., directrice du Centre d'études sur le stress humain » sortait
+   sur six lignes de deux mots. Sous 640 px, le nom prend sa ligne et le titre la
+   suivante, en pleine largeur. */
+@media(max-width:640px){
+  .formatrice{display:block}
+  .formatrice strong{min-width:0; display:block}
+  .formatrice span{display:block; margin-top:2px}
+}
 
 /* ── Deux sujets, deux formats ───────────────────────────────────────────
    Les deux sujets côte à côte : la lecture parallèle dit « il y en a deux »
@@ -299,7 +308,7 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
 <section><div class="enveloppe">
   <h2>Avec qui elle travaille</h2>
   <p class="mineur">Le parcours Momenta est animé par des sommités québécoises. Elles interviennent aussi en entreprise.</p>
-  <div class="formatrices"><div class="formatrice"><strong>Sonia Lupien</strong><span>Ph. D., neuroscientifique du stress</span></div><div class="formatrice"><strong>Lory Zéphyr</strong><span>Ph. D., psychologue en santé mentale maternelle et périnatalité</span></div><div class="formatrice"><strong>Marylise Champagne</strong><span>c.o., conseillère en orientation, autrice</span></div><div class="formatrice"><strong>Mylène Houle Morency</strong><span>formatrice agréée, autrice en conciliation travail-famille</span></div><div class="formatrice"><strong>Marie-Hélène Langlois</strong><span>associée et consultante principale, SISMIK Impact</span></div><div class="formatrice"><strong>Amélie Mongrain</strong><span>M. Sc., spécialiste de la transition en congé parental</span></div></div>
+  <div class="formatrices"><div class="formatrice"><strong>Sonia Lupien</strong><span>Ph. D., directrice du Centre d’études sur le stress humain, autrice de « Par amour du stress »</span></div><div class="formatrice"><strong>Lory Zéphyr</strong><span>Ph. D., psychologue en périnatalité, autrice aux Éditions de l’Homme</span></div><div class="formatrice"><strong>Marylise Champagne</strong><span>Conseillère en orientation, fondatrice de Dix mille matins</span></div><div class="formatrice"><strong>Mylène Houle Morency</strong><span>Formatrice agréée et autrice en conciliation travail-famille</span></div><div class="formatrice"><strong>Marie-Hélène Langlois</strong><span>Associée et consultante principale, SISMIK Impact</span></div><div class="formatrice"><strong>Amélie Mongrain</strong><span>M. Sc., fondatrice d’Ella Conseils, spécialiste de la transition parentale</span></div></div>
   <div class="source">momentareseau.com, parcours Essentielle</div>
 </div></section>
 

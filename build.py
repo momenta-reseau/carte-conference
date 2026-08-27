@@ -223,6 +223,15 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 .formatrice+.formatrice{{border-top:1px solid var(--gris)}}
 .formatrice strong{{font-size:16px; min-width:210px}}
 .formatrice span{{font-size:14px; color:var(--vert2); flex:1}}
+/* 🐛 Sur téléphone, le `min-width` du nom laissait au titre un rail d'environ
+   130 px : « Ph. D., directrice du Centre d'études sur le stress humain » sortait
+   sur six lignes de deux mots. Sous 640 px, le nom prend sa ligne et le titre la
+   suivante, en pleine largeur. */
+@media(max-width:640px){{
+  .formatrice{{display:block}}
+  .formatrice strong{{min-width:0; display:block}}
+  .formatrice span{{display:block; margin-top:2px}}
+}}
 
 /* ── Deux sujets, deux formats ───────────────────────────────────────────
    Les deux sujets côte à côte : la lecture parallèle dit « il y en a deux »

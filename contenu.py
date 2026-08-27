@@ -166,13 +166,33 @@ DEMANDES = [
 FORMATRICES = {
     "intro": "Le parcours Momenta est animé par des sommités québécoises. "
              "Elles interviennent aussi en entreprise.",
+    # 🔴 Chaque titre porte le mot qui fait RECONNAITRE la personne, pas celui qui
+    # la decrit le mieux. « Neuroscientifique du stress » est exact et anonyme ;
+    # « directrice du Centre d'etudes sur le stress humain, autrice de Par amour
+    # du stress » se reconnait. C'est ce que MC demande : « ils vont voir qu'elle
+    # travaille avec des tops ». Un planificateur ne verifie pas un CV, il
+    # reconnait un nom ou il ne le reconnait pas.
+    #
+    # 📄 Sources, une par ligne : fiche `Formatrices/Sonia-Lupien.md` (CESH,
+    # Universite de Montreal, « Par amour du stress ») · site loryzephyr.com et
+    # Editions de l'Homme (quatre ouvrages, balado « Ca va maman ? ») · fiche
+    # `Marylise-Champagne.md` (Dix mille matins) · fiche `Mylene-Houle-Morency.md`
+    # (tagline du tableur Intervenantes) · momentareseau.com pour les deux
+    # dernieres, qui les nomme deja avec ces titres exacts.
     "liste": [
-        ("Sonia Lupien", "Ph. D., neuroscientifique du stress"),
-        ("Lory Zéphyr", "Ph. D., psychologue en santé mentale maternelle et périnatalité"),
-        ("Marylise Champagne", "c.o., conseillère en orientation, autrice"),
-        ("Mylène Houle Morency", "formatrice agréée, autrice en conciliation travail-famille"),
-        ("Marie-Hélène Langlois", "associée et consultante principale, SISMIK Impact"),
-        ("Amélie Mongrain", "M. Sc., spécialiste de la transition en congé parental"),
+        ("Sonia Lupien",
+         "Ph. D., directrice du Centre d’études sur le stress humain, "
+         "autrice de « Par amour du stress »"),
+        ("Lory Zéphyr",
+         "Ph. D., psychologue en périnatalité, autrice aux Éditions de l’Homme"),
+        ("Marylise Champagne",
+         "Conseillère en orientation, fondatrice de Dix mille matins"),
+        ("Mylène Houle Morency",
+         "Formatrice agréée et autrice en conciliation travail-famille"),
+        ("Marie-Hélène Langlois",
+         "Associée et consultante principale, SISMIK Impact"),
+        ("Amélie Mongrain",
+         "M. Sc., fondatrice d’Ella Conseils, spécialiste de la transition parentale"),
     ],
     "source": "momentareseau.com, parcours Essentielle",
 }
