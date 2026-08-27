@@ -68,7 +68,7 @@ TAKE_HOME = {
 #
 # ✏️ David, 2026-08-27, rapportant MC : « ça fait 15 ans que je suis dans le
 # milieu des conférences, 10 ans dans le milieu de la formation dont 10 à
-# l'Institut de leadership où j'ai cofondé le programme Femmes Leaders. Ça fait
+# l'Institut de Leadership où j'ai cofondé le programme Femmes Leaders. Ça fait
 # 20 ans que je suis dans le milieu des affaires. » Et la consigne : « on veut
 # faire comprendre aux acheteurs que MC est une figure crédible dans le domaine
 # de la transition parentale. Sans surcharger la page. »
@@ -99,7 +99,7 @@ QUI_PARLE = {
         ("15 ans", "dans le milieu de la conférence"),
         ("10 ans", "à former des femmes en leadership"),
     ],
-    "parcours": "À l’Institut de leadership, Marie-Claude Viau a cofondé le programme "
+    "parcours": "À l’Institut de Leadership, Marie-Claude Viau a cofondé le programme "
                 "Femmes Leaders. C’est là, cohorte après cohorte, qu’elle a vu revenir "
                 "le même angle mort : la transition parentale, que personne n’outille.",
     "certification": "Elle est certifiée en transition parentale par le Center for "
@@ -110,8 +110,26 @@ QUI_PARLE = {
                    "les cheffes de famille monoparentale à faible revenu ayant de jeunes "
                    "enfants. Marie-Claude est impliquée dans le Bromont Ultra, un "
                    "événement philanthropique annuel.",
-    "source": "Institut de leadership, Center for Parental Leave Leadership, "
+    "source": "Institut de Leadership, Center for Parental Leave Leadership, "
               "momentareseau.com",
+}
+
+# ── L'appel ──────────────────────────────────────────────────────────────────
+#
+# ✏️ David, 2026-08-27 : « ce qu'on veut c'est générer un appel et une demande.
+# Pas booker tout de suite la vente. »
+#
+# 🔴 D'ou une demande qui ne coute rien a accepter. « Reservez une date » exige
+# un budget, un comite et un contrat ; « dites-nous ce que vous programmez »
+# n'exige qu'un courriel. Le second se fait le jour meme, le premier jamais.
+#
+# 🔴 Et il n'y a PAS de prix sur la page. Un tarif transforme la conversation en
+# comparaison avant meme qu'elle commence, et il ferme la porte a l'acheteur dont
+# le budget est ailleurs mais qui aurait pris un panel.
+APPEL = {
+    "titre": "Une date, une programmation, une idée ?",
+    "texte": "Dites à Marie-Claude ce que vous organisez et ce que vous cherchez à "
+             "faire vivre à votre salle. Elle répond elle-même.",
 }
 
 # La phrase qui ferme la carte, comme elle ferme la conference.

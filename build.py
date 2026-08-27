@@ -208,13 +208,12 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 .offre p{{font-size:15px; margin:8px 0 0}}
 .offre .modalite{{font-size:13px; color:var(--vert2); margin-top:10px}}
 
-/* ── Les trois conférences ──────────────────────────────────────────────── */
-.theme{{background:var(--blanc); border-radius:var(--rayon); padding:20px 22px; margin-bottom:12px}}
-.theme .case{{font-size:12px; font-weight:700; letter-spacing:.06em;
-  text-transform:uppercase; color:var(--corail); margin-bottom:8px}}
-.theme h3{{font-size:clamp(17px,3vw,20px); line-height:1.25}}
-.theme p{{font-size:15px; margin:10px 0 0; color:var(--vert)}}
-.theme .pour{{font-size:13px; color:var(--vert2); margin-top:11px}}
+/* ── Les trois conférences, réduites au titre et à la case ────────────────
+   🐛 Le style de `.case` était accroché à `.theme`, qui n'existe plus depuis
+   l'allègement : la case de programmation sortait en gris ordinaire et le titre
+   la dominait, alors que c'est elle qui dit à un planificateur où ça rentre. */
+.titre-conf .case{{font-size:12px; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--corail); margin-bottom:8px; line-height:1.3}}
 
 /* ── Deux sujets, deux formats ───────────────────────────────────────────
    Les deux sujets côte à côte : la lecture parallèle dit « il y en a deux »
@@ -233,6 +232,17 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 .panel .source{{color:var(--gris)}}
 .cite-clair{{margin:16px 0 0; border-left-color:var(--corail)}}
 .cite-clair p{{color:var(--blanc); font-size:clamp(17px,3vw,20px)}}
+
+/* Les trois titres de conférence, réduits au titre et à la case. */
+.titres{{display:grid; gap:12px; grid-template-columns:1fr; margin:18px 0 10px}}
+@media(min-width:760px){{.titres{{grid-template-columns:repeat(3,1fr)}}}}
+.titre-conf{{background:var(--blanc); border-radius:var(--rayon); padding:18px 20px}}
+.titre-conf h3{{font-size:16px; line-height:1.3}}
+
+/* ── L'appel, la dernière chose qu'on lit ────────────────────────────── */
+.appel{{background:var(--vert); color:var(--blanc)}}
+.appel h2{{color:var(--blanc)}}
+.appel p{{color:var(--gris); max-width:56ch}}
 
 /* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
 .cite{{margin:0 0 18px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}}
@@ -316,10 +326,12 @@ def rendre():
     sujets = "".join(f'<div class="sujet"><h3>{e(t)}</h3><p>{e(d)}</p></div>'
                      for t, d in C.FORMATS["sujets"])
 
-    themes = "".join(
-        f'<div class="theme"><div class="case">{e(th["case"])}</div>'
-        f'<h3>{e(th["titre"])}</h3><p>{e(th["quoi"])}</p>'
-        f'<div class="pour">{e(th["pour"])}</div></div>'
+    # Les trois conférences perdent leur description : il reste le titre et la case
+    # de programmation. Un planificateur a besoin de savoir QUE ça existe et OÙ ça
+    # rentre ; le contenu, il le demandera au téléphone. C'est le but de la page.
+    titres = "".join(
+        f'<div class="titre-conf"><div class="case">{e(th["case"])}</div>'
+        f'<h3>{e(th["titre"])}</h3></div>'
         for th in C.THEMES)
 
     return f"""<!doctype html>
@@ -367,28 +379,37 @@ def rendre():
   <div class="source">{e(C.TAKE_HOME['source'])}</div>
 </div></section>
 
+<!-- ✏️ David, 2026-08-27 : « diminue le contenu au strict minimum. Ce qu'on veut
+     c'est générer un appel et une demande. Pas booker tout de suite la vente. »
+
+     🔴 La page était un DOSSIER DE VENTE : chiffres sourcés, scores de cohorte
+     avant-après, quatre volets d'offre avec le prix. Tout ça répond à des
+     questions qu'un acheteur ne se pose qu'APRÈS avoir décidé de parler à
+     quelqu'un. Avant, il n'en a qu'une : « est-ce que je l'appelle ? »
+     Une page qui répond trop tôt remplace l'appel au lieu de le provoquer.
+
+     Ce qui est sorti, et pourquoi : les quatre chiffres (c'est la matière de la
+     conférence, pas un argument d'achat) · le tableau de cohorte et le NPS (ça
+     vend le parcours à un DRH, pas une conférence à un planificateur) · les
+     quatre volets d'offre avec le prix (c'est la vente elle-même) · « Ce qu'elle
+     raconte » (doublait les trois conférences).
+
+     Ce qui reste répond à trois questions et s'arrête : pourquoi la croire, quoi
+     lui demander, comment la joindre. -->
+
 <section><div class="enveloppe">
   <h2>Qui parle</h2>
   <div class="appuis jalons">{jalons}</div>
   <p class="mineur">{e(C.QUI_PARLE['parcours'])}</p>
   <p class="mineur">{e(C.QUI_PARLE['certification'])}</p>
-  <p class="mineur">{e(C.QUI_PARLE['engagements'])}</p>
-  <div class="source">{e(C.QUI_PARLE['source'])}</div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Où Marie-Claude a porté le sujet</h2>
-  <p class="mineur">{e(C.PRESSE['intro'])}</p>
   <div class="logos">{etiq}</div>
-  <p class="mineur">{e(C.PRESSE['sans_logo'])}</p>
-  {scenes}
-  <div class="etiquettes" style="margin-top:22px">{balados}</div>
-  <p class="mineur">{e(C.PRESSE['portee'])}</p>
+  <p class="mineur">{e(C.PRESSE['intro'])}</p>
+  <div class="etiquettes">{balados}</div>
   <div class="source">{e(C.PRESSE['prix'])}</div>
 </div></section>
 
 <section><div class="enveloppe">
-  <h2>Conférencière et panéliste</h2>
+  <h2>Ce qu’on peut lui demander</h2>
   <p class="mineur">Deux sujets, seule sur scène ou autour d’une table.</p>
   <div class="sujets">{sujets}</div>
   <div class="panel">
@@ -397,42 +418,8 @@ def rendre():
     <blockquote class="cite cite-clair"><p>{e(C.FORMATS['panel']['citation'])}</p>
       <div class="source">{e(C.FORMATS['panel']['source'])}</div></blockquote>
   </div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Trois conférences</h2>
-  <p class="mineur">Trois registres distincts, pour trois moments de programmation.</p>
-  {themes}
+  <div class="titres">{titres}</div>
   <div class="source">{e(C.CONFERENCE['formats'])}</div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Ce qu’elle raconte : {e(C.CONFERENCE['titre'])}</h2>
-  <p class="mineur">{e(C.CONFERENCE['chapeau'])}</p>
-  <ul class="mineur">{points}</ul>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Les chiffres de la présentation</h2>
-  <p class="mineur">À reprendre tels quels. Chacun porte sa source.</p>
-  <div class="chiffres">{ch}</div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Ce que le parcours donne</h2>
-  <p class="mineur">{e(C.RESULTATS['intro'])}</p>
-  <div class="res">{lignes}<div class="appuis">{appuis}</div></div>
-  <div class="source">{e(C.RESULTATS['note'])}</div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>L’offre Momenta</h2>
-  <!-- 🐛 La citation « La conformité sans accompagnement, c'est du papier. » était
-       ici ET dans le bloc panel : deux fois la même phrase à quatre écrans d'écart.
-       Elle reste au panel, où elle prouve quelque chose (MC tient une table ronde
-       devant des professionnels agréés). Ici elle ne faisait qu'orner. -->
-  <p class="mineur">{e(C.OFFRE['intro'])}</p>
-  <div class="grille-offre">{offre}</div>
 </div></section>
 
 <section class="retenir"><div class="enveloppe">
@@ -441,8 +428,16 @@ def rendre():
   <div class="source">{e(C.FERMETURE['source'])}</div>
 </div></section>
 
-<section><div class="enveloppe">
-  <div class="honnete"><p>{e(C.HONNETETE)}</p></div>
+<!-- 🔴 Le seul appel à l'action de la page, et il est en bas. La règle du
+     peak-end vaut ici comme sur scène : ce qu'on lit en dernier pèse le plus.
+     Il ne demande pas d'acheter, il demande de parler. -->
+<section class="appel"><div class="enveloppe">
+  <h2>{e(C.APPEL['titre'])}</h2>
+  <p>{e(C.APPEL['texte'])}</p>
+  <div class="contacts">
+    {bouton("mailto:" + C.MC['courriel'], "Écrire à Marie-Claude", "courriel", True)}
+    {bouton("tel:" + C.MC['telephone_lien'], C.MC['telephone'], "tel")}
+  </div>
 </div></section>
 
 <footer><div class="enveloppe">

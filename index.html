@@ -152,13 +152,12 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .offre p{font-size:15px; margin:8px 0 0}
 .offre .modalite{font-size:13px; color:var(--vert2); margin-top:10px}
 
-/* ── Les trois conférences ──────────────────────────────────────────────── */
-.theme{background:var(--blanc); border-radius:var(--rayon); padding:20px 22px; margin-bottom:12px}
-.theme .case{font-size:12px; font-weight:700; letter-spacing:.06em;
-  text-transform:uppercase; color:var(--corail); margin-bottom:8px}
-.theme h3{font-size:clamp(17px,3vw,20px); line-height:1.25}
-.theme p{font-size:15px; margin:10px 0 0; color:var(--vert)}
-.theme .pour{font-size:13px; color:var(--vert2); margin-top:11px}
+/* ── Les trois conférences, réduites au titre et à la case ────────────────
+   🐛 Le style de `.case` était accroché à `.theme`, qui n'existe plus depuis
+   l'allègement : la case de programmation sortait en gris ordinaire et le titre
+   la dominait, alors que c'est elle qui dit à un planificateur où ça rentre. */
+.titre-conf .case{font-size:12px; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--corail); margin-bottom:8px; line-height:1.3}
 
 /* ── Deux sujets, deux formats ───────────────────────────────────────────
    Les deux sujets côte à côte : la lecture parallèle dit « il y en a deux »
@@ -177,6 +176,17 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .panel .source{color:var(--gris)}
 .cite-clair{margin:16px 0 0; border-left-color:var(--corail)}
 .cite-clair p{color:var(--blanc); font-size:clamp(17px,3vw,20px)}
+
+/* Les trois titres de conférence, réduits au titre et à la case. */
+.titres{display:grid; gap:12px; grid-template-columns:1fr; margin:18px 0 10px}
+@media(min-width:760px){.titres{grid-template-columns:repeat(3,1fr)}}
+.titre-conf{background:var(--blanc); border-radius:var(--rayon); padding:18px 20px}
+.titre-conf h3{font-size:16px; line-height:1.3}
+
+/* ── L'appel, la dernière chose qu'on lit ────────────────────────────── */
+.appel{background:var(--vert); color:var(--blanc)}
+.appel h2{color:var(--blanc)}
+.appel p{color:var(--gris); max-width:56ch}
 
 /* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
 .cite{margin:0 0 18px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}
@@ -231,28 +241,37 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
   <div class="source">Marie-Claude Viau, fondatrice de Momenta</div>
 </div></section>
 
+<!-- ✏️ David, 2026-08-27 : « diminue le contenu au strict minimum. Ce qu'on veut
+     c'est générer un appel et une demande. Pas booker tout de suite la vente. »
+
+     🔴 La page était un DOSSIER DE VENTE : chiffres sourcés, scores de cohorte
+     avant-après, quatre volets d'offre avec le prix. Tout ça répond à des
+     questions qu'un acheteur ne se pose qu'APRÈS avoir décidé de parler à
+     quelqu'un. Avant, il n'en a qu'une : « est-ce que je l'appelle ? »
+     Une page qui répond trop tôt remplace l'appel au lieu de le provoquer.
+
+     Ce qui est sorti, et pourquoi : les quatre chiffres (c'est la matière de la
+     conférence, pas un argument d'achat) · le tableau de cohorte et le NPS (ça
+     vend le parcours à un DRH, pas une conférence à un planificateur) · les
+     quatre volets d'offre avec le prix (c'est la vente elle-même) · « Ce qu'elle
+     raconte » (doublait les trois conférences).
+
+     Ce qui reste répond à trois questions et s'arrête : pourquoi la croire, quoi
+     lui demander, comment la joindre. -->
+
 <section><div class="enveloppe">
   <h2>Qui parle</h2>
   <div class="appuis jalons"><div class="appui"><div class="n">20 ans</div><p>dans le milieu des affaires</p></div><div class="appui"><div class="n">15 ans</div><p>dans le milieu de la conférence</p></div><div class="appui"><div class="n">10 ans</div><p>à former des femmes en leadership</p></div></div>
-  <p class="mineur">À l’Institut de leadership, Marie-Claude Viau a cofondé le programme Femmes Leaders. C’est là, cohorte après cohorte, qu’elle a vu revenir le même angle mort : la transition parentale, que personne n’outille.</p>
+  <p class="mineur">À l’Institut de Leadership, Marie-Claude Viau a cofondé le programme Femmes Leaders. C’est là, cohorte après cohorte, qu’elle a vu revenir le même angle mort : la transition parentale, que personne n’outille.</p>
   <p class="mineur">Elle est certifiée en transition parentale par le Center for Parental Leave Leadership, l’organisme américain fondé par Amy Beacom (Ph. D.). Elle a traversé cette transition et elle en connaît la littérature.</p>
-  <p class="mineur">Momenta est liée à la Fondation Mères avec Pouvoir, qui soutient les cheffes de famille monoparentale à faible revenu ayant de jeunes enfants. Marie-Claude est impliquée dans le Bromont Ultra, un événement philanthropique annuel.</p>
-  <div class="source">Institut de leadership, Center for Parental Leave Leadership, momentareseau.com</div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Où Marie-Claude a porté le sujet</h2>
-  <p class="mineur">Marie-Claude porte le sujet dans les médias québécois depuis 2026.</p>
   <div class="logos"><img src="assets/medias/radio-canada.png" alt="Radio-Canada" width="584" height="102" loading="lazy"><img src="assets/medias/tva-nouvelles.png" alt="TVA Nouvelles" width="341" height="102" loading="lazy"><img src="assets/medias/noovo-info.png" alt="Noovo Info" width="102" height="102" loading="lazy"></div>
-  <p class="mineur">Reportage de fond à Radio-Canada, entrevues à LCN et à Noovo Info, et une lettre ouverte signée dans le Journal de Montréal.</p>
-  <div class="scene"><h3>Panel de l’Ordre des CRHA</h3><p>SST, Loi 27 et risques psychosociaux · juin 2026</p></div><div class="scene"><h3>Journée immersive Momenta</h3><p>Première édition, Bromont · juin 2026</p></div><div class="scene"><h3>Six webinaires publics</h3><p>Série gratuite avec personnalités invitées</p></div>
-  <div class="etiquettes" style="margin-top:22px"><span>Elles, le balado</span><span>Bon Papa</span><span>Startop</span><span>UMEA</span></div>
-  <p class="mineur">Sa lettre ouverte du 8 mars 2026 a été vue 170 000 fois et partagée 230 fois en 48 heures.</p>
+  <p class="mineur">Marie-Claude porte le sujet dans les médias québécois depuis 2026.</p>
+  <div class="etiquettes"><span>Elles, le balado</span><span>Bon Papa</span><span>Startop</span><span>UMEA</span></div>
   <div class="source">Prix coup de cœur au Défi OSEntreprendre 2026, volet régional Haute-Yamaska et Brome-Missisquoi</div>
 </div></section>
 
 <section><div class="enveloppe">
-  <h2>Conférencière et panéliste</h2>
+  <h2>Ce qu’on peut lui demander</h2>
   <p class="mineur">Deux sujets, seule sur scène ou autour d’une table.</p>
   <div class="sujets"><div class="sujet"><h3>La transition parentale</h3><p>Ce qui casse dans les mois qui suivent le retour, pourquoi personne ne le mesure, et ce que la Loi 27 en fait une obligation.</p></div><div class="sujet"><h3>L’accomplissement</h3><p>La remontée par la course, de trois kilomètres à l’ultramarathon. Ce que ça prend, ce que ça coûte, et pourquoi ça se programme aussi devant une salle qui n’a rien à voir avec la parentalité.</p></div></div>
   <div class="panel">
@@ -261,42 +280,8 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
     <blockquote class="cite cite-clair"><p>La conformité sans accompagnement, c’est du papier.</p>
       <div class="source">Marie-Claude Viau, panel de l’Ordre des CRHA sur la Loi 27</div></blockquote>
   </div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Trois conférences</h2>
-  <p class="mineur">Trois registres distincts, pour trois moments de programmation.</p>
-  <div class="theme"><div class="case">Ouverture ou clôture de journée</div><h3>Je me suis sauvée avant de sauver quoi que ce soit</h3><p>Le récit complet : le postpartum non diagnostiqué, la remontée par la course, l’ultramarathon, et ce qu’il a fallu abandonner pour fonder Momenta. Une histoire qui ne se referme pas sur une morale.</p><div class="pour">Galas, congrès, colloques municipaux, tourisme d’affaires. Salle mixte, aucun prérequis.</div></div><div class="theme"><div class="case">Bloc thématique ou panel</div><h3>Pas le congé. L’atterrissage.</h3><p>Le moment qui casse une carrière n’est pas le départ, ce sont les douze à dix-huit mois qui suivent le retour. La Loi 27 en fait une obligation légale. Thèse déjà portée devant l’Ordre des CRHA.</p><div class="pour">Congrès RH, ordres professionnels, associations sectorielles, comités de santé et sécurité.</div></div><div class="theme"><div class="case">Conférence ou atelier</div><h3>L’ambition n’a pas disparu. Elle a changé de forme.</h3><p>Dix ans à former des femmes en leadership, à les entendre parler d’ambition en salle et de charge mentale aux pauses. Ce que la transition parentale déplace, et ce qu’elle ne détruit pas.</p><div class="pour">Réseaux de femmes en affaires, semaines thématiques municipales, comités d’égalité, événements corporatifs féminins.</div></div>
+  <div class="titres"><div class="titre-conf"><div class="case">Ouverture ou clôture de journée</div><h3>Je me suis sauvée avant de sauver quoi que ce soit</h3></div><div class="titre-conf"><div class="case">Bloc thématique ou panel</div><h3>Pas le congé. L’atterrissage.</h3></div><div class="titre-conf"><div class="case">Conférence ou atelier</div><h3>L’ambition n’a pas disparu. Elle a changé de forme.</h3></div></div>
   <div class="source">Durées, formats et disponibilités sur demande.</div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Ce qu’elle raconte : Le retour au travail</h2>
-  <p class="mineur">Une conférence sur la transition parentale, racontée par quelqu’un qui l’a traversée avant de bâtir ce qui lui a manqué.</p>
-  <ul class="mineur"><li>Ce que vivent les femmes dans les mois qui suivent le retour, et pourquoi personne ne le mesure.</li><li>Pourquoi ce n’est plus une question de bien faire, mais de rétention.</li><li>Ce que la recherche prouve, et ce qu’elle ne prouve pas encore.</li></ul>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Les chiffres de la présentation</h2>
-  <p class="mineur">À reprendre tels quels. Chacun porte sa source.</p>
-  <div class="chiffres"><div class="chiffre"><div class="n">88 %</div><p>des mères canadiennes reviennent au travail après leur congé parental</p><div class="source">Statistique Canada</div></div><div class="chiffre"><div class="n">33 %</div><p>perdent confiance en leurs capacités professionnelles au retour</p><div class="source">Benefits Canada, 1 000 femmes</div></div><div class="chiffre"><div class="n">30 000 $</div><p>le coût moyen du remplacement d’une employée qui ne revient pas, et plus de 100 000 $ pour 15 % des employeurs</p><div class="source">Randstad Canada, 2024</div></div><div class="chiffre fort"><div class="n">0</div><p>étude canadienne qui mesure si elles sont encore là douze mois après le retour</p><div class="source">RQAP et Statistique Canada mesurent le retour, personne ne mesure le maintien</div></div></div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Ce que le parcours donne</h2>
-  <p class="mineur">Cohorte du printemps 2026. Sondage de fin de parcours auprès de 22 des 42 participantes, avant et après.</p>
-  <div class="res"><div class="ligne vedette"><span class="lib">Sentiment d’être soutenue</span><span class="av">4,3</span><span class="fl">→</span><span class="ap">8,1</span></div><div class="ligne"><span class="lib">Posture de leadership en transition</span><span class="av">5,0</span><span class="fl">→</span><span class="ap">7,6</span></div><div class="ligne"><span class="lib">Clarté sur la prochaine étape professionnelle</span><span class="av">4,9</span><span class="fl">→</span><span class="ap">7,3</span></div><div class="ligne"><span class="lib">Charge mentale et équilibre</span><span class="av">4,6</span><span class="fl">→</span><span class="ap">7,1</span></div><div class="ligne"><span class="lib">Confiance en sa valeur professionnelle</span><span class="av">6,6</span><span class="fl">→</span><span class="ap">8,2</span></div><div class="appuis"><div class="appui"><div class="n">73</div><p>Net Promoter Score</p></div><div class="appui"><div class="n">91 %</div><p>estiment que leur organisation bénéficierait du programme</p></div><div class="appui"><div class="n">78 %</div><p>des participantes géraient une équipe ou des projets</p></div></div></div>
-  <div class="source">Auto-évaluation sur 10. n = 22 sur 42.</div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>L’offre Momenta</h2>
-  <!-- 🐛 La citation « La conformité sans accompagnement, c'est du papier. » était
-       ici ET dans le bloc panel : deux fois la même phrase à quatre écrans d'écart.
-       Elle reste au panel, où elle prouve quelque chose (MC tient une table ronde
-       devant des professionnels agréés). Ici elle ne faisait qu'orner. -->
-  <p class="mineur">Au-delà de la conférence, Momenta accompagne la transition parentale dans les organisations.</p>
-  <div class="grille-offre"><div class="offre"><h3>Le parcours Essentielle</h3><p>Cinq mois de développement du leadership, en cohorte, animé par des sommités québécoises. Deux heures aux deux semaines, sur l’heure du dîner, séances enregistrées.</p><div class="modalite">1 395 $ en paiement unique, ou 5 versements de 299 $ · reconnu par l’Ordre des CRHA pour 14 heures de formation continue, donc admissible au budget de formation et à la loi du 1 %</div></div><div class="offre"><h3>Pour les organisations</h3><p>Le même parcours offert aux employées, avec un volet pour les gestionnaires qui reçoivent quelqu’un au retour.</p><div class="modalite">Sur mesure</div></div><div class="offre"><h3>La Journée immersive</h3><p>Une journée en présentiel : ateliers, conférences, réseautage, plein air.</p><div class="modalite">Deuxième édition · 6 novembre 2026 · Bromont</div></div><div class="offre"><h3>Formation en entreprise et accompagnement individuel</h3><p>Ateliers pour les équipes de gestion, et du un pour un quand la cohorte ne suffit pas.</p><div class="modalite">Sur demande</div></div></div>
 </div></section>
 
 <section class="retenir"><div class="enveloppe">
@@ -305,8 +290,16 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
   <div class="source">Statistique Canada, Enquête sur la couverture de l’assurance-emploi</div>
 </div></section>
 
-<section><div class="enveloppe">
-  <div class="honnete"><p>Ce qu’on ne peut pas prouver encore : qu’un accompagnement retient les femmes. Aucune étude avec groupe témoin n’existe, ni au Québec ni au Canada. Ce qui est mesuré, c’est que la pénalité existe et que la plupart des femmes traversent ce moment sans aucun soutien formel.</p></div>
+<!-- 🔴 Le seul appel à l'action de la page, et il est en bas. La règle du
+     peak-end vaut ici comme sur scène : ce qu'on lit en dernier pèse le plus.
+     Il ne demande pas d'acheter, il demande de parler. -->
+<section class="appel"><div class="enveloppe">
+  <h2>Une date, une programmation, une idée ?</h2>
+  <p>Dites à Marie-Claude ce que vous organisez et ce que vous cherchez à faire vivre à votre salle. Elle répond elle-même.</p>
+  <div class="contacts">
+    <a class="principal" href="mailto:mcviau@momentareseau.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Écrire à Marie-Claude</a>
+    <a class="secondaire" href="tel:+15148899649"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.6 3.5 1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
+  </div>
 </div></section>
 
 <footer><div class="enveloppe">
