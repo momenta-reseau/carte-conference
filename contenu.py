@@ -56,6 +56,50 @@ FERMETURE = {
     "source": "Statistique Canada, Enquête sur la couverture de l’assurance-emploi",
 }
 
+# ── Les trois conferences ────────────────────────────────────────────────────
+#
+# 🔴 Un planificateur ne booke pas un sujet, il remplit une CASE dans une
+# programmation. Sans catalogue, il repart emu et incapable de dire a son comite
+# quoi lui acheter. Les trois ci-dessous ne se chevauchent pas et couvrent les
+# quatre milieux que le salon nomme : corporatif, associatif, municipal,
+# tourisme d'affaires.
+#
+# 🔴 Les trois registres sont MESURES comme opposes (MacKrill, n = 1 866) :
+# « inspiring » va avec le « je », « informative » va contre. Ce sont donc trois
+# produits distincts, jamais trois parties d'une meme conference.
+#
+# 🟡 Les durees et les formats ne sont documentes NULLE PART. « Sur demande »
+# est la seule chose vraie tant que MC ne les a pas fixes.
+THEMES = [
+    {
+        "titre": "Je me suis sauvée avant de sauver quoi que ce soit",
+        "case": "Ouverture ou clôture de journée",
+        "pour": "Galas, congrès, colloques municipaux, tourisme d’affaires. "
+                "Salle mixte, aucun prérequis.",
+        "quoi": "Le récit complet : le postpartum non diagnostiqué, la remontée par "
+                "la course, l’ultramarathon, et ce qu’il a fallu abandonner pour "
+                "fonder Momenta. Une histoire qui ne se referme pas sur une morale.",
+    },
+    {
+        "titre": "Pas le congé. L’atterrissage.",
+        "case": "Bloc thématique ou panel",
+        "pour": "Congrès RH, ordres professionnels, associations sectorielles, "
+                "comités de santé et sécurité.",
+        "quoi": "Le moment qui casse une carrière n’est pas le départ, ce sont les "
+                "douze à dix-huit mois qui suivent le retour. La Loi 27 en fait une "
+                "obligation légale. Thèse déjà portée devant l’Ordre des CRHA.",
+    },
+    {
+        "titre": "L’ambition n’a pas disparu. Elle a changé de forme.",
+        "case": "Conférence ou atelier",
+        "pour": "Réseaux de femmes en affaires, semaines thématiques municipales, "
+                "comités d’égalité, événements corporatifs féminins.",
+        "quoi": "Dix ans à former des femmes en leadership, à les entendre parler "
+                "d’ambition en salle et de charge mentale aux pauses. Ce que la "
+                "transition parentale déplace, et ce qu’elle ne détruit pas.",
+    },
+]
+
 CONFERENCE = {
     "titre": "Le retour au travail",
     "chapeau": "Une conférence sur la transition parentale, racontée par quelqu’un "
@@ -68,7 +112,7 @@ CONFERENCE = {
     ],
     # 🟡 Les formats et le cachet ne sont documentés NULLE PART dans le wiki.
     # On ne les invente pas. « Sur demande » est la seule chose vraie.
-    "formats": "Formats et disponibilités sur demande.",
+    "formats": "Durées, formats et disponibilités sur demande.",
 }
 
 # ── Les chiffres de la présentation, réutilisables à l'interne ───────────────

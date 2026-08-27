@@ -167,6 +167,14 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 .offre p{{font-size:15px; margin:9px 0 0}}
 .offre .modalite{{font-size:13px; color:var(--vert2); margin-top:11px}}
 
+/* ── Les trois conférences ──────────────────────────────────────────────── */
+.theme{{background:var(--blanc); border-radius:var(--rayon); padding:22px 24px; margin-bottom:14px}}
+.theme .case{{font-size:12px; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--corail); margin-bottom:8px}}
+.theme h3{{font-size:clamp(17px,3vw,20px); line-height:1.25}}
+.theme p{{font-size:15px; margin:10px 0 0; color:var(--vert)}}
+.theme .pour{{font-size:13px; color:var(--vert2); margin-top:11px}}
+
 /* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
 .cite{{margin:0 0 22px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}}
 .cite p{{font-size:clamp(18px,3.4vw,22px); font-weight:600; margin:0; line-height:1.3}}
@@ -242,6 +250,12 @@ def rendre():
 
     points = "".join(f"<li>{e(p)}</li>" for p in C.CONFERENCE["points"])
 
+    themes = "".join(
+        f'<div class="theme"><div class="case">{e(th["case"])}</div>'
+        f'<h3>{e(th["titre"])}</h3><p>{e(th["quoi"])}</p>'
+        f'<div class="pour">{e(th["pour"])}</div></div>'
+        for th in C.THEMES)
+
     return f"""<!doctype html>
 <html lang="fr-CA">
 <head>
@@ -284,10 +298,27 @@ def rendre():
 </div></section>
 
 <section><div class="enveloppe">
-  <h2>La conférence : {e(C.CONFERENCE['titre'])}</h2>
+  <h2>Où Marie-Claude a porté le sujet</h2>
+  <p class="mineur">{e(C.PRESSE['intro'])}</p>
+  <div class="etiquettes">{etiq}</div>
+  {scenes}
+  <div class="etiquettes" style="margin-top:22px">{balados}</div>
+  <p class="mineur">{e(C.PRESSE['portee'])}</p>
+  <div class="source">{e(C.PRESSE['prix'])}</div>
+</div></section>
+
+<section><div class="enveloppe">
+  <h2>Trois conférences</h2>
+  <p class="mineur">Trois registres distincts, pour trois moments de programmation.
+     Jamais mélangés dans une même prise de parole.</p>
+  {themes}
+  <div class="source">{e(C.CONFERENCE['formats'])}</div>
+</div></section>
+
+<section><div class="enveloppe">
+  <h2>Ce qu’elle raconte : {e(C.CONFERENCE['titre'])}</h2>
   <p class="mineur">{e(C.CONFERENCE['chapeau'])}</p>
   <ul class="mineur">{points}</ul>
-  <div class="source">{e(C.CONFERENCE['formats'])}</div>
 </div></section>
 
 <section><div class="enveloppe">
@@ -301,16 +332,6 @@ def rendre():
   <p class="mineur">{e(C.RESULTATS['intro'])}</p>
   <div class="res">{lignes}<div class="appuis">{appuis}</div></div>
   <div class="source">{e(C.RESULTATS['note'])}</div>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Où Marie-Claude a porté le sujet</h2>
-  <p class="mineur">{e(C.PRESSE['intro'])}</p>
-  <div class="etiquettes">{etiq}</div>
-  {scenes}
-  <div class="etiquettes" style="margin-top:22px">{balados}</div>
-  <p class="mineur">{e(C.PRESSE['portee'])}</p>
-  <div class="source">{e(C.PRESSE['prix'])}</div>
 </div></section>
 
 <section><div class="enveloppe">
