@@ -114,6 +114,69 @@ QUI_PARLE = {
               "momentareseau.com",
 }
 
+
+# ── Ce qu'on peut lui demander ───────────────────────────────────────────────
+#
+# ✏️ MC elle-meme, memo vocal du 2026-08-27, transmis par David :
+#   « Je veux pas vendre de conference. C'est pas dans mon carre de sable. Si je
+#     vends ca, je sors de mon carre de sable puis je vais perdre de l'energie. »
+#   « Par contre, dans mon parcours, j'ai des formatrices telles que Sonia
+#     Lupien... Ca je pourrais l'annoncer, fait que la ils vont voir : OK, elle a
+#     une credibilite waouh, elle travaille avec des tops. »
+#   « Apres ca je fais une conference d'inspiration, c'est ca que je vois vendre
+#     pour l'annee. Sinon je vends de la formation sur mesure sur differents
+#     themes qui touchent la conciliation travail-famille. »
+#
+# 🔴 CE QUI TOMBE : le catalogue de trois conferences. Il vendait exactement ce
+# qu'elle refuse de vendre. Un catalogue dit « choisissez un produit » ; elle veut
+# qu'on l'appelle. Et trois titres de conference sur une page font d'elle une
+# fournisseuse de conferences, ce qu'elle n'est pas et ne veut pas devenir.
+#
+# 🔴 CE QUI ENTRE, ET C'EST SON IDEE : les formatrices. « Sonia Lupien dans ton
+# parcours, est-ce que vous la vendez ? » est exactement l'appel qu'on cherche a
+# provoquer. Une page qui nomme des sommites fait plus pour sa credibilite que
+# n'importe quelle phrase qu'elle ecrirait sur elle-meme.
+#
+# ⛔ AUCUN TITRE D'ATELIER SUR LA PAGE, et c'est une decision, pas un oubli.
+# CLAUDE.md §0 : la fiche de la formatrice fait autorite sur le titre, « tout
+# autre fichier qui ecrit un titre d'atelier est une copie, donc suspect ». Or le
+# site public et les fiches divergent sur SIX titres sur six (le site publie des
+# libelles de theme, les fiches portent les titres d'atelier). Publier l'un ou
+# l'autre, c'est publier un des deux camps d'un conflit ouvert. Les NOMS et les
+# TITRES PROFESSIONNELS, eux, concordent partout, et c'est eux qui portent la
+# credibilite que MC cherche.
+#
+# 📄 Les six sont deja nommees publiquement sur momentareseau.com avec ces titres
+# exacts. Rien de neuf n'est expose ici.
+#
+# 🟡 Dans le memo, MC nomme aussi « Laris », que la transcription vocale n'a pas
+# rendu et qu'aucune fiche du wiki ne permet d'identifier. Non repris. À lui
+# demander si elle voulait ajouter quelqu'un qui n'est pas dans les six.
+DEMANDES = [
+    ("Une conférence d’inspiration",
+     "Son récit, seule sur scène. Le format qu’elle porte elle-même, en ouverture "
+     "ou en clôture de journée."),
+    ("Une place en panel",
+     "Une position tenue en réaction, sans support et sans minutage à elle."),
+    ("De la formation sur mesure en entreprise",
+     "Sur la conciliation travail-famille, ajustée aux thèmes que vous voulez "
+     "travailler avec vos équipes."),
+]
+
+FORMATRICES = {
+    "intro": "Le parcours Momenta est animé par des sommités québécoises. "
+             "Elles interviennent aussi en entreprise.",
+    "liste": [
+        ("Sonia Lupien", "Ph. D., neuroscientifique du stress"),
+        ("Lory Zéphyr", "Ph. D., psychologue en santé mentale maternelle et périnatalité"),
+        ("Marylise Champagne", "c.o., conseillère en orientation, autrice"),
+        ("Mylène Houle Morency", "formatrice agréée, autrice en conciliation travail-famille"),
+        ("Marie-Hélène Langlois", "associée et consultante principale, SISMIK Impact"),
+        ("Amélie Mongrain", "M. Sc., spécialiste de la transition en congé parental"),
+    ],
+    "source": "momentareseau.com, parcours Essentielle",
+}
+
 # ── L'appel ──────────────────────────────────────────────────────────────────
 #
 # ✏️ David, 2026-08-27 : « ce qu'on veut c'est générer un appel et une demande.

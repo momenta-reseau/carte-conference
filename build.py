@@ -212,8 +212,17 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
    🐛 Le style de `.case` était accroché à `.theme`, qui n'existe plus depuis
    l'allègement : la case de programmation sortait en gris ordinaire et le titre
    la dominait, alors que c'est elle qui dit à un planificateur où ça rentre. */
-.titre-conf .case{{font-size:12px; font-weight:700; letter-spacing:.06em;
-  text-transform:uppercase; color:var(--corail); margin-bottom:8px; line-height:1.3}}
+.titre-conf h3{{color:var(--corail); line-height:1.3}}
+.titre-conf p{{font-size:14px; color:var(--vert2); margin:8px 0 0}}
+
+/* ── Les formatrices ─────────────────────────────────────────────────────
+   Une liste, pas des cartes : ce sont des noms qu'on parcourt à la verticale
+   pour en reconnaître un. Une grille de six cartes ferait un mur à déchiffrer. */
+.formatrices{{margin:14px 0 4px}}
+.formatrice{{padding:11px 0; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}}
+.formatrice+.formatrice{{border-top:1px solid var(--gris)}}
+.formatrice strong{{font-size:16px; min-width:210px}}
+.formatrice span{{font-size:14px; color:var(--vert2); flex:1}}
 
 /* ── Deux sujets, deux formats ───────────────────────────────────────────
    Les deux sujets côte à côte : la lecture parallèle dit « il y en a deux »
@@ -228,7 +237,7 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 .panel{{background:var(--vert); color:var(--blanc); border-radius:var(--rayon);
   padding:22px 24px}}
 .panel h3{{font-size:18px}}
-.panel p{{font-size:15px; margin:9px 0 0; color:var(--gris)}}
+.panel p{{font-size:15px; margin:0; color:var(--gris)}}
 .panel .source{{color:var(--gris)}}
 .cite-clair{{margin:16px 0 0; border-left-color:var(--corail)}}
 .cite-clair p{{color:var(--blanc); font-size:clamp(17px,3vw,20px)}}
@@ -329,10 +338,13 @@ def rendre():
     # Les trois conférences perdent leur description : il reste le titre et la case
     # de programmation. Un planificateur a besoin de savoir QUE ça existe et OÙ ça
     # rentre ; le contenu, il le demandera au téléphone. C'est le but de la page.
-    titres = "".join(
-        f'<div class="titre-conf"><div class="case">{e(th["case"])}</div>'
-        f'<h3>{e(th["titre"])}</h3></div>'
-        for th in C.THEMES)
+    demandes = "".join(
+        f'<div class="titre-conf"><h3>{e(t)}</h3><p>{e(d)}</p></div>'
+        for t, d in C.DEMANDES)
+
+    formatrices = "".join(
+        f'<div class="formatrice"><strong>{e(n)}</strong><span>{e(t)}</span></div>'
+        for n, t in C.FORMATRICES["liste"])
 
     return f"""<!doctype html>
 <html lang="fr-CA">
@@ -410,16 +422,26 @@ def rendre():
 
 <section><div class="enveloppe">
   <h2>Ce qu’on peut lui demander</h2>
-  <p class="mineur">Deux sujets, seule sur scène ou autour d’une table.</p>
-  <div class="sujets">{sujets}</div>
+  <p class="mineur">Deux sujets : la transition parentale, et l’accomplissement.</p>
+  <div class="titres">{demandes}</div>
   <div class="panel">
-    <h3>{e(C.FORMATS['panel']['titre'])}</h3>
-    <p>{e(C.FORMATS['panel']['texte'])}</p>
+    <p class="dit">{e(C.FORMATS['panel']['texte'])}</p>
     <blockquote class="cite cite-clair"><p>{e(C.FORMATS['panel']['citation'])}</p>
       <div class="source">{e(C.FORMATS['panel']['source'])}</div></blockquote>
   </div>
-  <div class="titres">{titres}</div>
   <div class="source">{e(C.CONFERENCE['formats'])}</div>
+</div></section>
+
+<!-- 🔴 L'idée est de MC : « ils vont voir OK, elle a une crédibilité waouh, elle
+     travaille avec des tops ». Nommer des sommités fait plus pour sa crédibilité
+     que n'importe quelle phrase qu'elle écrirait sur elle-même, et c'est le
+     déclencheur d'appel qu'elle décrit : « Sonia Lupien dans ton parcours,
+     est-ce que vous la vendez ? » -->
+<section><div class="enveloppe">
+  <h2>Avec qui elle travaille</h2>
+  <p class="mineur">{e(C.FORMATRICES['intro'])}</p>
+  <div class="formatrices">{formatrices}</div>
+  <div class="source">{e(C.FORMATRICES['source'])}</div>
 </div></section>
 
 <section class="retenir"><div class="enveloppe">
