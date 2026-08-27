@@ -74,7 +74,13 @@ CSS = f"""
 :root{{
   --vert:{VERT}; --vert2:{VERT_2}; --corail:{CORAIL};
   --creme:{CREME}; --blanc:{BLANC_CASSE}; --gris:{GRIS_CHAUD};
-  --rayon:12px; --large:820px;
+  /* ✏️ David, 2026-08-27 : « il y a trop d'espace vide dans le site, augmente un
+     peu la densité ». La colonne passe de 820 à 900 px.
+     🔴 Elle ne monte pas plus haut : à 900 px et 16 px de corps, une ligne de
+     texte suivi fait déjà ~85 signes, la limite haute du confortable. Le reste
+     de la densité vient donc du vertical et de la mise en colonnes, jamais d'un
+     allongement de la ligne. */
+  --rayon:12px; --large:900px;
 }}
 html{{-webkit-text-size-adjust:100%}}
 body{{
@@ -83,19 +89,19 @@ body{{
   font-size:16px; line-height:1.5; font-weight:400;
 }}
 .enveloppe{{max-width:var(--large); margin:0 auto; padding:0 20px}}
-section{{padding:56px 0}}
+section{{padding:38px 0}}                    /* etait 56 : 18 px x 2 x 11 sections */
 section+section{{border-top:1px solid var(--gris)}}
 h1,h2,h3{{line-height:1.15; margin:0; font-weight:700; letter-spacing:-.01em}}
-h2{{font-size:clamp(22px,4.4vw,28px); margin-bottom:10px}}
+h2{{font-size:clamp(22px,4.4vw,28px); margin-bottom:8px}}
 h3{{font-size:17px}}
-p{{margin:0 0 14px}}
+p{{margin:0 0 12px}}
 p:last-child{{margin-bottom:0}}
 .mineur{{color:var(--vert2)}}
 .source{{font-size:12px; color:var(--vert2); margin-top:6px}}
 
 /* ── En-tête ─────────────────────────────────────────────────────────── */
-header{{background:var(--vert); color:var(--blanc); padding:44px 0 40px}}
-header .logo{{height:26px; width:auto; display:block; margin-bottom:34px}}
+header{{background:var(--vert); color:var(--blanc); padding:38px 0 34px}}
+header .logo{{height:26px; width:auto; display:block; margin-bottom:28px}}
 header h1{{font-size:clamp(30px,7vw,46px)}}
 header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px)}}
 
@@ -111,7 +117,7 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 }}
 
 /* ── Les boutons de contact, le geste le plus important de la page ───── */
-.contacts{{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}}
+.contacts{{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px}}
 .contacts a{{
   display:inline-flex; align-items:center; gap:9px;
   padding:13px 20px; border-radius:25px; text-decoration:none;
@@ -127,13 +133,24 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 /* ── Le message à retenir ────────────────────────────────────────────── */
 .retenir p.phrase{{
   font-size:clamp(26px,5.6vw,38px); font-weight:700; line-height:1.18;
-  letter-spacing:-.015em; margin-bottom:18px;
+  letter-spacing:-.015em; margin-bottom:16px;
+}}
+/* ✏️ David, 2026-08-27 : « Marie-Claude Viau, fondatrice de Momenta, c'est trop
+   petit ».
+   🔴 Il a raison et le defaut etait structurel : `.source` sert partout a
+   attribuer un CHIFFRE (« Statistique Canada », « n = 22 »), ou le petit corps
+   est juste. Ici la meme classe attribuait la PHRASE de la page. Une signature
+   d'auteur n'est pas une note de bas de tableau : elle passe a 17 px, en vert
+   nuit et en demi-gras, sous un filet corail qui la rattache a la citation. */
+.retenir .source{{
+  font-size:17px; font-weight:600; color:var(--vert); margin-top:18px;
+  padding-top:14px; border-top:2px solid var(--corail); display:inline-block;
 }}
 
 /* ── Les chiffres ────────────────────────────────────────────────────── */
 .chiffres{{display:grid; gap:14px; grid-template-columns:1fr}}
 @media(min-width:640px){{.chiffres{{grid-template-columns:1fr 1fr}}}}
-.chiffre{{background:var(--blanc); border-radius:var(--rayon); padding:24px}}
+.chiffre{{background:var(--blanc); border-radius:var(--rayon); padding:22px}}
 .chiffre .n{{font-size:clamp(32px,7vw,42px); font-weight:700; color:var(--corail);
   line-height:1; letter-spacing:-.02em}}
 .chiffre p{{margin:12px 0 0; font-size:15px}}
@@ -142,7 +159,7 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 @media(min-width:640px){{.chiffre.fort{{grid-column:1/-1}}}}
 
 /* ── Les résultats ───────────────────────────────────────────────────── */
-.res{{background:var(--blanc); border-radius:var(--rayon); padding:24px; margin-top:18px}}
+.res{{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin-top:14px}}
 .ligne{{display:flex; align-items:baseline; gap:12px; padding:11px 0}}
 .ligne+.ligne{{border-top:1px solid var(--gris)}}
 .ligne .lib{{flex:1; font-size:15px; color:var(--vert2)}}
@@ -151,12 +168,12 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 .ligne .ap{{font-weight:700; font-size:18px; min-width:44px; text-align:right}}
 .ligne.vedette .lib{{color:var(--vert); font-weight:600}}
 .ligne.vedette .ap{{color:var(--corail); font-size:26px}}
-.appuis{{display:flex; flex-wrap:wrap; gap:26px; margin-top:22px}}
+.appuis{{display:flex; flex-wrap:wrap; gap:24px; margin-top:18px}}
 .appui .n{{font-size:26px; font-weight:700; color:var(--corail); line-height:1}}
 .appui p{{margin:4px 0 0; font-size:13px; color:var(--vert2); max-width:210px}}
 /* Les trois jalons de « Qui parle » ouvrent une section : ils portent plus que
    les appuis d'un tableau de résultats, d'où la taille et l'espace au-dessous. */
-.jalons{{margin:4px 0 22px}}
+.jalons{{margin:4px 0 18px}}
 .jalons .n{{font-size:clamp(28px,5vw,34px)}}
 .jalons p{{font-size:14px; max-width:225px}}   /* « dans le milieu de la conférence » sur une ligne */
 
@@ -168,42 +185,65 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
    son lettrage n'occupe que ~60 % de sa hauteur, alors qu'un mot-symbole l'occupe
    en entier. A hauteur egale son texte fait la moitie des autres. On l'agrandit
    donc pour egaliser la hauteur des LETTRES, pas celle des cadres. */
-.logos{{display:flex; flex-wrap:wrap; align-items:center; gap:30px 38px; margin:20px 0 20px}}
+.logos{{display:flex; flex-wrap:wrap; align-items:center; gap:26px 36px; margin:16px 0 16px}}
 .logos img{{height:34px; width:auto; display:block}}
 .logos img[width="102"]{{height:52px}}
 @media(max-width:520px){{.logos{{gap:22px 26px}} .logos img{{height:27px}}
   .logos img[width="102"]{{height:42px}}}}
 
 /* ── Preuve de scène ─────────────────────────────────────────────────── */
-.etiquettes{{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 22px}}
+.etiquettes{{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px}}
 .etiquettes span{{background:var(--gris); border-radius:25px; padding:7px 15px; font-size:13px}}
-.scene{{padding:12px 0}}
+.scene{{padding:10px 0}}
 .scene+.scene{{border-top:1px solid var(--gris)}}
 .scene p{{margin:3px 0 0; font-size:14px; color:var(--vert2)}}
 
 /* ── Offre ───────────────────────────────────────────────────────────── */
-.offre{{background:var(--blanc); border-radius:var(--rayon); padding:24px; margin-bottom:14px}}
-.offre p{{font-size:15px; margin:9px 0 0}}
-.offre .modalite{{font-size:13px; color:var(--vert2); margin-top:11px}}
+/* Quatre blocs courts empilés laissaient une colonne de vide à droite sur tout
+   écran large. En grille de deux, la section perd la moitié de sa hauteur et
+   se lit d'un coup d'œil, ce qu'un catalogue doit faire. */
+.grille-offre{{display:grid; gap:14px; grid-template-columns:1fr}}
+@media(min-width:700px){{.grille-offre{{grid-template-columns:1fr 1fr}}}}
+.offre{{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin:0}}
+.offre p{{font-size:15px; margin:8px 0 0}}
+.offre .modalite{{font-size:13px; color:var(--vert2); margin-top:10px}}
 
 /* ── Les trois conférences ──────────────────────────────────────────────── */
-.theme{{background:var(--blanc); border-radius:var(--rayon); padding:22px 24px; margin-bottom:14px}}
+.theme{{background:var(--blanc); border-radius:var(--rayon); padding:20px 22px; margin-bottom:12px}}
 .theme .case{{font-size:12px; font-weight:700; letter-spacing:.06em;
   text-transform:uppercase; color:var(--corail); margin-bottom:8px}}
 .theme h3{{font-size:clamp(17px,3vw,20px); line-height:1.25}}
 .theme p{{font-size:15px; margin:10px 0 0; color:var(--vert)}}
 .theme .pour{{font-size:13px; color:var(--vert2); margin-top:11px}}
 
+/* ── Deux sujets, deux formats ───────────────────────────────────────────
+   Les deux sujets côte à côte : la lecture parallèle dit « il y en a deux »
+   plus vite qu'une liste, et c'est exactement ce qu'on veut faire comprendre.
+   Le bloc panel est en vert nuit parce qu'il doit se voir : c'est la case de
+   programmation que la carte oubliait de proposer. */
+.sujets{{display:grid; gap:14px; grid-template-columns:1fr; margin:14px 0}}
+@media(min-width:640px){{.sujets{{grid-template-columns:1fr 1fr}}}}
+.sujet{{background:var(--blanc); border-radius:var(--rayon); padding:20px 22px}}
+.sujet h3{{color:var(--corail)}}
+.sujet p{{font-size:15px; margin:8px 0 0; color:var(--vert2)}}
+.panel{{background:var(--vert); color:var(--blanc); border-radius:var(--rayon);
+  padding:22px 24px}}
+.panel h3{{font-size:18px}}
+.panel p{{font-size:15px; margin:9px 0 0; color:var(--gris)}}
+.panel .source{{color:var(--gris)}}
+.cite-clair{{margin:16px 0 0; border-left-color:var(--corail)}}
+.cite-clair p{{color:var(--blanc); font-size:clamp(17px,3vw,20px)}}
+
 /* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
-.cite{{margin:0 0 22px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}}
+.cite{{margin:0 0 18px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}}
 .cite p{{font-size:clamp(18px,3.4vw,22px); font-weight:600; margin:0; line-height:1.3}}
 
 /* ── Honnêteté ───────────────────────────────────────────────────────── */
-.honnete{{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:26px}}
+.honnete{{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:24px}}
 .honnete p{{font-size:16px; margin:0}}
 
 /* ── Pied ────────────────────────────────────────────────────────────── */
-footer{{background:var(--vert); color:var(--gris); padding:38px 0; font-size:14px}}
+footer{{background:var(--vert); color:var(--gris); padding:32px 0; font-size:14px}}
 footer a{{color:var(--blanc); text-decoration:none; border-bottom:1px solid var(--vert2)}}
 footer .logo{{height:22px; margin-bottom:20px; display:block}}
 
@@ -272,6 +312,9 @@ def rendre():
         for t, d, m in C.OFFRE["items"])
 
     points = "".join(f"<li>{e(p)}</li>" for p in C.CONFERENCE["points"])
+
+    sujets = "".join(f'<div class="sujet"><h3>{e(t)}</h3><p>{e(d)}</p></div>'
+                     for t, d in C.FORMATS["sujets"])
 
     themes = "".join(
         f'<div class="theme"><div class="case">{e(th["case"])}</div>'
@@ -345,6 +388,18 @@ def rendre():
 </div></section>
 
 <section><div class="enveloppe">
+  <h2>Conférencière et panéliste</h2>
+  <p class="mineur">Deux sujets, seule sur scène ou autour d’une table.</p>
+  <div class="sujets">{sujets}</div>
+  <div class="panel">
+    <h3>{e(C.FORMATS['panel']['titre'])}</h3>
+    <p>{e(C.FORMATS['panel']['texte'])}</p>
+    <blockquote class="cite cite-clair"><p>{e(C.FORMATS['panel']['citation'])}</p>
+      <div class="source">{e(C.FORMATS['panel']['source'])}</div></blockquote>
+  </div>
+</div></section>
+
+<section><div class="enveloppe">
   <h2>Trois conférences</h2>
   <p class="mineur">Trois registres distincts, pour trois moments de programmation.</p>
   {themes}
@@ -372,10 +427,12 @@ def rendre():
 
 <section><div class="enveloppe">
   <h2>L’offre Momenta</h2>
-  <blockquote class="cite"><p>{e(C.OFFRE['citation'])}</p>
-    <div class="source">{e(C.OFFRE['citation_source'])}</div></blockquote>
+  <!-- 🐛 La citation « La conformité sans accompagnement, c'est du papier. » était
+       ici ET dans le bloc panel : deux fois la même phrase à quatre écrans d'écart.
+       Elle reste au panel, où elle prouve quelque chose (MC tient une table ronde
+       devant des professionnels agréés). Ici elle ne faisait qu'orner. -->
   <p class="mineur">{e(C.OFFRE['intro'])}</p>
-  {offre}
+  <div class="grille-offre">{offre}</div>
 </div></section>
 
 <section class="retenir"><div class="enveloppe">

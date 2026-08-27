@@ -18,7 +18,13 @@
 :root{
   --vert:#01282b; --vert2:#3e5b5d; --corail:#ff706b;
   --creme:#f2f0eb; --blanc:#fcfcfa; --gris:#ded9d4;
-  --rayon:12px; --large:820px;
+  /* ✏️ David, 2026-08-27 : « il y a trop d'espace vide dans le site, augmente un
+     peu la densité ». La colonne passe de 820 à 900 px.
+     🔴 Elle ne monte pas plus haut : à 900 px et 16 px de corps, une ligne de
+     texte suivi fait déjà ~85 signes, la limite haute du confortable. Le reste
+     de la densité vient donc du vertical et de la mise en colonnes, jamais d'un
+     allongement de la ligne. */
+  --rayon:12px; --large:900px;
 }
 html{-webkit-text-size-adjust:100%}
 body{
@@ -27,19 +33,19 @@ body{
   font-size:16px; line-height:1.5; font-weight:400;
 }
 .enveloppe{max-width:var(--large); margin:0 auto; padding:0 20px}
-section{padding:56px 0}
+section{padding:38px 0}                    /* etait 56 : 18 px x 2 x 11 sections */
 section+section{border-top:1px solid var(--gris)}
 h1,h2,h3{line-height:1.15; margin:0; font-weight:700; letter-spacing:-.01em}
-h2{font-size:clamp(22px,4.4vw,28px); margin-bottom:10px}
+h2{font-size:clamp(22px,4.4vw,28px); margin-bottom:8px}
 h3{font-size:17px}
-p{margin:0 0 14px}
+p{margin:0 0 12px}
 p:last-child{margin-bottom:0}
 .mineur{color:var(--vert2)}
 .source{font-size:12px; color:var(--vert2); margin-top:6px}
 
 /* ── En-tête ─────────────────────────────────────────────────────────── */
-header{background:var(--vert); color:var(--blanc); padding:44px 0 40px}
-header .logo{height:26px; width:auto; display:block; margin-bottom:34px}
+header{background:var(--vert); color:var(--blanc); padding:38px 0 34px}
+header .logo{height:26px; width:auto; display:block; margin-bottom:28px}
 header h1{font-size:clamp(30px,7vw,46px)}
 header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px)}
 
@@ -55,7 +61,7 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 }
 
 /* ── Les boutons de contact, le geste le plus important de la page ───── */
-.contacts{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}
+.contacts{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px}
 .contacts a{
   display:inline-flex; align-items:center; gap:9px;
   padding:13px 20px; border-radius:25px; text-decoration:none;
@@ -71,13 +77,24 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 /* ── Le message à retenir ────────────────────────────────────────────── */
 .retenir p.phrase{
   font-size:clamp(26px,5.6vw,38px); font-weight:700; line-height:1.18;
-  letter-spacing:-.015em; margin-bottom:18px;
+  letter-spacing:-.015em; margin-bottom:16px;
+}
+/* ✏️ David, 2026-08-27 : « Marie-Claude Viau, fondatrice de Momenta, c'est trop
+   petit ».
+   🔴 Il a raison et le defaut etait structurel : `.source` sert partout a
+   attribuer un CHIFFRE (« Statistique Canada », « n = 22 »), ou le petit corps
+   est juste. Ici la meme classe attribuait la PHRASE de la page. Une signature
+   d'auteur n'est pas une note de bas de tableau : elle passe a 17 px, en vert
+   nuit et en demi-gras, sous un filet corail qui la rattache a la citation. */
+.retenir .source{
+  font-size:17px; font-weight:600; color:var(--vert); margin-top:18px;
+  padding-top:14px; border-top:2px solid var(--corail); display:inline-block;
 }
 
 /* ── Les chiffres ────────────────────────────────────────────────────── */
 .chiffres{display:grid; gap:14px; grid-template-columns:1fr}
 @media(min-width:640px){.chiffres{grid-template-columns:1fr 1fr}}
-.chiffre{background:var(--blanc); border-radius:var(--rayon); padding:24px}
+.chiffre{background:var(--blanc); border-radius:var(--rayon); padding:22px}
 .chiffre .n{font-size:clamp(32px,7vw,42px); font-weight:700; color:var(--corail);
   line-height:1; letter-spacing:-.02em}
 .chiffre p{margin:12px 0 0; font-size:15px}
@@ -86,7 +103,7 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 @media(min-width:640px){.chiffre.fort{grid-column:1/-1}}
 
 /* ── Les résultats ───────────────────────────────────────────────────── */
-.res{background:var(--blanc); border-radius:var(--rayon); padding:24px; margin-top:18px}
+.res{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin-top:14px}
 .ligne{display:flex; align-items:baseline; gap:12px; padding:11px 0}
 .ligne+.ligne{border-top:1px solid var(--gris)}
 .ligne .lib{flex:1; font-size:15px; color:var(--vert2)}
@@ -95,12 +112,12 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .ligne .ap{font-weight:700; font-size:18px; min-width:44px; text-align:right}
 .ligne.vedette .lib{color:var(--vert); font-weight:600}
 .ligne.vedette .ap{color:var(--corail); font-size:26px}
-.appuis{display:flex; flex-wrap:wrap; gap:26px; margin-top:22px}
+.appuis{display:flex; flex-wrap:wrap; gap:24px; margin-top:18px}
 .appui .n{font-size:26px; font-weight:700; color:var(--corail); line-height:1}
 .appui p{margin:4px 0 0; font-size:13px; color:var(--vert2); max-width:210px}
 /* Les trois jalons de « Qui parle » ouvrent une section : ils portent plus que
    les appuis d'un tableau de résultats, d'où la taille et l'espace au-dessous. */
-.jalons{margin:4px 0 22px}
+.jalons{margin:4px 0 18px}
 .jalons .n{font-size:clamp(28px,5vw,34px)}
 .jalons p{font-size:14px; max-width:225px}   /* « dans le milieu de la conférence » sur une ligne */
 
@@ -112,42 +129,65 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
    son lettrage n'occupe que ~60 % de sa hauteur, alors qu'un mot-symbole l'occupe
    en entier. A hauteur egale son texte fait la moitie des autres. On l'agrandit
    donc pour egaliser la hauteur des LETTRES, pas celle des cadres. */
-.logos{display:flex; flex-wrap:wrap; align-items:center; gap:30px 38px; margin:20px 0 20px}
+.logos{display:flex; flex-wrap:wrap; align-items:center; gap:26px 36px; margin:16px 0 16px}
 .logos img{height:34px; width:auto; display:block}
 .logos img[width="102"]{height:52px}
 @media(max-width:520px){.logos{gap:22px 26px} .logos img{height:27px}
   .logos img[width="102"]{height:42px}}
 
 /* ── Preuve de scène ─────────────────────────────────────────────────── */
-.etiquettes{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 22px}
+.etiquettes{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px}
 .etiquettes span{background:var(--gris); border-radius:25px; padding:7px 15px; font-size:13px}
-.scene{padding:12px 0}
+.scene{padding:10px 0}
 .scene+.scene{border-top:1px solid var(--gris)}
 .scene p{margin:3px 0 0; font-size:14px; color:var(--vert2)}
 
 /* ── Offre ───────────────────────────────────────────────────────────── */
-.offre{background:var(--blanc); border-radius:var(--rayon); padding:24px; margin-bottom:14px}
-.offre p{font-size:15px; margin:9px 0 0}
-.offre .modalite{font-size:13px; color:var(--vert2); margin-top:11px}
+/* Quatre blocs courts empilés laissaient une colonne de vide à droite sur tout
+   écran large. En grille de deux, la section perd la moitié de sa hauteur et
+   se lit d'un coup d'œil, ce qu'un catalogue doit faire. */
+.grille-offre{display:grid; gap:14px; grid-template-columns:1fr}
+@media(min-width:700px){.grille-offre{grid-template-columns:1fr 1fr}}
+.offre{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin:0}
+.offre p{font-size:15px; margin:8px 0 0}
+.offre .modalite{font-size:13px; color:var(--vert2); margin-top:10px}
 
 /* ── Les trois conférences ──────────────────────────────────────────────── */
-.theme{background:var(--blanc); border-radius:var(--rayon); padding:22px 24px; margin-bottom:14px}
+.theme{background:var(--blanc); border-radius:var(--rayon); padding:20px 22px; margin-bottom:12px}
 .theme .case{font-size:12px; font-weight:700; letter-spacing:.06em;
   text-transform:uppercase; color:var(--corail); margin-bottom:8px}
 .theme h3{font-size:clamp(17px,3vw,20px); line-height:1.25}
 .theme p{font-size:15px; margin:10px 0 0; color:var(--vert)}
 .theme .pour{font-size:13px; color:var(--vert2); margin-top:11px}
 
+/* ── Deux sujets, deux formats ───────────────────────────────────────────
+   Les deux sujets côte à côte : la lecture parallèle dit « il y en a deux »
+   plus vite qu'une liste, et c'est exactement ce qu'on veut faire comprendre.
+   Le bloc panel est en vert nuit parce qu'il doit se voir : c'est la case de
+   programmation que la carte oubliait de proposer. */
+.sujets{display:grid; gap:14px; grid-template-columns:1fr; margin:14px 0}
+@media(min-width:640px){.sujets{grid-template-columns:1fr 1fr}}
+.sujet{background:var(--blanc); border-radius:var(--rayon); padding:20px 22px}
+.sujet h3{color:var(--corail)}
+.sujet p{font-size:15px; margin:8px 0 0; color:var(--vert2)}
+.panel{background:var(--vert); color:var(--blanc); border-radius:var(--rayon);
+  padding:22px 24px}
+.panel h3{font-size:18px}
+.panel p{font-size:15px; margin:9px 0 0; color:var(--gris)}
+.panel .source{color:var(--gris)}
+.cite-clair{margin:16px 0 0; border-left-color:var(--corail)}
+.cite-clair p{color:var(--blanc); font-size:clamp(17px,3vw,20px)}
+
 /* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
-.cite{margin:0 0 22px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}
+.cite{margin:0 0 18px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}
 .cite p{font-size:clamp(18px,3.4vw,22px); font-weight:600; margin:0; line-height:1.3}
 
 /* ── Honnêteté ───────────────────────────────────────────────────────── */
-.honnete{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:26px}
+.honnete{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:24px}
 .honnete p{font-size:16px; margin:0}
 
 /* ── Pied ────────────────────────────────────────────────────────────── */
-footer{background:var(--vert); color:var(--gris); padding:38px 0; font-size:14px}
+footer{background:var(--vert); color:var(--gris); padding:32px 0; font-size:14px}
 footer a{color:var(--blanc); text-decoration:none; border-bottom:1px solid var(--vert2)}
 footer .logo{height:22px; margin-bottom:20px; display:block}
 
@@ -171,7 +211,7 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
     <div class="bloc">
     <div class="texte">
     <h1>Marie-Claude Viau</h1>
-    <div class="role">Fondatrice de Momenta · Conférencière</div>
+    <div class="role">Fondatrice de Momenta · Conférencière et panéliste</div>
     <div class="contacts">
       <a class="principal" href="mailto:mcviau@momentareseau.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Écrire à Marie-Claude</a>
       <a class="secondaire" href="tel:+15148899649"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.6 3.5 1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
@@ -212,6 +252,18 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
 </div></section>
 
 <section><div class="enveloppe">
+  <h2>Conférencière et panéliste</h2>
+  <p class="mineur">Deux sujets, seule sur scène ou autour d’une table.</p>
+  <div class="sujets"><div class="sujet"><h3>La transition parentale</h3><p>Ce qui casse dans les mois qui suivent le retour, pourquoi personne ne le mesure, et ce que la Loi 27 en fait une obligation.</p></div><div class="sujet"><h3>L’accomplissement</h3><p>La remontée par la course, de trois kilomètres à l’ultramarathon. Ce que ça prend, ce que ça coûte, et pourquoi ça se programme aussi devant une salle qui n’a rien à voir avec la parentalité.</p></div></div>
+  <div class="panel">
+    <h3>En panel ou en table ronde</h3>
+    <p>Marie-Claude a une position et elle la tient en réaction, sans support et sans minutage à elle. En juin 2026, elle a siégé au panel de l’Ordre des CRHA sur la Loi 27 et les risques psychosociaux, devant un auditoire de professionnels agréés.</p>
+    <blockquote class="cite cite-clair"><p>La conformité sans accompagnement, c’est du papier.</p>
+      <div class="source">Marie-Claude Viau, panel de l’Ordre des CRHA sur la Loi 27</div></blockquote>
+  </div>
+</div></section>
+
+<section><div class="enveloppe">
   <h2>Trois conférences</h2>
   <p class="mineur">Trois registres distincts, pour trois moments de programmation.</p>
   <div class="theme"><div class="case">Ouverture ou clôture de journée</div><h3>Je me suis sauvée avant de sauver quoi que ce soit</h3><p>Le récit complet : le postpartum non diagnostiqué, la remontée par la course, l’ultramarathon, et ce qu’il a fallu abandonner pour fonder Momenta. Une histoire qui ne se referme pas sur une morale.</p><div class="pour">Galas, congrès, colloques municipaux, tourisme d’affaires. Salle mixte, aucun prérequis.</div></div><div class="theme"><div class="case">Bloc thématique ou panel</div><h3>Pas le congé. L’atterrissage.</h3><p>Le moment qui casse une carrière n’est pas le départ, ce sont les douze à dix-huit mois qui suivent le retour. La Loi 27 en fait une obligation légale. Thèse déjà portée devant l’Ordre des CRHA.</p><div class="pour">Congrès RH, ordres professionnels, associations sectorielles, comités de santé et sécurité.</div></div><div class="theme"><div class="case">Conférence ou atelier</div><h3>L’ambition n’a pas disparu. Elle a changé de forme.</h3><p>Dix ans à former des femmes en leadership, à les entendre parler d’ambition en salle et de charge mentale aux pauses. Ce que la transition parentale déplace, et ce qu’elle ne détruit pas.</p><div class="pour">Réseaux de femmes en affaires, semaines thématiques municipales, comités d’égalité, événements corporatifs féminins.</div></div>
@@ -239,10 +291,12 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
 
 <section><div class="enveloppe">
   <h2>L’offre Momenta</h2>
-  <blockquote class="cite"><p>La conformité sans accompagnement, c’est du papier.</p>
-    <div class="source">Marie-Claude Viau, panel de l’Ordre des CRHA sur la Loi 27</div></blockquote>
+  <!-- 🐛 La citation « La conformité sans accompagnement, c'est du papier. » était
+       ici ET dans le bloc panel : deux fois la même phrase à quatre écrans d'écart.
+       Elle reste au panel, où elle prouve quelque chose (MC tient une table ronde
+       devant des professionnels agréés). Ici elle ne faisait qu'orner. -->
   <p class="mineur">Au-delà de la conférence, Momenta accompagne la transition parentale dans les organisations.</p>
-  <div class="offre"><h3>Le parcours Essentielle</h3><p>Cinq mois de développement du leadership, en cohorte, animé par des sommités québécoises. Deux heures aux deux semaines, sur l’heure du dîner, séances enregistrées.</p><div class="modalite">1 395 $ en paiement unique, ou 5 versements de 299 $ · reconnu par l’Ordre des CRHA pour 14 heures de formation continue, donc admissible au budget de formation et à la loi du 1 %</div></div><div class="offre"><h3>Pour les organisations</h3><p>Le même parcours offert aux employées, avec un volet pour les gestionnaires qui reçoivent quelqu’un au retour.</p><div class="modalite">Sur mesure</div></div><div class="offre"><h3>La Journée immersive</h3><p>Une journée en présentiel : ateliers, conférences, réseautage, plein air.</p><div class="modalite">Deuxième édition · 6 novembre 2026 · Bromont</div></div><div class="offre"><h3>Formation en entreprise et accompagnement individuel</h3><p>Ateliers pour les équipes de gestion, et du un pour un quand la cohorte ne suffit pas.</p><div class="modalite">Sur demande</div></div>
+  <div class="grille-offre"><div class="offre"><h3>Le parcours Essentielle</h3><p>Cinq mois de développement du leadership, en cohorte, animé par des sommités québécoises. Deux heures aux deux semaines, sur l’heure du dîner, séances enregistrées.</p><div class="modalite">1 395 $ en paiement unique, ou 5 versements de 299 $ · reconnu par l’Ordre des CRHA pour 14 heures de formation continue, donc admissible au budget de formation et à la loi du 1 %</div></div><div class="offre"><h3>Pour les organisations</h3><p>Le même parcours offert aux employées, avec un volet pour les gestionnaires qui reçoivent quelqu’un au retour.</p><div class="modalite">Sur mesure</div></div><div class="offre"><h3>La Journée immersive</h3><p>Une journée en présentiel : ateliers, conférences, réseautage, plein air.</p><div class="modalite">Deuxième édition · 6 novembre 2026 · Bromont</div></div><div class="offre"><h3>Formation en entreprise et accompagnement individuel</h3><p>Ateliers pour les équipes de gestion, et du un pour un quand la cohorte ne suffit pas.</p><div class="modalite">Sur demande</div></div></div>
 </div></section>
 
 <section class="retenir"><div class="enveloppe">

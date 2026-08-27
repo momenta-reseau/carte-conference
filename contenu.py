@@ -24,7 +24,13 @@ n'entre ici sans y figurer.
 
 MC = {
     "nom": "Marie-Claude Viau",
-    "role": "Fondatrice de Momenta · Conférencière",
+    # ✏️ David, 2026-08-27 : « le côté panéliste est important ».
+    # 🔴 Ce n'est pas un synonyme de conférencière, c'est une AUTRE case dans une
+    # programmation, avec un autre budget et un autre risque. Un planificateur
+    # dont la plénière est déjà bookée peut encore la prendre en table ronde, et
+    # celui qui hésite à confier 45 minutes à quelqu'un qu'il ne connaît pas la
+    # teste en panel. Le mot doit donc être lisible dès l'en-tête.
+    "role": "Fondatrice de Momenta · Conférencière et panéliste",
     "courriel": "mcviau@momentareseau.com",
     "telephone": "514 889-9649",
     "telephone_lien": "+15148899649",
@@ -130,6 +136,51 @@ FERMETURE = {
 #
 # 🟡 Les durees et les formats ne sont documentes NULLE PART. « Sur demande »
 # est la seule chose vraie tant que MC ne les a pas fixes.
+
+# ── Deux sujets, deux formats ────────────────────────────────────────────────
+#
+# ✏️ David, 2026-08-27 : « mets l'accent sur le fait que MC peut être une
+# conférencière ET/OU une panéliste pour parler de transition parentale et
+# d'accomplissement », puis « le côté panéliste est important ».
+#
+# 🔴 Ce qui manquait : la carte vendait un SUJET et un seul FORMAT. Or un
+# planificateur raisonne en cases de programmation, et il en a plusieurs :
+# la plénière, la table ronde, l'atelier. Nommer les deux formats double le
+# nombre de cases où MC peut entrer sans rien changer à son propos.
+#
+# 🔴 Le panel n'est pas une conférence au rabais. Il demande l'inverse : tenir
+# une position en réaction, sans support, sans minutage à soi, avec le risque
+# d'un contradicteur. Un acheteur ne le confie pas à quelqu'un qui n'a fait que
+# lire un texte. La preuve documentée existe (Ordre des CRHA, juin 2026), et la
+# citation la plus tranchée de toute la page en vient. C'est le meilleur
+# argument possible et il ne coûte rien à écrire.
+#
+# 🔴 « Accomplissement » ouvre un second marché. Le récit de la course et de
+# l'ultramarathon se programme dans un gala, un congrès municipal ou un
+# lancement d'année où la parentalité n'est le sujet de personne. Sans cette
+# ligne, l'acheteur classe MC dans « parentalité » et ne la rappelle jamais
+# pour autre chose.
+FORMATS = {
+    "sujets": [
+        ("La transition parentale",
+         "Ce qui casse dans les mois qui suivent le retour, pourquoi personne ne "
+         "le mesure, et ce que la Loi 27 en fait une obligation."),
+        ("L’accomplissement",
+         "La remontée par la course, de trois kilomètres à l’ultramarathon. Ce que "
+         "ça prend, ce que ça coûte, et pourquoi ça se programme aussi devant une "
+         "salle qui n’a rien à voir avec la parentalité."),
+    ],
+    "panel": {
+        "titre": "En panel ou en table ronde",
+        "texte": "Marie-Claude a une position et elle la tient en réaction, sans "
+                 "support et sans minutage à elle. En juin 2026, elle a siégé au "
+                 "panel de l’Ordre des CRHA sur la Loi 27 et les risques "
+                 "psychosociaux, devant un auditoire de professionnels agréés.",
+        "citation": "La conformité sans accompagnement, c’est du papier.",
+        "source": "Marie-Claude Viau, panel de l’Ordre des CRHA sur la Loi 27",
+    },
+}
+
 THEMES = [
     {
         "titre": "Je me suis sauvée avant de sauver quoi que ce soit",
