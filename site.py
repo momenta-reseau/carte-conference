@@ -80,10 +80,14 @@ JALONS = [
     ("10 ans", "à former des femmes en leadership"),
 ]
 
+# ✏️ David, 2026-08-27, mot pour mot. La version d'avant disait « ambition en
+# salle et charge mentale aux pauses » : joli, mais flou. Celle-ci nomme le sujet
+# exact, et c'est le contraste qui porte l'argument — ce dont on parle sur scène
+# n'est pas ce dont on parle quand le micro est fermé.
 PARCOURS = (
     "À l’Institut de Leadership, j’ai cofondé le programme Femmes Leaders. "
-    "Dix ans à écouter des femmes parler d’ambition en salle et de charge "
-    "mentale aux pauses."
+    "Dix ans à écouter des femmes parler d’ambition durant les conférences, et "
+    "de leurs difficultés de transition parentale durant les pauses."
 )
 
 # 🔴 Le fait qui sépare le témoignage de l'expertise, et le seul que la
@@ -121,8 +125,24 @@ MEDIAS = [
     ("assets/medias/tva-nouvelles.png", "TVA Nouvelles", 341, 102),
     ("assets/medias/noovo-info.png", "Noovo Info", 102, 102),
 ]
-BALADOS = ["Elles, le balado", "Bon Papa", "Startop", "UMEA"]
-PRESSE = "Je porte le sujet dans les médias québécois depuis 2026."
+# 📄 Extraites de momentareseau.com/medias, où elles sont déjà publiées. Ce sont
+# des pochettes carrées avec des visages, pas des mots-symboles comme les logos
+# de presse : elles se posent donc en vignettes, à part, et non dans la même
+# rangée. Ramenées de 401 px et jusqu'à 293 ko à 144 px et 100 ko pour les quatre,
+# parce qu'un acheteur les charge sur son forfait, debout dans une salle.
+# 🔴 Deux libellés par pochette : le court se lit sous la vignette, le complet
+# vit dans l'attribut alt. Une légende de 72 px de large qui se casse en deux
+# lignes désaligne toute la rangée, et « le balado » n'apprend rien à personne.
+BALADOS = [
+    ("assets/medias/elles.png", "Elles", "Elles, le balado"),
+    ("assets/medias/bon-papa.png", "Bon Papa", "Bon Papa, le balado"),
+    ("assets/medias/startop.png", "Startop", "Startop, le balado"),
+    ("assets/medias/umea.png", "UMEA", "UMEA, le balado"),
+]
+# ✏️ David : cette ligne devient un TITRE. Elle annonçait les logos depuis
+# dessous, ce qui la laissait flotter entre deux choses ; en tête, elle les
+# rassemble et donne son nom à ce qui suit.
+PRESSE = "Je porte le sujet dans les médias québécois"
 PRIX = ("Prix coup de cœur au Défi OSEntreprendre 2026, "
         "volet régional Haute-Yamaska et Brome-Missisquoi")
 
@@ -365,9 +385,16 @@ header .role{color:var(--gris); margin-top:10px}
   .logos{gap:22px 26px} .logos img{height:27px}
   .logos img[width="102"]{height:42px}
 }
-.puces{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px}
-.puces span{background:var(--gris); border-radius:25px; padding:8px 16px;
-  font-size:var(--t-corps)}
+/* ═══ Les balados ═════════════════════════════════════════════════════════
+   Des pochettes, pas des logos : elles portent des visages et de la couleur, et
+   se mettraient à crier si elles montaient à la hauteur des mots-symboles de
+   presse. Elles se posent donc en vignettes carrées sous eux, avec leur nom
+   dessous, parce qu'une pochette de balado ne se reconnaît pas à 72 px. */
+.pochettes{display:flex; flex-wrap:wrap; gap:18px; margin:24px 0 16px}
+.pochette{margin:0; width:80px}
+.pochette img{width:72px; height:72px; border-radius:var(--rayon); display:block}
+.pochette figcaption{font-size:var(--t-source); color:var(--vert2);
+  margin-top:8px; line-height:1.3}
 
 /* ═══ L'appel, la dernière chose qu'on lit ════════════════════════════════ */
 .appel{background:var(--vert); color:var(--blanc)}
@@ -427,7 +454,10 @@ def rendre():
                    for n, t in FORMATRICES)
     logos = "".join(f'<img src="{s}" alt="{e(a)}" width="{w}" height="{h}" loading="lazy">'
                     for s, a, w, h in MEDIAS)
-    puces = "".join(f"<span>{e(b)}</span>" for b in BALADOS)
+    pochettes = "".join(
+        f'<figure class="pochette"><img src="{src}" alt="{e(complet)}" width="144" '
+        f'height="144" loading="lazy"><figcaption>{e(court)}</figcaption></figure>'
+        for src, court, complet in BALADOS)
 
     return f"""<!doctype html>
 <html lang="fr-CA">
@@ -481,9 +511,9 @@ def rendre():
   <div class="jalons">{jalons}</div>
   <p class="doux">{e(PARCOURS)}</p>
   <p class="doux">{e(CERTIFICATION)}</p>
+  <h3 class="bloc">{e(PRESSE)}</h3>
   <div class="logos">{logos}</div>
-  <p class="doux">{e(PRESSE)}</p>
-  <div class="puces">{puces}</div>
+  <div class="pochettes">{pochettes}</div>
   <p class="doux">{e(PRIX)}</p>
   <h3 class="bloc">Avec qui je travaille</h3>
   <p class="doux">Le parcours que j’ai bâti est animé par des sommités

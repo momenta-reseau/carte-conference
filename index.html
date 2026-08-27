@@ -165,9 +165,16 @@ header .role{color:var(--gris); margin-top:10px}
   .logos{gap:22px 26px} .logos img{height:27px}
   .logos img[width="102"]{height:42px}
 }
-.puces{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px}
-.puces span{background:var(--gris); border-radius:25px; padding:8px 16px;
-  font-size:var(--t-corps)}
+/* ═══ Les balados ═════════════════════════════════════════════════════════
+   Des pochettes, pas des logos : elles portent des visages et de la couleur, et
+   se mettraient à crier si elles montaient à la hauteur des mots-symboles de
+   presse. Elles se posent donc en vignettes carrées sous eux, avec leur nom
+   dessous, parce qu'une pochette de balado ne se reconnaît pas à 72 px. */
+.pochettes{display:flex; flex-wrap:wrap; gap:18px; margin:24px 0 16px}
+.pochette{margin:0; width:80px}
+.pochette img{width:72px; height:72px; border-radius:var(--rayon); display:block}
+.pochette figcaption{font-size:var(--t-source); color:var(--vert2);
+  margin-top:8px; line-height:1.3}
 
 /* ═══ L'appel, la dernière chose qu'on lit ════════════════════════════════ */
 .appel{background:var(--vert); color:var(--blanc)}
@@ -227,11 +234,11 @@ footer a:hover{color:var(--blanc)}
 <section><div class="dedans">
   <h2>D’où je parle</h2>
   <div class="jalons"><div class="jalon"><div class="n">20 ans</div><p>dans le milieu des affaires</p></div><div class="jalon"><div class="n">15 ans</div><p>dans le milieu de la conférence</p></div><div class="jalon"><div class="n">10 ans</div><p>à former des femmes en leadership</p></div></div>
-  <p class="doux">À l’Institut de Leadership, j’ai cofondé le programme Femmes Leaders. Dix ans à écouter des femmes parler d’ambition en salle et de charge mentale aux pauses.</p>
+  <p class="doux">À l’Institut de Leadership, j’ai cofondé le programme Femmes Leaders. Dix ans à écouter des femmes parler d’ambition durant les conférences, et de leurs difficultés de transition parentale durant les pauses.</p>
   <p class="doux">Je suis certifiée en transition parentale par le Center for Parental Leave Leadership, l’organisme américain fondé par Amy Beacom (Ph. D.).</p>
+  <h3 class="bloc">Je porte le sujet dans les médias québécois</h3>
   <div class="logos"><img src="assets/medias/radio-canada.png" alt="Radio-Canada" width="584" height="102" loading="lazy"><img src="assets/medias/tva-nouvelles.png" alt="TVA Nouvelles" width="341" height="102" loading="lazy"><img src="assets/medias/noovo-info.png" alt="Noovo Info" width="102" height="102" loading="lazy"></div>
-  <p class="doux">Je porte le sujet dans les médias québécois depuis 2026.</p>
-  <div class="puces"><span>Elles, le balado</span><span>Bon Papa</span><span>Startop</span><span>UMEA</span></div>
+  <div class="pochettes"><figure class="pochette"><img src="assets/medias/elles.png" alt="Elles, le balado" width="144" height="144" loading="lazy"><figcaption>Elles</figcaption></figure><figure class="pochette"><img src="assets/medias/bon-papa.png" alt="Bon Papa, le balado" width="144" height="144" loading="lazy"><figcaption>Bon Papa</figcaption></figure><figure class="pochette"><img src="assets/medias/startop.png" alt="Startop, le balado" width="144" height="144" loading="lazy"><figcaption>Startop</figcaption></figure><figure class="pochette"><img src="assets/medias/umea.png" alt="UMEA, le balado" width="144" height="144" loading="lazy"><figcaption>UMEA</figcaption></figure></div>
   <p class="doux">Prix coup de cœur au Défi OSEntreprendre 2026, volet régional Haute-Yamaska et Brome-Missisquoi</p>
   <h3 class="bloc">Avec qui je travaille</h3>
   <p class="doux">Le parcours que j’ai bâti est animé par des sommités
