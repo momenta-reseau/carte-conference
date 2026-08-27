@@ -132,8 +132,13 @@ OFFRE = {
          "Cinq mois de développement du leadership, en cohorte, animé par des sommités "
          "québécoises. Deux heures aux deux semaines, sur l’heure du dîner, séances "
          "enregistrées.",
-         "1 495 $ · reconnu par l’Ordre des CRHA pour 14 heures de formation continue, "
-         "donc admissible au budget de formation et à la loi du 1 %"),
+         # 🐛 La carte affichait 1 495 $, le tarif de LISTE. Le site en production
+         # affiche 1 395 $ en paiement unique depuis le 2026-08-02, ce qui tranche
+         # D-016 et ses quatre valeurs contradictoires. Un acheteur qui compare la
+         # carte au site aurait vu deux prix.
+         "1 395 $ en paiement unique, ou 5 versements de 299 $ · reconnu par l’Ordre "
+         "des CRHA pour 14 heures de formation continue, donc admissible au budget "
+         "de formation et à la loi du 1 %"),
         ("Pour les organisations",
          "Le même parcours offert aux employées, avec un volet pour les gestionnaires "
          "qui reçoivent quelqu’un au retour.",
