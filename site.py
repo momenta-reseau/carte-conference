@@ -52,11 +52,35 @@ MC = {
 # L'appui a sauté avec la même consigne : « ce n'est pas nécessaire ». Il glosait
 # la citation, et la signature devenait inutile dès lors que la page entière est
 # écrite à sa voix.
+# ✏️ David, 2026-08-27 : la grande phrase dit désormais la MISSION, au « je »,
+# et « j'ai bâti » passe dessous, au passé, « parce que c'est déjà construit ».
+#
+# 📄 La mission, telle que `Strategie/Mission-positionnement.md` la porte :
+# « transformer la transition du congé parental en tremplin », et « soutenir les
+# femmes, et leurs organisations ». Les deux publics restent dans la phrase : ce
+# sont les organisations qui achètent, et les nommer dit à un acheteur qu'il est
+# concerné. Le « levier stratégique d'engagement et de propulsion de carrière »
+# du site ne monte pas ici : c'est du jargon de plan d'affaires, personne ne
+# parle comme ça et surtout pas elle.
+#
+# 🔴 « Transition parentale » ne se répète pas dans l'appui. La grande phrase le
+# nomme, la petite dit « la mienne » : l'enchaînement fait le travail et le mot
+# ne revient pas deux fois en trois lignes.
 ACCROCHE = {
     # 🔴 L'espace avant le saut n'est pas décorative : le saut est neutralisé sur
     # téléphone, et sans elle les deux moitiés se collent.
-    "phrase": "« Je bâtis ce que j’aurais voulu trouver <br>"
-              "lors de ma propre transition parentale. »",
+    # 🐛 Mesuré, pas jugé : la version qui portait les deux publics dans la
+    # grande phrase tenait sur QUATRE lignes en écran large et CINQ sur
+    # téléphone. Une affiche de cinq lignes n'est plus une affiche, elle se lit.
+    # Sept formulations ont été rendues et comptées ; celle-ci est la seule qui
+    # tienne en deux lignes aux deux largeurs sans perdre le « je ».
+    #
+    # 🔴 Les organisations descendent donc dans l'appui, et n'y perdent rien :
+    # c'est la ligne que lit un acheteur qui se demande si ça le concerne, et il
+    # la lit de toute façon puisqu'elle est juste dessous.
+    "phrase": "« Je fais de la transition parentale <br>un tremplin. »",
+    "appui": "Pour les femmes comme pour leurs organisations. "
+             "J’ai bâti ce que j’aurais voulu trouver lors de la mienne.",
 }
 
 # Trois demandes, et pas un catalogue. Chacune est une case différente dans une
@@ -120,10 +144,29 @@ FORMATRICES = [
 # Usage éditorial : ce sont des médias qui l'ont couverte, pas des partenaires.
 # ⛔ Le logo de l'Ordre des CRHA n'entrera jamais ici : l'Ordre le réserve aux
 # personnes inscrites à son tableau, et une entreprise ne peut pas l'afficher.
+# 📄 Chaque lien relevé sur momentareseau.com/medias, en lisant le DOM rendu
+# plutôt que le HTML brut : GoHighLevel place les liens dans des blocs éloignés de
+# leurs images, et l'association par proximité textuelle donnait n'importe quoi.
+# Le rattachement fiable est géométrique, image et lien à la même ordonnée.
+#
+# ⚠️ Le lien de TVA passe par la redirection d'identification anonyme de Québecor.
+# Elle boucle sous curl et se résout dans un navigateur : vérifié dans Chrome, la
+# page s'ouvre sur la lettre ouverte et nomme Marie-Claude.
 MEDIAS = [
-    ("assets/medias/radio-canada.png", "Radio-Canada", 584, 102),
-    ("assets/medias/tva-nouvelles.png", "TVA Nouvelles", 341, 102),
-    ("assets/medias/noovo-info.png", "Noovo Info", 102, 102),
+    ("assets/medias/radio-canada.png", "Radio-Canada", 584, 102,
+     "https://ici.radio-canada.ca/nouvelle/2259116/conge-maternite-accompagnement-marie-claude-viau"),
+    ("assets/medias/tva-nouvelles.png", "TVA Nouvelles", 341, 102,
+     "https://www.tvanouvelles.ca/2026/03/08/le-silence-sur-le-post-partum-nous-coute-des-talents"),
+    ("assets/medias/noovo-info.png", "Noovo Info", 102, 102,
+     "https://vimeo.com/1170824554/69fe8b024b"),
+    # ✏️ David : « il faut ajouter le Journal de Montréal, sa lettre ouverte ».
+    # 📄 Logo pris à la source, sur l'article lui-même, et recoloré en vert nuit :
+    # celui du site est blanc, invisible sur crème. La variante sur DEUX lignes est
+    # choisie contre l'horizontale : celle-ci fait 13,6:1 et aurait occupé le quart
+    # de la rangée à hauteur égale ; la double fait 4,6:1, presque le ratio de
+    # Radio-Canada.
+    ("assets/medias/journal-de-montreal.png", "Le Journal de Montréal", 472, 102,
+     "https://www.journaldemontreal.com/2026/03/08/le-silence-sur-le-post-partum-nous-coute-des-talents"),
 ]
 # 📄 Extraites de momentareseau.com/medias, où elles sont déjà publiées. Ce sont
 # des pochettes carrées avec des visages, pas des mots-symboles comme les logos
@@ -133,11 +176,23 @@ MEDIAS = [
 # 🔴 Deux libellés par pochette : le court se lit sous la vignette, le complet
 # vit dans l'attribut alt. Une légende de 72 px de large qui se casse en deux
 # lignes désaligne toute la rangée, et « le balado » n'apprend rien à personne.
+# 🔴 Chaque pochette mène à L'ÉPISODE, pas au balado. Un acheteur veut l'entendre
+# elle, pas découvrir une série. Le site de Momenta, lui, fait pointer les
+# pochettes vers les sites des balados et met les épisodes dans une rangée de
+# petites icônes en dessous.
+#
+# 🐛 Et cette lecture a trouvé un défaut SUR LE SITE DE MOMENTA : la pochette
+# d'« Elles » y pointe vers bonpapa.ca, et celle de Startop n'est pas cliquable
+# du tout. À signaler à MC ; ici les quatre liens sont les bons.
 BALADOS = [
-    ("assets/medias/elles.png", "Elles", "Elles, le balado"),
-    ("assets/medias/bon-papa.png", "Bon Papa", "Bon Papa, le balado"),
-    ("assets/medias/startop.png", "Startop", "Startop, le balado"),
-    ("assets/medias/umea.png", "UMEA", "UMEA, le balado"),
+    ("assets/medias/elles.png", "Elles", "Elles, le balado",
+     "https://open.spotify.com/episode/4ynHe3r4tA8xNjfH9uQl8t"),
+    ("assets/medias/bon-papa.png", "Bon Papa", "Bon Papa, le balado",
+     "https://open.spotify.com/episode/1yO1k2xmfmrY4YIrfvrihF"),
+    ("assets/medias/startop.png", "Startop", "Startop, le balado",
+     "https://open.spotify.com/episode/2Mm3four3badsBPEdOfte5"),
+    ("assets/medias/umea.png", "UMEA", "UMEA, le balado",
+     "https://open.spotify.com/episode/5Zk0mOxzvFU53o0ebnSfqs"),
 ]
 # ✏️ David : cette ligne devient un TITRE. Elle annonçait les logos depuis
 # dessous, ce qui la laissait flotter entre deux choses ; en tête, elle les
@@ -341,6 +396,9 @@ header .role{color:var(--gris); margin-top:10px}
    comme une parole rapportée, et il empêche les trois sections crème de se
    suivre sans relief. */
 .citation{padding-left:22px; border-left:3px solid var(--corail); margin:0}
+/* L'appui se cale sur le filet, sans le prolonger : il commente la phrase, il
+   n'en fait pas partie. */
+.apres-citation{padding-left:25px; margin-top:16px}
 /* Le saut est écrit pour couper la phrase en deux sur un écran large. Sur un
    téléphone chaque moitié se recasse, et une accroche sur quatre lignes ne
    s'accroche plus, elle se lit. */
@@ -379,11 +437,22 @@ header .role{color:var(--gris); margin-top:10px}
    Hauteur des LETTRES égalisée, pas celle des cadres : le carré de Noovo
    n'occupe que ~60 % de sa hauteur en lettrage, il monte donc plus haut. */
 .logos{display:flex; flex-wrap:wrap; align-items:center; gap:26px 36px; margin:16px 0}
+/* Un logo cliquable doit se donner comme cliquable. L'opacité au repos les
+   rassemble en une rangée calme ; le survol détache celui qu'on vise. */
+.logos a{display:block; opacity:.82; transition:opacity 160ms ease-out}
+.logos a:hover{opacity:1}
+.logos a:focus-visible,.pochette a:focus-visible{
+  outline:3px solid var(--corail); outline-offset:4px; border-radius:6px}
+.pochette a{text-decoration:none; display:block}
+.pochette a:hover img{opacity:.85}
+.pochette img{transition:opacity 160ms ease-out}
 .logos img{height:34px; width:auto; display:block}
 .logos img[width="102"]{height:52px}
+.logos img[width="472"]{height:40px}
 @media(max-width:520px){
   .logos{gap:22px 26px} .logos img{height:27px}
   .logos img[width="102"]{height:42px}
+  .logos img[width="472"]{height:33px}
 }
 /* ═══ Les balados ═════════════════════════════════════════════════════════
    Des pochettes, pas des logos : elles portent des visages et de la couleur, et
@@ -452,12 +521,16 @@ def rendre():
                      for n, t in JALONS)
     gens = "".join(f'<div class="qui"><strong>{e(n)}</strong><span>{e(t)}</span></div>'
                    for n, t in FORMATRICES)
-    logos = "".join(f'<img src="{s}" alt="{e(a)}" width="{w}" height="{h}" loading="lazy">'
-                    for s, a, w, h in MEDIAS)
+    logos = "".join(
+        f'<a href="{url}" target="_blank" rel="noopener" aria-label="{e(alt)}, lire l\'article">'
+        f'<img src="{src}" alt="{e(alt)}" width="{w}" height="{h}" loading="lazy"></a>'
+        for src, alt, w, h, url in MEDIAS)
     pochettes = "".join(
-        f'<figure class="pochette"><img src="{src}" alt="{e(complet)}" width="144" '
-        f'height="144" loading="lazy"><figcaption>{e(court)}</figcaption></figure>'
-        for src, court, complet in BALADOS)
+        f'<figure class="pochette"><a href="{url}" target="_blank" rel="noopener" '
+        f'aria-label="{e(complet)}, écouter l\'épisode">'
+        f'<img src="{src}" alt="{e(complet)}" width="144" height="144" loading="lazy">'
+        f'<figcaption>{e(court)}</figcaption></a></figure>'
+        for src, court, complet, url in BALADOS)
 
     return f"""<!doctype html>
 <html lang="fr-CA">
@@ -498,6 +571,7 @@ def rendre():
 
 <section><div class="dedans">
   <p class="phrase citation">{e(ACCROCHE['phrase'])}</p>
+  <p class="doux apres-citation">{e(ACCROCHE['appui'])}</p>
 </div></section>
 
 <section><div class="dedans">

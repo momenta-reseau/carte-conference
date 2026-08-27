@@ -121,6 +121,9 @@ header .role{color:var(--gris); margin-top:10px}
    comme une parole rapportée, et il empêche les trois sections crème de se
    suivre sans relief. */
 .citation{padding-left:22px; border-left:3px solid var(--corail); margin:0}
+/* L'appui se cale sur le filet, sans le prolonger : il commente la phrase, il
+   n'en fait pas partie. */
+.apres-citation{padding-left:25px; margin-top:16px}
 /* Le saut est écrit pour couper la phrase en deux sur un écran large. Sur un
    téléphone chaque moitié se recasse, et une accroche sur quatre lignes ne
    s'accroche plus, elle se lit. */
@@ -159,11 +162,22 @@ header .role{color:var(--gris); margin-top:10px}
    Hauteur des LETTRES égalisée, pas celle des cadres : le carré de Noovo
    n'occupe que ~60 % de sa hauteur en lettrage, il monte donc plus haut. */
 .logos{display:flex; flex-wrap:wrap; align-items:center; gap:26px 36px; margin:16px 0}
+/* Un logo cliquable doit se donner comme cliquable. L'opacité au repos les
+   rassemble en une rangée calme ; le survol détache celui qu'on vise. */
+.logos a{display:block; opacity:.82; transition:opacity 160ms ease-out}
+.logos a:hover{opacity:1}
+.logos a:focus-visible,.pochette a:focus-visible{
+  outline:3px solid var(--corail); outline-offset:4px; border-radius:6px}
+.pochette a{text-decoration:none; display:block}
+.pochette a:hover img{opacity:.85}
+.pochette img{transition:opacity 160ms ease-out}
 .logos img{height:34px; width:auto; display:block}
 .logos img[width="102"]{height:52px}
+.logos img[width="472"]{height:40px}
 @media(max-width:520px){
   .logos{gap:22px 26px} .logos img{height:27px}
   .logos img[width="102"]{height:42px}
+  .logos img[width="472"]{height:33px}
 }
 /* ═══ Les balados ═════════════════════════════════════════════════════════
    Des pochettes, pas des logos : elles portent des visages et de la couleur, et
@@ -222,7 +236,8 @@ footer a:hover{color:var(--blanc)}
 </div></header>
 
 <section><div class="dedans">
-  <p class="phrase citation">« Je bâtis ce que j’aurais voulu trouver <br>lors de ma propre transition parentale. »</p>
+  <p class="phrase citation">« Je fais de la transition parentale <br>un tremplin. »</p>
+  <p class="doux apres-citation">Pour les femmes comme pour leurs organisations. J’ai bâti ce que j’aurais voulu trouver lors de la mienne.</p>
 </div></section>
 
 <section><div class="dedans">
@@ -237,8 +252,8 @@ footer a:hover{color:var(--blanc)}
   <p class="doux">À l’Institut de Leadership, j’ai cofondé le programme Femmes Leaders. Dix ans à écouter des femmes parler d’ambition durant les conférences, et de leurs difficultés de transition parentale durant les pauses.</p>
   <p class="doux">Je suis certifiée en transition parentale par le Center for Parental Leave Leadership, l’organisme américain fondé par Amy Beacom (Ph. D.).</p>
   <h3 class="bloc">Je porte le sujet dans les médias québécois</h3>
-  <div class="logos"><img src="assets/medias/radio-canada.png" alt="Radio-Canada" width="584" height="102" loading="lazy"><img src="assets/medias/tva-nouvelles.png" alt="TVA Nouvelles" width="341" height="102" loading="lazy"><img src="assets/medias/noovo-info.png" alt="Noovo Info" width="102" height="102" loading="lazy"></div>
-  <div class="pochettes"><figure class="pochette"><img src="assets/medias/elles.png" alt="Elles, le balado" width="144" height="144" loading="lazy"><figcaption>Elles</figcaption></figure><figure class="pochette"><img src="assets/medias/bon-papa.png" alt="Bon Papa, le balado" width="144" height="144" loading="lazy"><figcaption>Bon Papa</figcaption></figure><figure class="pochette"><img src="assets/medias/startop.png" alt="Startop, le balado" width="144" height="144" loading="lazy"><figcaption>Startop</figcaption></figure><figure class="pochette"><img src="assets/medias/umea.png" alt="UMEA, le balado" width="144" height="144" loading="lazy"><figcaption>UMEA</figcaption></figure></div>
+  <div class="logos"><a href="https://ici.radio-canada.ca/nouvelle/2259116/conge-maternite-accompagnement-marie-claude-viau" target="_blank" rel="noopener" aria-label="Radio-Canada, lire l'article"><img src="assets/medias/radio-canada.png" alt="Radio-Canada" width="584" height="102" loading="lazy"></a><a href="https://www.tvanouvelles.ca/2026/03/08/le-silence-sur-le-post-partum-nous-coute-des-talents" target="_blank" rel="noopener" aria-label="TVA Nouvelles, lire l'article"><img src="assets/medias/tva-nouvelles.png" alt="TVA Nouvelles" width="341" height="102" loading="lazy"></a><a href="https://vimeo.com/1170824554/69fe8b024b" target="_blank" rel="noopener" aria-label="Noovo Info, lire l'article"><img src="assets/medias/noovo-info.png" alt="Noovo Info" width="102" height="102" loading="lazy"></a><a href="https://www.journaldemontreal.com/2026/03/08/le-silence-sur-le-post-partum-nous-coute-des-talents" target="_blank" rel="noopener" aria-label="Le Journal de Montréal, lire l'article"><img src="assets/medias/journal-de-montreal.png" alt="Le Journal de Montréal" width="472" height="102" loading="lazy"></a></div>
+  <div class="pochettes"><figure class="pochette"><a href="https://open.spotify.com/episode/4ynHe3r4tA8xNjfH9uQl8t" target="_blank" rel="noopener" aria-label="Elles, le balado, écouter l'épisode"><img src="assets/medias/elles.png" alt="Elles, le balado" width="144" height="144" loading="lazy"><figcaption>Elles</figcaption></a></figure><figure class="pochette"><a href="https://open.spotify.com/episode/1yO1k2xmfmrY4YIrfvrihF" target="_blank" rel="noopener" aria-label="Bon Papa, le balado, écouter l'épisode"><img src="assets/medias/bon-papa.png" alt="Bon Papa, le balado" width="144" height="144" loading="lazy"><figcaption>Bon Papa</figcaption></a></figure><figure class="pochette"><a href="https://open.spotify.com/episode/2Mm3four3badsBPEdOfte5" target="_blank" rel="noopener" aria-label="Startop, le balado, écouter l'épisode"><img src="assets/medias/startop.png" alt="Startop, le balado" width="144" height="144" loading="lazy"><figcaption>Startop</figcaption></a></figure><figure class="pochette"><a href="https://open.spotify.com/episode/5Zk0mOxzvFU53o0ebnSfqs" target="_blank" rel="noopener" aria-label="UMEA, le balado, écouter l'épisode"><img src="assets/medias/umea.png" alt="UMEA, le balado" width="144" height="144" loading="lazy"><figcaption>UMEA</figcaption></a></figure></div>
   <p class="doux">Prix coup de cœur au Défi OSEntreprendre 2026, volet régional Haute-Yamaska et Brome-Missisquoi</p>
   <h3 class="bloc">Avec qui je travaille</h3>
   <p class="doux">Le parcours que j’ai bâti est animé par des sommités
