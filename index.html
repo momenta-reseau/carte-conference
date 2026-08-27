@@ -61,13 +61,29 @@
      le nom domine. Sur cette page, ce qui doit rester dans la tête d'un acheteur
      est la PHRASE, pas le nom : il a le nom partout ailleurs, dans les boutons,
      dans le pied, dans la signature. La phrase, il ne l'a qu'une fois. */
-  --t-affiche: clamp(1.875rem, 5.6vw, 2.625rem);  /* 30-42 px  ce qui doit rester */
-  /* 🐛 Le plancher du nom valait 1.625rem, soit exactement `--t-titre`. Sur un
-     téléphone, les deux clamps touchent leur plancher et le nom se retrouvait à
-     la même taille qu'un intertitre : la hiérarchie tenait sur écran large et
-     s'écrasait là où la page est le plus lue. Un clamp se vérifie aux DEUX bouts. */
-  --t-nom: clamp(1.75rem, 4.6vw, 2.125rem);       /* 28-34 px  qui parle, un jalon */
-  --t-titre: 1.625rem;      /* 26 px  le nom d'une section                     */
+  /* 🐛 Troisième remarque de David sur la même chose, capture d'iPhone à l'appui :
+     « encore disproportionné ». La cause n'était plus l'ordre, il était bon, mais
+     le NOMBRE DE CRANS À L'ÉTROIT. Sur un écran de 390 px, la page servait six
+     tailles entre 30 et 15 px : 30, 28, 26, 20, 17, 15. Deux crans séparés de
+     deux pixels ne créent aucune hiérarchie, ils créent du bruit, et c'est
+     exactement le défaut que ce même fichier corrigeait le matin sur les petites
+     tailles. Je l'avais reproduit dans le haut de l'échelle.
+
+     🔴 Sur téléphone, la page ne sert plus que QUATRE tailles : 26, 20, 17, 15,
+     exactement celles de Mon Espace, qui est un produit conçu pour le téléphone.
+     Les trois crans d'affichage s'y REJOIGNENT à 20 px, et c'est voulu : la
+     couleur et la graisse continuent de les séparer là où la taille ne le peut
+     plus. La phrase d'accroche descend à 26 pour la même raison, elle tenait sur
+     quatre lignes à 30 px et une accroche sur quatre lignes ne s'accroche plus,
+     elle se lit.
+
+     🔴 Ils ne se séparent qu'en montant vers l'écran large,
+     là où il y a
+     la place pour les distinguer. Un clamp n'est pas qu'une taille qui rétrécit,
+     c'est le nombre de crans lisibles qui change avec la largeur. */
+  --t-affiche: clamp(1.625rem, 3.4vw, 2.625rem);  /* 26-42 px  ce qui doit rester */
+  --t-nom: clamp(1.25rem, 2.8vw, 2.125rem);       /* 20-34 px  qui parle, un jalon */
+  --t-titre: clamp(1.25rem, 2vw, 1.625rem);       /* 20-26 px  le nom d'une section */
   --t-section: 1.25rem;     /* 20 px  un intertitre, un titre de bloc          */
   --t-corps: 1.0625rem;     /* 17 px  TOUT le texte qu'on lit                  */
   --t-source: .9375rem;     /* 15 px  une attribution. LE PLANCHER.            */
@@ -171,8 +187,13 @@ footer a:hover{color:var(--blanc)}
    🔴 UNE CLASSE = UN RÔLE, JAMAIS UN EMPLACEMENT. C'est la seule règle qui
    empêche ce défaut de revenir : tant qu'un style se définit par « ce qui
    l'entoure », il attrape des choses qui n'ont rien à voir. */
+/* 🐛 La signature était montée à 20 px gras le matin, en réponse à « c'est trop
+   petit » quand elle valait 12. Entre les deux il y avait 15 et 17, et à 20 px
+   gras vert nuit sur un téléphone elle rivalisait avec la phrase qu'elle signe.
+   Elle redescend au corps : le gras, le vert nuit et le filet corail la
+   distinguent déjà de l'appui, qui est en gris et sans graisse. */
 .signature{
-  font-size:var(--t-section); font-weight:600; color:var(--vert); margin-top:20px;
+  font-size:var(--t-corps); font-weight:700; color:var(--vert); margin-top:20px;
   padding-top:12px; border-top:2px solid var(--corail); display:inline-block;
 }
 

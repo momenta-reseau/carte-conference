@@ -125,16 +125,18 @@ def bornes(nom):
     return (float(m.group(1)), float(m.group(2))) if m else None
 
 aff, nom = bornes("--t-affiche"), bornes("--t-nom")
-m_titre = re.search(r"--t-titre:\s*([\d.]+)rem", brut)
-titre = float(m_titre.group(1)) if m_titre else None
+titre = bornes("--t-titre")
 if aff and nom:
     for i, bout in enumerate(("plancher", "plafond")):
         if aff[i] <= nom[i]:
             fautes.append(f"au {bout}, --t-affiche ({aff[i]}rem) ne domine plus "
                           f"--t-nom ({nom[i]}rem) — la phrase pèse plus que le nom")
-    if titre and nom[0] <= titre:
-        fautes.append(f"au plancher, --t-nom ({nom[0]}rem) tombe au niveau de "
-                      f"--t-titre ({titre}rem) — la hiérarchie s'écrase sur téléphone")
+    # 🔴 Au plancher, le nom a le droit de REJOINDRE le titre : sur téléphone, la
+    # fusion des crans d'affichage est voulue, c'est la couleur et la graisse qui
+    # prennent le relais. Il n'a pas le droit de passer dessous.
+    if titre and nom[0] < titre[0]:
+        fautes.append(f"au plancher, --t-nom ({nom[0]}rem) passe SOUS --t-titre "
+                      f"({titre[0]}rem) — qui parle ne peut pas peser moins qu'un intertitre")
 
 if fautes:
     print("\nPUBLICATION REFUSÉE\n" + "-" * 19)
