@@ -92,7 +92,17 @@ ACCROCHE = {
     #
     # 🔴 La phrase seule ne dit pas DE QUEL moment il s'agit. L'appui le nomme en
     # premier mot, avant tout le reste : sans lui, l'accroche est une devinette.
-    "phrase": "« J’accompagne le moment <br>que personne n’accompagne. »",
+    # ✏️ « Je n'aime pas la redite ». Juste : « accompagne… n'accompagne » se
+    # voulait une figure et se lisait comme un bégaiement. Le second verbe devient
+    # « prépare », qui est de toute façon son verbatim : « on prépare les femmes à
+    # devenir leaders, on prépare les entreprises à performer, mais personne ne
+    # prépare le retour ».
+    #
+    # 🔴 Et « Momenta » revient en tête, comme David l'avait écrit : la police
+    # rétrécie lui fait la place que 42 px lui refusait. La marque agit dans la
+    # phrase, elle raconte dans l'appui juste dessous. C'est le seul endroit de la
+    # page où Momenta est sujet d'un verbe.
+    "phrase": "« Momenta accompagne le moment <br>que personne ne prépare. »",
     "appui": "Le retour au travail après un congé parental. J’ai bâti ce que "
              "j’aurais voulu trouver lors du mien, pour les femmes comme pour "
              "leurs organisations.",
@@ -324,7 +334,11 @@ CSS = """
   --vert:#01282b; --vert2:#3e5b5d; --corail:#ff706b;
   --creme:#f2f0eb; --blanc:#fcfcfa; --gris:#ded9d4;
   --rayon:12px; --large:900px;
-  --t-affiche: clamp(1.625rem, 3.4vw, 2.625rem);  /* 26-42  ce qui doit rester */
+  /* ✏️ David : « on peut rétrécir un peu la police, l'écriture aussi ». C'est ce
+     qui débloque la phrase : à 42 px, « Momenta accompagne » débordait à quatre
+     lignes sur iPhone quelle que soit la coupe. À 38, elle en tient trois.
+     L'écart avec `--t-nom` reste de 4 px aux deux bouts, la hiérarchie tient. */
+  --t-affiche: clamp(1.5rem, 3.1vw, 2.375rem);    /* 24-38  ce qui doit rester */
   --t-nom:     clamp(1.25rem, 2.8vw, 2.125rem);   /* 20-34  qui parle, un jalon */
   --t-titre:   clamp(1.25rem, 2vw, 1.625rem);     /* 20-26  le nom d'une section */
   --t-section: 1.25rem;                           /* 20     un titre de bloc     */
