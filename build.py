@@ -155,6 +155,20 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 .appui .n{{font-size:26px; font-weight:700; color:var(--corail); line-height:1}}
 .appui p{{margin:4px 0 0; font-size:13px; color:var(--vert2); max-width:210px}}
 
+/* ── Le mur de logos ─────────────────────────────────────────────────────
+   Hauteur EGALE pour les trois, marges transparentes deja rognees a la source :
+   deux logos a la meme hauteur CSS n'ont pas la meme taille optique si leurs
+   marges different.
+   🐛 Le carre de Noovo a d'abord ete REDUIT, ce qui etait l'inverse du bon geste :
+   son lettrage n'occupe que ~60 % de sa hauteur, alors qu'un mot-symbole l'occupe
+   en entier. A hauteur egale son texte fait la moitie des autres. On l'agrandit
+   donc pour egaliser la hauteur des LETTRES, pas celle des cadres. */
+.logos{{display:flex; flex-wrap:wrap; align-items:center; gap:30px 38px; margin:20px 0 20px}}
+.logos img{{height:34px; width:auto; display:block}}
+.logos img[width="102"]{{height:52px}}
+@media(max-width:520px){{.logos{{gap:22px 26px}} .logos img{{height:27px}}
+  .logos img[width="102"]{{height:42px}}}}
+
 /* ── Preuve de scène ─────────────────────────────────────────────────── */
 .etiquettes{{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 22px}}
 .etiquettes span{{background:var(--gris); border-radius:25px; padding:7px 15px; font-size:13px}}
@@ -238,7 +252,9 @@ def rendre():
     appuis = "".join(f'<div class="appui"><div class="n">{e(n)}</div><p>{e(t)}</p></div>'
                      for n, t in C.RESULTATS["appuis"])
 
-    etiq = "".join(f"<span>{e(m)}</span>" for m in C.PRESSE["grands"])
+    etiq = "".join(
+        f'<img src="{src}" alt="{e(alt)}" width="{w}" height="{h}" loading="lazy">'
+        for src, alt, w, h in C.PRESSE["logos"])
     scenes = "".join(f'<div class="scene"><h3>{e(t)}</h3><p>{e(d)}</p></div>'
                      for t, d in C.PRESSE["scenes"])
     balados = "".join(f"<span>{e(b)}</span>" for b in C.PRESSE["balados"])
@@ -264,6 +280,10 @@ def rendre():
 <meta name="robots" content="noindex,nofollow">
 <title>{e(C.MC['nom'])} · {e(C.CONFERENCE['titre'])}</title>
 <meta name="description" content="{e(C.CONFERENCE['chapeau'])}">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
+<meta name="theme-color" content="{VERT}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -300,7 +320,8 @@ def rendre():
 <section><div class="enveloppe">
   <h2>Où Marie-Claude a porté le sujet</h2>
   <p class="mineur">{e(C.PRESSE['intro'])}</p>
-  <div class="etiquettes">{etiq}</div>
+  <div class="logos">{etiq}</div>
+  <p class="mineur">{e(C.PRESSE['sans_logo'])}</p>
   {scenes}
   <div class="etiquettes" style="margin-top:22px">{balados}</div>
   <p class="mineur">{e(C.PRESSE['portee'])}</p>
@@ -309,8 +330,7 @@ def rendre():
 
 <section><div class="enveloppe">
   <h2>Trois conférences</h2>
-  <p class="mineur">Trois registres distincts, pour trois moments de programmation.
-     Jamais mélangés dans une même prise de parole.</p>
+  <p class="mineur">Trois registres distincts, pour trois moments de programmation.</p>
   {themes}
   <div class="source">{e(C.CONFERENCE['formats'])}</div>
 </div></section>

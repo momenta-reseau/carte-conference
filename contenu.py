@@ -151,8 +151,29 @@ RESULTATS = {
 # ── La preuve de scène, relevée dans Presences-medias.md ────────────────────
 PRESSE = {
     "intro": "Marie-Claude porte le sujet dans les médias québécois depuis 2026.",
-    "grands": ["Radio-Canada", "LCN", "Noovo Info", "TVA Nouvelles",
-               "Journal de Montréal", "La Voix de l’Est", "M105", "107.7 Estrie"],
+    # ✏️ David, 2026-08-27 : « les bons logos des bonnes organisations, pas une
+    # liste exhaustive, mais tout ce que ça prend pour prouver la crédibilité ».
+    #
+    # 🔴 Les logos ne sont NULLE PART chez Momenta : ni sur /medias, qui ne porte
+    # que des vignettes de vidéos et des pochettes de balados, ni dans le Package
+    # Média du Drive. La case « Intégrer logos médias dans le pitch B2B » de
+    # Presences-medias.md n'a jamais été cochée. Ils viennent donc de Wikimedia
+    # Commons, tous trois en domaine public, et tous trois des MARQUES DÉPOSÉES
+    # de leurs propriétaires : on les cite comme un fait, jamais comme un
+    # partenariat ou un appui.
+    #
+    # 🟡 Trois seulement, et ce sont les trois grandes salles de nouvelles du
+    # Québec. La Voix de l'Est, M105 et 107,7 Estrie sortent : devant un
+    # planificateur de Montréal, le régional dilue plus qu'il n'ajoute. LCN, le
+    # Journal de Montréal et OSEntreprendre n'ont pas de logo libre ; ils restent
+    # en toutes lettres juste en dessous, ce qui les sert aussi bien.
+    "logos": [
+        ("assets/medias/radio-canada.png", "Radio-Canada", 584, 102),
+        ("assets/medias/tva-nouvelles.png", "TVA Nouvelles", 341, 102),
+        ("assets/medias/noovo-info.png", "Noovo Info", 102, 102),
+    ],
+    "sans_logo": "Reportage de fond à Radio-Canada, entrevues à LCN et à Noovo Info, "
+                 "et une lettre ouverte signée dans le Journal de Montréal.",
     "scenes": [
         ("Panel de l’Ordre des CRHA", "SST, Loi 27 et risques psychosociaux · juin 2026"),
         ("Journée immersive Momenta", "Première édition, Bromont · juin 2026"),
