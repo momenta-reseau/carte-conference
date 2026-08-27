@@ -96,6 +96,10 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .offre p{font-size:15px; margin:9px 0 0}
 .offre .modalite{font-size:13px; color:var(--vert2); margin-top:11px}
 
+/* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
+.cite{margin:0 0 22px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}
+.cite p{font-size:clamp(18px,3.4vw,22px); font-weight:600; margin:0; line-height:1.3}
+
 /* ── Honnêteté ───────────────────────────────────────────────────────── */
 .honnete{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:26px}
 .honnete p{font-size:16px; margin:0}
@@ -125,7 +129,7 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
     <div class="role">Fondatrice de Momenta · Conférencière</div>
     <div class="contacts">
       <a class="principal" href="mailto:mcviau@momentareseau.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Écrire à Marie-Claude</a>
-      <a class="secondaire" href="tel:+15148899649"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.6 3.5 1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
+      <a class="secondaire" href="tel:+15148899649"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.6 3.5 1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
       <a class="secondaire" href="https://www.linkedin.com/company/momentareseau"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 21h4V9H3v12zM9 21h4v-6.5c0-1.7 2-1.8 2 0V21h4v-7.9c0-4.5-4.9-4.3-6-2.1V9H9v12z"/></svg>LinkedIn</a>
       <a class="secondaire" href="https://www.momentareseau.com"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-2.9a15.6 15.6 0 00-1.4-3.7A8 8 0 0118.9 8zM12 4c.8 1.1 1.4 2.5 1.8 4h-3.6C10.6 6.5 11.2 5.1 12 4zM4.3 14a8 8 0 010-4h3.3a17 17 0 000 4H4.3zm.8 2h2.9c.3 1.3.8 2.6 1.4 3.7A8 8 0 015.1 16zm2.9-8H5.1a8 8 0 014.3-3.7A15.6 15.6 0 008 8zm4 12c-.8-1.1-1.4-2.5-1.8-4h3.6c-.4 1.5-1 2.9-1.8 4zm2.2-6H9.8a15 15 0 010-4h4.4a15 15 0 010 4zm.4 5.7c.6-1.1 1.1-2.4 1.4-3.7h2.9a8 8 0 01-4.3 3.7zM16.4 14a17 17 0 000-4h3.3a8 8 0 010 4h-3.3z"/></svg>momentareseau.com</a>
     </div>
@@ -133,9 +137,9 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
 </header>
 
 <section class="retenir"><div class="enveloppe">
-  <p class="phrase">L’État mesure si je reviens.<br>Personne ne mesure si je reste.</p>
-  <p class="mineur">88 % des mères canadiennes reviennent au travail après leur congé. Le retour n’est pas l’enjeu. C’est ce qui se passe dans les mois qui suivent.</p>
-  <div class="source">Statistique Canada, Enquête sur la couverture de l’assurance-emploi</div>
+  <p class="phrase">Le silence sur le post-partum<br>nous coûte des talents.</p>
+  <p class="mineur">Pas le congé. L’atterrissage. Le moment qui casse une carrière n’est pas le départ, ce sont les douze à dix-huit mois qui suivent le retour.</p>
+  <div class="source">Lettre ouverte de Marie-Claude Viau, Journal de Montréal, 8 mars 2026. Thèse portée au panel de l’Ordre des CRHA, juin 2026</div>
 </div></section>
 
 <section><div class="enveloppe">
@@ -164,13 +168,22 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
   <div class="etiquettes"><span>Radio-Canada</span><span>LCN</span><span>Noovo Info</span><span>TVA Nouvelles</span><span>Journal de Montréal</span><span>La Voix de l’Est</span><span>M105</span><span>107.7 Estrie</span></div>
   <div class="scene"><h3>Panel de l’Ordre des CRHA</h3><p>SST, Loi 27 et risques psychosociaux · juin 2026</p></div><div class="scene"><h3>Journée immersive Momenta</h3><p>Première édition, Bromont · juin 2026</p></div><div class="scene"><h3>Six webinaires publics</h3><p>Série gratuite avec personnalités invitées</p></div>
   <div class="etiquettes" style="margin-top:22px"><span>Elles, le balado</span><span>Bon Papa</span><span>Startop</span><span>UMEA</span></div>
+  <p class="mineur">Sa lettre ouverte du 8 mars 2026 a été vue 170 000 fois et partagée 230 fois en 48 heures.</p>
   <div class="source">Prix coup de cœur au Défi OSEntreprendre 2026, volet régional Haute-Yamaska et Brome-Missisquoi</div>
 </div></section>
 
 <section><div class="enveloppe">
   <h2>L’offre Momenta</h2>
+  <blockquote class="cite"><p>La conformité sans accompagnement, c’est du papier.</p>
+    <div class="source">Marie-Claude Viau, panel de l’Ordre des CRHA sur la Loi 27</div></blockquote>
   <p class="mineur">Au-delà de la conférence, Momenta accompagne la transition parentale dans les organisations.</p>
   <div class="offre"><h3>Le parcours Essentielle</h3><p>Cinq mois de développement du leadership, en cohorte, animé par des sommités québécoises. Deux heures aux deux semaines, sur l’heure du dîner, séances enregistrées.</p><div class="modalite">1 495 $ · reconnu par l’Ordre des CRHA pour 14 heures de formation continue, donc admissible au budget de formation et à la loi du 1 %</div></div><div class="offre"><h3>Pour les organisations</h3><p>Le même parcours offert aux employées, avec un volet pour les gestionnaires qui reçoivent quelqu’un au retour.</p><div class="modalite">Sur mesure</div></div><div class="offre"><h3>La Journée immersive</h3><p>Une journée en présentiel : ateliers, conférences, réseautage, plein air.</p><div class="modalite">Deuxième édition · 6 novembre 2026 · Bromont</div></div><div class="offre"><h3>Formation en entreprise et accompagnement individuel</h3><p>Ateliers pour les équipes de gestion, et du un pour un quand la cohorte ne suffit pas.</p><div class="modalite">Sur demande</div></div>
+</div></section>
+
+<section class="retenir"><div class="enveloppe">
+  <p class="phrase">L’État mesure si je reviens.<br>Personne ne mesure si je reste.</p>
+  <p class="mineur">88 % des mères canadiennes reviennent au travail après leur congé. Le retour n’est pas l’enjeu. C’est ce qui se passe dans les mois qui suivent.</p>
+  <div class="source">Statistique Canada, Enquête sur la couverture de l’assurance-emploi</div>
 </div></section>
 
 <section><div class="enveloppe">
@@ -181,7 +194,7 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
   <img class="logo" src="assets/logo-light.png" alt="Momenta">
   <p>Marie-Claude Viau · Bromont, Québec<br>
   <a href="mailto:mcviau@momentareseau.com">mcviau@momentareseau.com</a> ·
-  <a href="tel:+15148899649">514 889-9649</a></p>
+  <a href="tel:+15148899649">514 889-9649</a></p>
   <p><a href="https://www.linkedin.com/company/momentareseau">LinkedIn</a> · <a href="https://www.momentareseau.com">momentareseau.com</a></p>
 </div></footer>
 

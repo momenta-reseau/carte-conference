@@ -50,9 +50,11 @@ def typographie(t):
     une regle de composition francaise, pas une preference : un nombre ne se
     fractionne pas et l'unite ne quitte pas son nombre.
     """
-    # separateur de milliers : 100 000 -> 100 fine 000, autant de fois qu'il faut
+    # separateur de milliers : 100 000 -> 100 fine 000, autant de fois qu'il faut.
+    # 🐛 La negation en fin de motif exclut les NUMEROS DE TELEPHONE : sans elle,
+    # « 514 889-9649 » recevait une espace fine, comme si 514 etait un millier.
     for _ in range(3):
-        t = re.sub(r"(\d)\s(\d{3})\b", rf"\1{FINE}\2", t)
+        t = re.sub(r"(\d)\s(\d{3})\b(?![\s]*[-\u2011])", rf"\1{FINE}\2", t)
     # l'unite reste collee au nombre
     t = re.sub(r"(\d)\s+([%$€])", rf"\1{INSEC}\2", t)
     # ponctuation haute : espace fine insecable avant
@@ -153,6 +155,10 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18p
 .offre{{background:var(--blanc); border-radius:var(--rayon); padding:24px; margin-bottom:14px}}
 .offre p{{font-size:15px; margin:9px 0 0}}
 .offre .modalite{{font-size:13px; color:var(--vert2); margin-top:11px}}
+
+/* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
+.cite{{margin:0 0 22px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}}
+.cite p{{font-size:clamp(18px,3.4vw,22px); font-weight:600; margin:0; line-height:1.3}}
 
 /* ── Honnêteté ───────────────────────────────────────────────────────── */
 .honnete{{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:26px}}
@@ -285,13 +291,22 @@ def rendre():
   <div class="etiquettes">{etiq}</div>
   {scenes}
   <div class="etiquettes" style="margin-top:22px">{balados}</div>
+  <p class="mineur">{e(C.PRESSE['portee'])}</p>
   <div class="source">{e(C.PRESSE['prix'])}</div>
 </div></section>
 
 <section><div class="enveloppe">
   <h2>L’offre Momenta</h2>
+  <blockquote class="cite"><p>{e(C.OFFRE['citation'])}</p>
+    <div class="source">{e(C.OFFRE['citation_source'])}</div></blockquote>
   <p class="mineur">{e(C.OFFRE['intro'])}</p>
   {offre}
+</div></section>
+
+<section class="retenir"><div class="enveloppe">
+  <p class="phrase">{e(C.FERMETURE['phrase'])}</p>
+  <p class="mineur">{e(C.FERMETURE['appui'])}</p>
+  <div class="source">{e(C.FERMETURE['source'])}</div>
 </div></section>
 
 <section><div class="enveloppe">

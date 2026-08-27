@@ -33,7 +33,23 @@ MC = {
     "ville": "Bromont, Québec",
 }
 
+# ✏️ David, 2026-08-27 : « la première citation parle de l'État et c'est pas la
+# plus punchy ». Remplacee par le titre de la LETTRE OUVERTE de MC dans le Journal
+# de Montreal, 8 mars 2026 (📄 Presences-medias.md). Trois raisons de preferer
+# celle-la : elle est d'elle, elle a deja ete testee sur un large public
+# (170 000 vues en 48 h), et « nous coute des talents » est la langue de
+# l'acheteur. La phrase sur l'Etat n'est pas perdue : elle ferme la carte, comme
+# elle ferme le talk.
 TAKE_HOME = {
+    "phrase": "Le silence sur le post-partum<br>nous coûte des talents.",
+    "appui": "Pas le congé. L’atterrissage. Le moment qui casse une carrière n’est pas "
+             "le départ, ce sont les douze à dix-huit mois qui suivent le retour.",
+    "source": "Lettre ouverte de Marie-Claude Viau, Journal de Montréal, 8 mars 2026. "
+              "Thèse portée au panel de l’Ordre des CRHA, juin 2026",
+}
+
+# La phrase qui ferme la carte, comme elle ferme la conference.
+FERMETURE = {
     "phrase": "L’État mesure si je reviens.<br>Personne ne mesure si je reste.",
     "appui": "88 % des mères canadiennes reviennent au travail après leur congé. "
              "Le retour n’est pas l’enjeu. C’est ce qui se passe dans les mois qui suivent.",
@@ -99,12 +115,16 @@ PRESSE = {
         ("Six webinaires publics", "Série gratuite avec personnalités invitées"),
     ],
     "balados": ["Elles, le balado", "Bon Papa", "Startop", "UMEA"],
+    "portee": "Sa lettre ouverte du 8 mars 2026 a été vue 170 000 fois et partagée "
+              "230 fois en 48 heures.",
     "prix": "Prix coup de cœur au Défi OSEntreprendre 2026, volet régional "
             "Haute-Yamaska et Brome-Missisquoi",
 }
 
 # ── L'offre, pour l'acheteur qui est aussi RH ───────────────────────────────
 OFFRE = {
+    "citation": "La conformité sans accompagnement, c’est du papier.",
+    "citation_source": "Marie-Claude Viau, panel de l’Ordre des CRHA sur la Loi 27",
     "intro": "Au-delà de la conférence, Momenta accompagne la transition parentale "
              "dans les organisations.",
     "items": [
