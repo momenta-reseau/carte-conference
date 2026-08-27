@@ -25,29 +25,56 @@
      de la densité vient donc du vertical et de la mise en colonnes, jamais d'un
      allongement de la ligne. */
   --rayon:12px; --large:900px;
+
+  /* ── L'échelle typographique, reprise de Mon Espace ────────────────────
+     ✏️ David, 2026-08-27 : « les plus petits formats de police sont trop petits.
+     Regarde ce qu'on fait dans Mon Espace pour t'y fier. »
+
+     🔴 Le défaut n'était pas une taille, c'était leur NOMBRE. La page portait
+     huit valeurs fixes (12, 13, 14, 15, 16, 17, 18, 26) plus huit clamps.
+     Personne ne distingue 13 px de 14 px : ce sont des crans qui n'existent que
+     dans le code. Mon Espace a fait ce ménage le 2026-08-17 et en a tiré la
+     règle : LA HIÉRARCHIE SE FAIT PAR LA GRAISSE ET LA COULEUR, pas par des
+     demi-pixels. Cinq crans suffisent, et il n'y en aura pas un sixième.
+
+     📄 Et le plancher est MESURÉ, pas jugé à l'œil. Legge et Bigelow, Journal of
+     Vision 2011 : la plage de lecture fluente commence à 1,40 mm de hauteur d'x
+     à 40 cm. Sur un iPhone 15, avec la hauteur d'x réelle de Montserrat, 14 px
+     donnent 1,32 mm et 15 px donnent 1,41 mm. Un pixel, et ça change de camp.
+     C'est pourquoi `--t-detail` vaut 15 et non 14 : Mon Espace l'a monté le
+     2026-08-19 après que David ait demandé « est-ce qu'on est sur la limite ? ».
+
+     🟡 L'étiquette reste à 12 px. Elle ne porte que des attributions de source,
+     qu'on lit une fois, jamais pendant la lecture. Ce qui prouvait quelque chose
+     (le prix OSEntreprendre) en est sorti et monte d'un cran. */
+  --t-titre: 1.625rem;      /* 26 px  le nom d'une section                     */
+  --t-section: 1.25rem;     /* 20 px  un intertitre, un nom de formatrice      */
+  --t-corps: 1.0625rem;     /* 17 px  le texte qu'on lit                       */
+  --t-detail: .9375rem;     /* 15 px  ce qui accompagne. LE PLANCHER.          */
+  --t-etiquette: .75rem;    /* 12 px  ce qui attribue une source               */
 }
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--creme); color:var(--vert);
   font-family:Montserrat,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  font-size:16px; line-height:1.5; font-weight:400;
+  font-size:var(--t-corps); line-height:1.55; font-weight:400;
 }
 .enveloppe{max-width:var(--large); margin:0 auto; padding:0 20px}
 section{padding:38px 0}                    /* etait 56 : 18 px x 2 x 11 sections */
 section+section{border-top:1px solid var(--gris)}
 h1,h2,h3{line-height:1.15; margin:0; font-weight:700; letter-spacing:-.01em}
-h2{font-size:clamp(22px,4.4vw,28px); margin-bottom:8px}
-h3{font-size:17px}
+h2{font-size:clamp(var(--t-titre),4.4vw,1.75rem); margin-bottom:8px}
+h3{font-size:var(--t-section)}
 p{margin:0 0 12px}
 p:last-child{margin-bottom:0}
 .mineur{color:var(--vert2)}
-.source{font-size:12px; color:var(--vert2); margin-top:6px}
+.source{font-size:var(--t-etiquette); color:var(--vert2); margin-top:6px}
 
 /* ── En-tête ─────────────────────────────────────────────────────────── */
 header{background:var(--vert); color:var(--blanc); padding:38px 0 34px}
 header .logo{height:26px; width:auto; display:block; margin-bottom:28px}
 header h1{font-size:clamp(30px,7vw,46px)}
-header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px)}
+header .role{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps),2.6vw,var(--t-section))}
 
 /* La feuille : elle se pose sur le fond, sans cadre ni ombre. 🔴 Le masque est
    DANS le PNG, decoupe par feuille_momenta.py. Ne JAMAIS lui remettre un
@@ -65,7 +92,7 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .contacts a{
   display:inline-flex; align-items:center; gap:9px;
   padding:13px 20px; border-radius:25px; text-decoration:none;
-  font-size:15px; font-weight:600; border:2px solid transparent;
+  font-size:var(--t-corps); font-weight:600; border:2px solid transparent;
   transition:background .2s,color .2s;
 }
 .principal{background:var(--corail); color:#fff}
@@ -87,7 +114,7 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
    d'auteur n'est pas une note de bas de tableau : elle passe a 17 px, en vert
    nuit et en demi-gras, sous un filet corail qui la rattache a la citation. */
 .retenir .source{
-  font-size:17px; font-weight:600; color:var(--vert); margin-top:18px;
+  font-size:var(--t-section); font-weight:600; color:var(--vert); margin-top:18px;
   padding-top:14px; border-top:2px solid var(--corail); display:inline-block;
 }
 
@@ -97,7 +124,7 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .chiffre{background:var(--blanc); border-radius:var(--rayon); padding:22px}
 .chiffre .n{font-size:clamp(32px,7vw,42px); font-weight:700; color:var(--corail);
   line-height:1; letter-spacing:-.02em}
-.chiffre p{margin:12px 0 0; font-size:15px}
+.chiffre p{margin:12px 0 0; font-size:var(--t-detail)}
 .chiffre.fort{background:var(--vert); color:var(--blanc)}
 .chiffre.fort .source{color:var(--gris)}
 @media(min-width:640px){.chiffre.fort{grid-column:1/-1}}
@@ -106,20 +133,20 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .res{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin-top:14px}
 .ligne{display:flex; align-items:baseline; gap:12px; padding:11px 0}
 .ligne+.ligne{border-top:1px solid var(--gris)}
-.ligne .lib{flex:1; font-size:15px; color:var(--vert2)}
-.ligne .av{color:var(--vert2); font-size:15px}
+.ligne .lib{flex:1; font-size:var(--t-detail); color:var(--vert2)}
+.ligne .av{color:var(--vert2); font-size:var(--t-detail)}
 .ligne .fl{color:var(--gris)}
-.ligne .ap{font-weight:700; font-size:18px; min-width:44px; text-align:right}
+.ligne .ap{font-weight:700; font-size:var(--t-section); min-width:44px; text-align:right}
 .ligne.vedette .lib{color:var(--vert); font-weight:600}
-.ligne.vedette .ap{color:var(--corail); font-size:26px}
+.ligne.vedette .ap{color:var(--corail); font-size:var(--t-titre)}
 .appuis{display:flex; flex-wrap:wrap; gap:24px; margin-top:18px}
-.appui .n{font-size:26px; font-weight:700; color:var(--corail); line-height:1}
-.appui p{margin:4px 0 0; font-size:13px; color:var(--vert2); max-width:210px}
+.appui .n{font-size:var(--t-titre); font-weight:700; color:var(--corail); line-height:1}
+.appui p{margin:4px 0 0; font-size:var(--t-detail); color:var(--vert2); max-width:210px}
 /* Les trois jalons de « Qui parle » ouvrent une section : ils portent plus que
    les appuis d'un tableau de résultats, d'où la taille et l'espace au-dessous. */
 .jalons{margin:4px 0 18px}
 .jalons .n{font-size:clamp(28px,5vw,34px)}
-.jalons p{font-size:14px; max-width:225px}   /* « dans le milieu de la conférence » sur une ligne */
+.jalons p{font-size:var(--t-detail); max-width:235px}   /* « dans le milieu de la conférence » sur une ligne */
 
 /* ── Le mur de logos ─────────────────────────────────────────────────────
    Hauteur EGALE pour les trois, marges transparentes deja rognees a la source :
@@ -137,10 +164,10 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 
 /* ── Preuve de scène ─────────────────────────────────────────────────── */
 .etiquettes{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px}
-.etiquettes span{background:var(--gris); border-radius:25px; padding:7px 15px; font-size:13px}
+.etiquettes span{background:var(--gris); border-radius:25px; padding:7px 15px; font-size:var(--t-detail)}
 .scene{padding:10px 0}
 .scene+.scene{border-top:1px solid var(--gris)}
-.scene p{margin:3px 0 0; font-size:14px; color:var(--vert2)}
+.scene p{margin:3px 0 0; font-size:var(--t-detail); color:var(--vert2)}
 
 /* ── Offre ───────────────────────────────────────────────────────────── */
 /* Quatre blocs courts empilés laissaient une colonne de vide à droite sur tout
@@ -149,15 +176,15 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .grille-offre{display:grid; gap:14px; grid-template-columns:1fr}
 @media(min-width:700px){.grille-offre{grid-template-columns:1fr 1fr}}
 .offre{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin:0}
-.offre p{font-size:15px; margin:8px 0 0}
-.offre .modalite{font-size:13px; color:var(--vert2); margin-top:10px}
+.offre p{font-size:var(--t-detail); margin:8px 0 0}
+.offre .modalite{font-size:var(--t-detail); color:var(--vert2); margin-top:10px}
 
 /* ── Les trois conférences, réduites au titre et à la case ────────────────
    🐛 Le style de `.case` était accroché à `.theme`, qui n'existe plus depuis
    l'allègement : la case de programmation sortait en gris ordinaire et le titre
    la dominait, alors que c'est elle qui dit à un planificateur où ça rentre. */
 .titre-conf h3{color:var(--corail); line-height:1.3}
-.titre-conf p{font-size:14px; color:var(--vert2); margin:8px 0 0}
+.titre-conf p{font-size:var(--t-detail); color:var(--vert2); margin:8px 0 0}
 
 /* ── Les formatrices ─────────────────────────────────────────────────────
    Une liste, pas des cartes : ce sont des noms qu'on parcourt à la verticale
@@ -165,8 +192,9 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 .formatrices{margin:14px 0 4px}
 .formatrice{padding:11px 0; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}
 .formatrice+.formatrice{border-top:1px solid var(--gris)}
-.formatrice strong{font-size:16px; min-width:210px}
-.formatrice span{font-size:14px; color:var(--vert2); flex:1}
+.preuve{font-size:var(--t-detail); margin:0}
+.formatrice strong{font-size:var(--t-corps); min-width:214px}
+.formatrice span{font-size:var(--t-detail); color:var(--vert2); flex:1}
 /* 🐛 Sur téléphone, le `min-width` du nom laissait au titre un rail d'environ
    130 px : « Ph. D., directrice du Centre d'études sur le stress humain » sortait
    sur six lignes de deux mots. Sous 640 px, le nom prend sa ligne et le titre la
@@ -186,20 +214,20 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 @media(min-width:640px){.sujets{grid-template-columns:1fr 1fr}}
 .sujet{background:var(--blanc); border-radius:var(--rayon); padding:20px 22px}
 .sujet h3{color:var(--corail)}
-.sujet p{font-size:15px; margin:8px 0 0; color:var(--vert2)}
+.sujet p{font-size:var(--t-detail); margin:8px 0 0; color:var(--vert2)}
 .panel{background:var(--vert); color:var(--blanc); border-radius:var(--rayon);
   padding:22px 24px}
-.panel h3{font-size:18px}
-.panel p{font-size:15px; margin:0; color:var(--gris)}
+.panel h3{font-size:var(--t-section)}
+.panel p{font-size:var(--t-corps); margin:0; color:var(--gris)}
 .panel .source{color:var(--gris)}
 .cite-clair{margin:16px 0 0; border-left-color:var(--corail)}
-.cite-clair p{color:var(--blanc); font-size:clamp(17px,3vw,20px)}
+.cite-clair p{color:var(--blanc); font-size:clamp(var(--t-corps),3vw,var(--t-section))}
 
 /* Les trois titres de conférence, réduits au titre et à la case. */
 .titres{display:grid; gap:12px; grid-template-columns:1fr; margin:18px 0 10px}
 @media(min-width:760px){.titres{grid-template-columns:repeat(3,1fr)}}
 .titre-conf{background:var(--blanc); border-radius:var(--rayon); padding:18px 20px}
-.titre-conf h3{font-size:16px; line-height:1.3}
+.titre-conf h3{line-height:1.3}
 
 /* ── L'appel, la dernière chose qu'on lit ────────────────────────────── */
 .appel{background:var(--vert); color:var(--blanc)}
@@ -208,14 +236,14 @@ header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px
 
 /* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
 .cite{margin:0 0 18px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}
-.cite p{font-size:clamp(18px,3.4vw,22px); font-weight:600; margin:0; line-height:1.3}
+.cite p{font-size:clamp(var(--t-section),3.4vw,1.375rem); font-weight:600; margin:0; line-height:1.3}
 
 /* ── Honnêteté ───────────────────────────────────────────────────────── */
 .honnete{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:24px}
-.honnete p{font-size:16px; margin:0}
+.honnete p{font-size:var(--t-corps); margin:0}
 
 /* ── Pied ────────────────────────────────────────────────────────────── */
-footer{background:var(--vert); color:var(--gris); padding:32px 0; font-size:14px}
+footer{background:var(--vert); color:var(--gris); padding:32px 0; font-size:var(--t-detail)}
 footer a{color:var(--blanc); text-decoration:none; border-bottom:1px solid var(--vert2)}
 footer .logo{height:22px; margin-bottom:20px; display:block}
 
@@ -285,7 +313,9 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
   <div class="logos"><img src="assets/medias/radio-canada.png" alt="Radio-Canada" width="584" height="102" loading="lazy"><img src="assets/medias/tva-nouvelles.png" alt="TVA Nouvelles" width="341" height="102" loading="lazy"><img src="assets/medias/noovo-info.png" alt="Noovo Info" width="102" height="102" loading="lazy"></div>
   <p class="mineur">Marie-Claude porte le sujet dans les médias québécois depuis 2026.</p>
   <div class="etiquettes"><span>Elles, le balado</span><span>Bon Papa</span><span>Startop</span><span>UMEA</span></div>
-  <div class="source">Prix coup de cœur au Défi OSEntreprendre 2026, volet régional Haute-Yamaska et Brome-Missisquoi</div>
+  <!-- 🔴 Le prix sort de `.source`. Une attribution se lit une fois et peut vivre
+       à 12 px ; un prix PROUVE quelque chose et doit se lire du premier coup. -->
+  <p class="mineur preuve">Prix coup de cœur au Défi OSEntreprendre 2026, volet régional Haute-Yamaska et Brome-Missisquoi</p>
 </div></section>
 
 <section><div class="enveloppe">

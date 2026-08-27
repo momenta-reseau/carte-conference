@@ -45,6 +45,38 @@ fautes = [f"{m} — {pourquoi}" for m, pourquoi in INTERDITS.items()
 if re.search(r"[—–]", texte):
     fautes.append("tiret cadratin ou demi-cadratin — règle dure du protocole")
 
+# ── L'échelle typographique, cinq crans et pas un sixième ────────────────────
+#
+# ✏️ David, 2026-08-27 : « les plus petits formats de police sont trop petits.
+# Regarde ce qu'on fait dans Mon Espace pour t'y fier. »
+#
+# 🔴 Le défaut n'était pas une taille mais leur NOMBRE : huit valeurs fixes
+# coexistaient, dont 13 et 14 px que personne ne distingue. Mon Espace a réglé le
+# même problème le 2026-08-17 et en a tiré la règle : la hiérarchie se fait par la
+# graisse et la couleur, pas par des demi-pixels.
+#
+# 🔴 Ce contrôle existe parce qu'une échelle se défait par une seule ligne de CSS
+# ajoutée un soir. Il en a d'ailleurs attrapé une le jour même : `.titre-conf h3`
+# portait un 16 px en dur, un neuvième cran né d'une seule règle, qui écrivait le
+# titre d'une demande plus petit que le corps qui le suivait.
+#
+# Ce qui reste autorisé en dur : les grands titres, qui vivent en `clamp()` et
+# dépassent tous le cran le plus haut, et le CSS d'impression en points.
+CRANS = {"var(--t-titre)", "var(--t-section)", "var(--t-corps)",
+         "var(--t-detail)", "var(--t-etiquette)"}
+PLANCHER_PX = 15   # `--t-detail`. Legge et Bigelow 2011 : 14 px passent sous la
+                   # plage de lecture fluente dès que le téléphone s'éloigne.
+
+for m in re.finditer(r"font-size:\s*([^;}\n]+)", brut):
+    v = m.group(1).strip()
+    if any(c in v for c in CRANS) or v.endswith("pt"):
+        continue
+    px = re.match(r"^(\d+(?:\.\d+)?)px$", v)
+    if px and float(px.group(1)) < PLANCHER_PX:
+        fautes.append(f"font-size:{v} — sous le plancher de {PLANCHER_PX} px")
+    elif px and float(px.group(1)) <= 26:
+        fautes.append(f"font-size:{v} — taille en dur hors des cinq crans")
+
 if fautes:
     print("\nPUBLICATION REFUSÉE\n" + "-" * 19)
     for f in fautes:
@@ -52,4 +84,5 @@ if fautes:
     sys.exit(1)
 
 print(f"ok  {len(INTERDITS)} interdits vérifiés, aucun présent")
+print(f"ok  échelle typographique : cinq crans, plancher à {PLANCHER_PX} px")
 print(f"ok  {len(texte.split())} mots dans la page")
