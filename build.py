@@ -261,36 +261,6 @@ footer a:hover{{color:var(--blanc)}}
   padding-top:12px; border-top:2px solid var(--corail); display:inline-block;
 }}
 
-/* ── Les chiffres ────────────────────────────────────────────────────── */
-.chiffres{{display:grid; gap:14px; grid-template-columns:1fr}}
-@media(min-width:640px){{.chiffres{{grid-template-columns:1fr 1fr}}}}
-.chiffre{{background:var(--blanc); border-radius:var(--rayon); padding:22px}}
-.chiffre .n{{font-size:var(--t-nom); font-weight:700; color:var(--corail);
-  line-height:1; letter-spacing:-.02em}}
-.chiffre p{{margin:12px 0 0; font-size:var(--t-corps)}}
-.chiffre.fort{{background:var(--vert); color:var(--blanc)}}
-.chiffre.fort .source{{color:var(--gris)}}
-@media(min-width:640px){{.chiffre.fort{{grid-column:1/-1}}}}
-
-/* ── Les résultats ───────────────────────────────────────────────────── */
-.res{{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin-top:14px}}
-.ligne{{display:flex; align-items:baseline; gap:12px; padding:12px 0}}
-.ligne+.ligne{{border-top:1px solid var(--gris)}}
-.ligne .lib{{flex:1; font-size:var(--t-corps); color:var(--vert2)}}
-.ligne .av{{color:var(--vert2); font-size:var(--t-corps)}}
-.ligne .fl{{color:var(--gris)}}
-.ligne .ap{{font-weight:700; font-size:var(--t-section); min-width:44px; text-align:right}}
-.ligne.vedette .lib{{color:var(--vert); font-weight:600}}
-.ligne.vedette .ap{{color:var(--corail); font-size:var(--t-titre)}}
-.appuis{{display:flex; flex-wrap:wrap; gap:24px; margin-top:18px}}
-.appui .n{{font-size:var(--t-titre); font-weight:700; color:var(--corail); line-height:1}}
-.appui p{{margin:4px 0 0; font-size:var(--t-corps); color:var(--vert2); max-width:210px}}
-/* Les trois jalons de « Qui parle » ouvrent une section : ils portent plus que
-   les appuis d'un tableau de résultats, d'où la taille et l'espace au-dessous. */
-.jalons{{margin:4px 0 16px}}
-.jalons .n{{font-size:var(--t-nom)}}
-.jalons p{{font-size:var(--t-corps); max-width:235px}}   /* « dans le milieu de la conférence » sur une ligne */
-
 /* ── Le mur de logos ─────────────────────────────────────────────────────
    Hauteur EGALE pour les trois, marges transparentes deja rognees a la source :
    deux logos a la meme hauteur CSS n'ont pas la meme taille optique si leurs
@@ -304,30 +274,6 @@ footer a:hover{{color:var(--blanc)}}
 .logos img[width="102"]{{height:52px}}
 @media(max-width:520px){{.logos{{gap:22px 26px}} .logos img{{height:27px}}
   .logos img[width="102"]{{height:42px}}}}
-
-/* ── Preuve de scène ─────────────────────────────────────────────────── */
-.etiquettes{{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px}}
-.etiquettes span{{background:var(--gris); border-radius:25px; padding:8px 16px; font-size:var(--t-corps)}}
-.scene{{padding:10px 0}}
-.scene+.scene{{border-top:1px solid var(--gris)}}
-.scene p{{margin:4px 0 0; font-size:var(--t-corps); color:var(--vert2)}}
-
-/* ── Offre ───────────────────────────────────────────────────────────── */
-/* Quatre blocs courts empilés laissaient une colonne de vide à droite sur tout
-   écran large. En grille de deux, la section perd la moitié de sa hauteur et
-   se lit d'un coup d'œil, ce qu'un catalogue doit faire. */
-.grille-offre{{display:grid; gap:14px; grid-template-columns:1fr}}
-@media(min-width:700px){{.grille-offre{{grid-template-columns:1fr 1fr}}}}
-.offre{{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin:0}}
-.offre p{{font-size:var(--t-corps); margin:8px 0 0}}
-.offre .modalite{{font-size:var(--t-corps); color:var(--vert2); margin-top:10px}}
-
-/* ── Les trois conférences, réduites au titre et à la case ────────────────
-   🐛 Le style de `.case` était accroché à `.theme`, qui n'existe plus depuis
-   l'allègement : la case de programmation sortait en gris ordinaire et le titre
-   la dominait, alors que c'est elle qui dit à un planificateur où ça rentre. */
-.titre-conf h3{{color:var(--corail); line-height:1.3}}
-.titre-conf p{{font-size:var(--t-corps); color:var(--vert2); margin:8px 0 0}}
 
 /* ── Les formatrices ─────────────────────────────────────────────────────
    Une liste, pas des cartes : ce sont des noms qu'on parcourt à la verticale
@@ -348,42 +294,9 @@ footer a:hover{{color:var(--blanc)}}
   .formatrice span{{display:block; margin-top:2px}}
 }}
 
-/* ── Deux sujets, deux formats ───────────────────────────────────────────
-   Les deux sujets côte à côte : la lecture parallèle dit « il y en a deux »
-   plus vite qu'une liste, et c'est exactement ce qu'on veut faire comprendre.
-   Le bloc panel est en vert nuit parce qu'il doit se voir : c'est la case de
-   programmation que la carte oubliait de proposer. */
-.sujets{{display:grid; gap:14px; grid-template-columns:1fr; margin:14px 0}}
-@media(min-width:640px){{.sujets{{grid-template-columns:1fr 1fr}}}}
-.sujet{{background:var(--blanc); border-radius:var(--rayon); padding:20px}}
-.sujet h3{{color:var(--corail)}}
-.sujet p{{font-size:var(--t-corps); margin:8px 0 0; color:var(--vert2)}}
-.panel{{background:var(--vert); color:var(--blanc); border-radius:var(--rayon);
-  padding:24px}}
-.panel h3{{font-size:var(--t-section)}}
-.panel p{{font-size:var(--t-corps); margin:0; color:var(--gris)}}
-.panel .source{{color:var(--gris)}}
-.cite-clair{{margin:16px 0 0; border-left-color:var(--corail)}}
-.cite-clair p{{color:var(--blanc)}}
-
-/* Les trois titres de conférence, réduits au titre et à la case. */
-.titres{{display:grid; gap:12px; grid-template-columns:1fr; margin:18px 0 10px}}
-@media(min-width:760px){{.titres{{grid-template-columns:repeat(3,1fr)}}}}
-.titre-conf{{background:var(--blanc); border-radius:var(--rayon); padding:18px 20px}}
-.titre-conf h3{{line-height:1.3}}
-
-/* ── L'appel, la dernière chose qu'on lit ────────────────────────────── */
-.appel{{background:var(--vert); color:var(--blanc)}}
-.appel h2{{color:var(--blanc)}}
-.appel p{{color:var(--gris); max-width:56ch}}
-
 /* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
 .cite{{margin:0 0 18px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}}
 .cite p{{font-size:var(--t-titre); font-weight:600; margin:0; line-height:1.3}}
-
-/* ── Honnêteté ───────────────────────────────────────────────────────── */
-.honnete{{background:var(--vert); color:var(--blanc); border-radius:var(--rayon); padding:24px}}
-.honnete p{{font-size:var(--t-corps); margin:0}}
 
 /* ── Pied ────────────────────────────────────────────────────────────── */
 footer{{background:var(--vert); color:var(--gris); padding:32px 0; font-size:var(--t-corps)}}
@@ -392,13 +305,16 @@ footer .logo{{height:22px; margin-bottom:20px; display:block}}
 
 /* ── Impression : MC veut que la page devienne la pièce jointe ───────── */
 @media print{{
-  body{{background:#fff; font-size:11pt}}
-  header,footer,.honnete,.chiffre.fort{{background:#fff!important; color:{VERT}!important}}
-  header .role,footer,.chiffre.fort .source{{color:{VERT_2}!important}}
+  /* 🐛 Ce bloc nommait encore .honnete, .chiffre.fort, .res et .offre, quatre
+     sections retirées de la page. Le CSS d'impression est l'endroit où le code
+     mort survit le plus longtemps : personne ne le regarde. */
+  body{{background:var(--blanc); font-size:11pt}}
+  header,footer,.panel{{background:var(--blanc)!important; color:{VERT}!important}}
+  header .role,footer,.panel p,.panel .source{{color:{VERT_2}!important}}
   .contacts{{display:none}}
   .portrait{{width:150px}}
   section{{padding:16px 0; break-inside:avoid}}
-  .chiffre,.res,.offre{{border:1px solid {GRIS_CHAUD}}}
+  .titre-conf,.panel{{border:1px solid {GRIS_CHAUD}}}
 }}
 """
 
@@ -425,39 +341,14 @@ def bouton(href, texte, icone, principal=False):
 
 
 def rendre():
-    ch = "".join(
-        f'<div class="chiffre{" fort" if c.get("fort") else ""}">'
-        f'<div class="n">{e(c["n"])}</div><p>{e(c["t"])}</p>'
-        f'<div class="source">{e(c["src"])}</div></div>'
-        for c in C.CHIFFRES)
-
-    lignes = "".join(
-        f'<div class="ligne{" vedette" if v else ""}"><span class="lib">{e(lib)}</span>'
-        f'<span class="av">{e(a)}</span><span class="fl">→</span>'
-        f'<span class="ap">{e(b)}</span></div>'
-        for lib, a, b, v in C.RESULTATS["lignes"])
-
-    appuis = "".join(f'<div class="appui"><div class="n">{e(n)}</div><p>{e(t)}</p></div>'
-                     for n, t in C.RESULTATS["appuis"])
     jalons = "".join(f'<div class="appui"><div class="n">{e(n)}</div><p>{e(t)}</p></div>'
                      for n, t in C.QUI_PARLE["jalons"])
 
     etiq = "".join(
         f'<img src="{src}" alt="{e(alt)}" width="{w}" height="{h}" loading="lazy">'
         for src, alt, w, h in C.PRESSE["logos"])
-    scenes = "".join(f'<div class="scene"><h3>{e(t)}</h3><p>{e(d)}</p></div>'
-                     for t, d in C.PRESSE["scenes"])
     balados = "".join(f"<span>{e(b)}</span>" for b in C.PRESSE["balados"])
 
-    offre = "".join(
-        f'<div class="offre"><h3>{e(t)}</h3><p>{e(d)}</p>'
-        f'<div class="modalite">{e(m)}</div></div>'
-        for t, d, m in C.OFFRE["items"])
-
-    points = "".join(f"<li>{e(p)}</li>" for p in C.CONFERENCE["points"])
-
-    sujets = "".join(f'<div class="sujet"><h3>{e(t)}</h3><p>{e(d)}</p></div>'
-                     for t, d in C.FORMATS["sujets"])
 
     # Les trois conférences perdent leur description : il reste le titre et la case
     # de programmation. Un planificateur a besoin de savoir QUE ça existe et OÙ ça

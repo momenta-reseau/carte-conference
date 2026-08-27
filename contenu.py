@@ -206,6 +206,17 @@ FORMATRICES = {
     "source": "momentareseau.com, parcours Essentielle",
 }
 
+# Ce qui sert encore : le titre de l'onglet, la meta description, et la ligne
+# de disponibilite sous les demandes. Le reste de l'ancien bloc CONFERENCE
+# (chapeau long, quatre points de contenu) est parti avec la section qu'il
+# servait ; git le garde si on le veut un jour.
+CONFERENCE = {
+    "titre": "Le retour au travail",
+    "chapeau": "Une conférence sur la transition parentale, racontée par quelqu’un "
+               "qui l’a traversée avant de bâtir ce qui lui a manqué.",
+    "formats": "Durées, formats et disponibilités sur demande.",
+}
+
 # ── L'appel ──────────────────────────────────────────────────────────────────
 #
 # ✏️ David, 2026-08-27 : « ce qu'on veut c'est générer un appel et une demande.
@@ -295,84 +306,6 @@ FORMATS = {
     },
 }
 
-THEMES = [
-    {
-        "titre": "Je me suis sauvée avant de sauver quoi que ce soit",
-        "case": "Ouverture ou clôture de journée",
-        "pour": "Galas, congrès, colloques municipaux, tourisme d’affaires. "
-                "Salle mixte, aucun prérequis.",
-        "quoi": "Le récit complet : le postpartum non diagnostiqué, la remontée par "
-                "la course, l’ultramarathon, et ce qu’il a fallu abandonner pour "
-                "fonder Momenta. Une histoire qui ne se referme pas sur une morale.",
-    },
-    {
-        "titre": "Pas le congé. L’atterrissage.",
-        "case": "Bloc thématique ou panel",
-        "pour": "Congrès RH, ordres professionnels, associations sectorielles, "
-                "comités de santé et sécurité.",
-        "quoi": "Le moment qui casse une carrière n’est pas le départ, ce sont les "
-                "douze à dix-huit mois qui suivent le retour. La Loi 27 en fait une "
-                "obligation légale. Thèse déjà portée devant l’Ordre des CRHA.",
-    },
-    {
-        "titre": "L’ambition n’a pas disparu. Elle a changé de forme.",
-        "case": "Conférence ou atelier",
-        "pour": "Réseaux de femmes en affaires, semaines thématiques municipales, "
-                "comités d’égalité, événements corporatifs féminins.",
-        "quoi": "Dix ans à former des femmes en leadership, à les entendre parler "
-                "d’ambition en salle et de charge mentale aux pauses. Ce que la "
-                "transition parentale déplace, et ce qu’elle ne détruit pas.",
-    },
-]
-
-CONFERENCE = {
-    "titre": "Le retour au travail",
-    "chapeau": "Une conférence sur la transition parentale, racontée par quelqu’un "
-               "qui l’a traversée avant de bâtir ce qui lui a manqué.",
-    "points": [
-        "Ce que vivent les femmes dans les mois qui suivent le retour, "
-        "et pourquoi personne ne le mesure.",
-        "Pourquoi ce n’est plus une question de bien faire, mais de rétention.",
-        "Ce que la recherche prouve, et ce qu’elle ne prouve pas encore.",
-    ],
-    # 🟡 Les formats et le cachet ne sont documentés NULLE PART dans le wiki.
-    # On ne les invente pas. « Sur demande » est la seule chose vraie.
-    "formats": "Durées, formats et disponibilités sur demande.",
-}
-
-# ── Les chiffres de la présentation, réutilisables à l'interne ───────────────
-CHIFFRES = [
-    {"n": "88 %", "t": "des mères canadiennes reviennent au travail après leur congé parental",
-     "src": "Statistique Canada"},
-    {"n": "33 %", "t": "perdent confiance en leurs capacités professionnelles au retour",
-     "src": "Benefits Canada, 1 000 femmes"},
-    {"n": "30 000 $", "t": "le coût moyen du remplacement d’une employée qui ne revient pas, "
-                           "et plus de 100 000 $ pour 15 % des employeurs",
-     "src": "Randstad Canada, 2024"},
-    {"n": "0", "t": "étude canadienne qui mesure si elles sont encore là douze mois "
-                    "après le retour",
-     "src": "RQAP et Statistique Canada mesurent le retour, personne ne mesure le maintien",
-     "fort": True},
-]
-
-RESULTATS = {
-    "intro": "Cohorte du printemps 2026. Sondage de fin de parcours auprès de 22 des "
-             "42 participantes, avant et après.",
-    "lignes": [
-        ("Sentiment d’être soutenue", "4,3", "8,1", True),
-        ("Posture de leadership en transition", "5,0", "7,6", False),
-        ("Clarté sur la prochaine étape professionnelle", "4,9", "7,3", False),
-        ("Charge mentale et équilibre", "4,6", "7,1", False),
-        ("Confiance en sa valeur professionnelle", "6,6", "8,2", False),
-    ],
-    "appuis": [
-        ("73", "Net Promoter Score"),
-        ("91 %", "estiment que leur organisation bénéficierait du programme"),
-        ("78 %", "des participantes géraient une équipe ou des projets"),
-    ],
-    "note": "Auto-évaluation sur 10. n = 22 sur 42.",
-}
-
 # ── La preuve de scène, relevée dans Presences-medias.md ────────────────────
 PRESSE = {
     "intro": "Marie-Claude porte le sujet dans les médias québécois depuis 2026.",
@@ -411,41 +344,3 @@ PRESSE = {
             "Haute-Yamaska et Brome-Missisquoi",
 }
 
-# ── L'offre, pour l'acheteur qui est aussi RH ───────────────────────────────
-OFFRE = {
-    "citation": "La conformité sans accompagnement, c’est du papier.",
-    "citation_source": "Marie-Claude Viau, panel de l’Ordre des CRHA sur la Loi 27",
-    "intro": "Au-delà de la conférence, Momenta accompagne la transition parentale "
-             "dans les organisations.",
-    "items": [
-        ("Le parcours Essentielle",
-         "Cinq mois de développement du leadership, en cohorte, animé par des sommités "
-         "québécoises. Deux heures aux deux semaines, sur l’heure du dîner, séances "
-         "enregistrées.",
-         # 🐛 La carte affichait 1 495 $, le tarif de LISTE. Le site en production
-         # affiche 1 395 $ en paiement unique depuis le 2026-08-02, ce qui tranche
-         # D-016 et ses quatre valeurs contradictoires. Un acheteur qui compare la
-         # carte au site aurait vu deux prix.
-         "1 395 $ en paiement unique, ou 5 versements de 299 $ · reconnu par l’Ordre "
-         "des CRHA pour 14 heures de formation continue, donc admissible au budget "
-         "de formation et à la loi du 1 %"),
-        ("Pour les organisations",
-         "Le même parcours offert aux employées, avec un volet pour les gestionnaires "
-         "qui reçoivent quelqu’un au retour.",
-         "Sur mesure"),
-        ("La Journée immersive",
-         "Une journée en présentiel : ateliers, conférences, réseautage, plein air.",
-         "Deuxième édition · 6 novembre 2026 · Bromont"),
-        ("Formation en entreprise et accompagnement individuel",
-         "Ateliers pour les équipes de gestion, et du un pour un quand la cohorte "
-         "ne suffit pas.",
-         "Sur demande"),
-    ],
-}
-
-HONNETETE = (
-    "Ce qu’on ne peut pas prouver encore : qu’un accompagnement retient les femmes. "
-    "Aucune étude avec groupe témoin n’existe, ni au Québec ni au Canada. "
-    "Ce qui est mesuré, c’est que la pénalité existe et que la plupart des femmes "
-    "traversent ce moment sans aucun soutien formel."
-)
