@@ -1,29 +1,44 @@
-# Carte de conférencière — Marie-Claude Viau
+# Marie-Claude Viau — conférencière et panéliste
 
-Page remise aux acheteurs de conférence après la présentation de 12 minutes.
-Elle sert trois choses, dans cet ordre : rejoindre MC en un geste, retrouver les
-chiffres de la présentation avec leurs sources, savoir ce que Momenta vend.
+Page remise aux planificateurs d'événements après une présentation.
+En ligne : https://momenta-reseau.github.io/carte-conference/
+
+## Régénérer
 
 ```bash
-python3 build.py       # contenu.py + le gabarit -> index.html
-python3 verifier.py    # la barrière : refuse la publication si un interdit y figure
+python3 site.py
 ```
 
-Le texte et les chiffres vivent dans `contenu.py`, jamais dans `build.py`.
+Un seul fichier. Il porte le contenu, le gabarit et les contrôles. Les contrôles
+tournent **avant** l'écriture : si l'un échoue, aucun fichier ne sort et rien ne
+peut être publié.
 
-## Ce dépôt est public
+## Ce que la page fait, et ce qu'elle ne fait pas
 
-Tout ce qui entre dans `index.html` est lisible par n'importe qui, pour toujours,
-y compris dans l'historique git. `verifier.py` bloque les interdits connus :
-les gratuités stratégiques nommées comme clientes, les outcomes du site dont la
-provenance n'est pas documentée, les données sous entente de confidentialité.
-Il ne remplace pas la lecture.
+Elle s'adresse à un planificateur qui vient de voir Marie-Claude parler douze
+minutes, debout, sur son téléphone. Elle lui donne trois choses dans cet ordre :
+de quoi la joindre, quoi lui demander, pourquoi elle valait le coup.
 
-## Autorités
+Elle ne vend rien. Aucun prix, aucun formulaire, aucun catalogue. Marie-Claude,
+le 2026-08-27 : « je veux pas vendre de conférence, c'est pas dans mon carré de
+sable ». Le but est un appel, pas une transaction.
 
-| Quoi | Où |
-|---|---|
-| Les chiffres et leur source | `Ce-que-je-vends/Marketing/Trousse-financement-employeur.md`, table de traçabilité |
-| La palette, la typo, le dosage | `Boite-a-outils/Identite-visuelle.md` |
-| Le texte sortant | `Boite-a-outils/Protocole-anti-signature-IA.md` |
-| Le deck de la conférence | `scripts/deck/presentation-vitrine-12min.js` |
+## Ce qui ne peut jamais y entrer
+
+Le dépôt est public : tout ce qui y entre est lisible pour toujours, historique
+git compris. Les interdits vivent dans `site.py` et bloquent la publication.
+
+- Rio Tinto, Desjardins, CGI, Beneva comme clientes (gratuités stratégiques)
+- les données du sondage Jeune Chambre / Léger (entente de confidentialité)
+- les outcomes du site à provenance non documentée (Signal-012)
+- le logo de l'Ordre des CRHA, réservé aux personnes inscrites à son tableau
+- un titre d'atelier : le site public et les fiches du wiki divergent, et la
+  fiche de la formatrice fait autorité
+- un tiret cadratin ou demi-cadratin
+- un prix
+
+## Ce qui remplace ce dépôt
+
+Le code a été refait de zéro le 2026-08-27, à cette même adresse. Le dépôt
+`momenta-reseau/mcviau`, banc d'essai de cette réécriture, a été supprimé une
+fois le contenu ramené ici.

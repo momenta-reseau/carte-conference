@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Marie-Claude Viau · Le retour au travail</title>
-<meta name="description" content="Une conférence sur la transition parentale, racontée par quelqu’un qui l’a traversée avant de bâtir ce qui lui a manqué.">
+<title>Marie-Claude Viau · Conférencière et panéliste</title>
+<meta name="description" content="Deux sujets : la transition parentale, et l’accomplissement personnel.">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
@@ -15,363 +15,236 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
+
+/* ═══ Les jetons ═══════════════════════════════════════════════════════════
+   Palette : autorité `Boite-a-outils/Identite-visuelle.md`. Le dosage mesuré
+   du vrai site est ~73 % de neutres, ~24 % de vert nuit, 2 % de corail. AUCUNE
+   ombre portée : 142 déclarations sur 148 valent `none` sur momentareseau.com.
+
+   L'échelle : quatre crans de texte, deux d'affichage. Elle S'OUVRE avec la
+   largeur. Sur un téléphone la page ne sert que quatre tailles (26/20/17/15),
+   parce que deux crans séparés de deux pixels ne créent pas de hiérarchie, ils
+   créent du bruit ; les crans d'affichage s'y rejoignent et la couleur prend le
+   relais. Sur écran large ils se séparent et la page en sert six.
+
+   Le plancher de 15 px est mesuré, pas jugé. Legge et Bigelow, Journal of
+   Vision 2011 : la lecture fluente commence à 1,40 mm de hauteur d'x à 40 cm.
+   Sur un iPhone avec Montserrat, 14 px donnent 1,32 mm et 15 px donnent 1,41. */
 :root{
   --vert:#01282b; --vert2:#3e5b5d; --corail:#ff706b;
   --creme:#f2f0eb; --blanc:#fcfcfa; --gris:#ded9d4;
-  /* ✏️ David, 2026-08-27 : « il y a trop d'espace vide dans le site, augmente un
-     peu la densité ». La colonne passe de 820 à 900 px.
-     🔴 Elle ne monte pas plus haut : à 900 px et 16 px de corps, une ligne de
-     texte suivi fait déjà ~85 signes, la limite haute du confortable. Le reste
-     de la densité vient donc du vertical et de la mise en colonnes, jamais d'un
-     allongement de la ligne. */
   --rayon:12px; --large:900px;
-
-  /* ── L'échelle typographique, reprise de Mon Espace ────────────────────
-     ✏️ David, 2026-08-27 : « les plus petits formats de police sont trop petits.
-     Regarde ce qu'on fait dans Mon Espace pour t'y fier. »
-
-     🔴 Le défaut n'était pas une taille, c'était leur NOMBRE. La page portait
-     huit valeurs fixes (12, 13, 14, 15, 16, 17, 18, 26) plus huit clamps.
-     Personne ne distingue 13 px de 14 px : ce sont des crans qui n'existent que
-     dans le code. Mon Espace a fait ce ménage le 2026-08-17 et en a tiré la
-     règle : LA HIÉRARCHIE SE FAIT PAR LA GRAISSE ET LA COULEUR, pas par des
-     demi-pixels. Cinq crans suffisent, et il n'y en aura pas un sixième.
-
-     📄 Et le plancher est MESURÉ, pas jugé à l'œil. Legge et Bigelow, Journal of
-     Vision 2011 : la plage de lecture fluente commence à 1,40 mm de hauteur d'x
-     à 40 cm. Sur un iPhone 15, avec la hauteur d'x réelle de Montserrat, 14 px
-     donnent 1,32 mm et 15 px donnent 1,41 mm. Un pixel, et ça change de camp.
-     C'est pourquoi `--t-source` vaut 15 et non 14 : Mon Espace l'a monté le
-     2026-08-19 après que David ait demandé « est-ce qu'on est sur la limite ? ».
-
-     🟡 L'étiquette reste à 12 px. Elle ne porte que des attributions de source,
-     qu'on lit une fois, jamais pendant la lecture. Ce qui prouvait quelque chose
-     (le prix OSEntreprendre) en est sorti et monte d'un cran. */
-  /* ── Les crans d'AFFICHAGE ────────────────────────────────────────────
-     ✏️ David, 2026-08-27 : « c'est encore disproportionné, le nom de MC est plus
-     gros que sa citation ». Mesuré : le nom sortait à 46 px, la phrase à 38.
-
-     🐛 Ma passe précédente n'avait rien changé ici, et pour une raison qui compte :
-     j'avais rationalisé les crans de TEXTE en laissant quatre crans d'AFFICHAGE
-     (46, 38, 34, 28) tels qu'ils étaient depuis la première version. Pire, le
-     vérificateur les autorisait explicitement, parce qu'ils vivent en `clamp()`.
-     J'avais créé une zone que le contrôle ne regardait pas.
-
-     🔴 ET L'ORDRE N'ÉTAIT PAS DÉCIDÉ, il était hérité. Sur une carte de visite,
-     le nom domine. Sur cette page, ce qui doit rester dans la tête d'un acheteur
-     est la PHRASE, pas le nom : il a le nom partout ailleurs, dans les boutons,
-     dans le pied, dans la signature. La phrase, il ne l'a qu'une fois. */
-  /* 🐛 Troisième remarque de David sur la même chose, capture d'iPhone à l'appui :
-     « encore disproportionné ». La cause n'était plus l'ordre, il était bon, mais
-     le NOMBRE DE CRANS À L'ÉTROIT. Sur un écran de 390 px, la page servait six
-     tailles entre 30 et 15 px : 30, 28, 26, 20, 17, 15. Deux crans séparés de
-     deux pixels ne créent aucune hiérarchie, ils créent du bruit, et c'est
-     exactement le défaut que ce même fichier corrigeait le matin sur les petites
-     tailles. Je l'avais reproduit dans le haut de l'échelle.
-
-     🔴 Sur téléphone, la page ne sert plus que QUATRE tailles : 26, 20, 17, 15,
-     exactement celles de Mon Espace, qui est un produit conçu pour le téléphone.
-     Les trois crans d'affichage s'y REJOIGNENT à 20 px, et c'est voulu : la
-     couleur et la graisse continuent de les séparer là où la taille ne le peut
-     plus. La phrase d'accroche descend à 26 pour la même raison, elle tenait sur
-     quatre lignes à 30 px et une accroche sur quatre lignes ne s'accroche plus,
-     elle se lit.
-
-     🔴 Ils ne se séparent qu'en montant vers l'écran large,
-     là où il y a
-     la place pour les distinguer. Un clamp n'est pas qu'une taille qui rétrécit,
-     c'est le nombre de crans lisibles qui change avec la largeur. */
-  --t-affiche: clamp(1.625rem, 3.4vw, 2.625rem);  /* 26-42 px  ce qui doit rester */
-  --t-nom: clamp(1.25rem, 2.8vw, 2.125rem);       /* 20-34 px  qui parle, un jalon */
-  --t-titre: clamp(1.25rem, 2vw, 1.625rem);       /* 20-26 px  le nom d'une section */
-  --t-section: 1.25rem;     /* 20 px  un intertitre, un titre de bloc          */
-  --t-corps: 1.0625rem;     /* 17 px  TOUT le texte qu'on lit                  */
-  --t-source: .9375rem;     /* 15 px  une attribution. LE PLANCHER.            */
-
-  /* 🐛 Deuxieme passe, le meme jour. David : « la hierarchie de grosseur de texte
-     n'a plus tellement son sens ». Il a raison, et j'avais fait le menage a
-     moitie : je gardais DEUX corps de texte, 17 et 15, que rien ne distinguait.
-     Un descriptif de carte a 15 px et un paragraphe de bloc a 17 px disent la
-     meme sorte de chose ; la taille suggerait une hierarchie qui n'existait pas.
-
-     🔴 Un cran par ROLE, jamais un cran par emplacement. `--t-detail` a disparu :
-     son nom meme invitait la derive, puisque « detail » ne dit rien du role et
-     accueille donc n'importe quoi. `--t-source` ne peut servir qu'a une chose.
-
-     🔴 C'est la regle de Mon Espace appliquee jusqu'au bout : LA HIERARCHIE SE
-     FAIT PAR LA GRAISSE ET LA COULEUR. Ce qui accompagne n'est pas plus petit,
-     il est en `--vert2` ; ce qui porte est en `--vert`. Meme corps pour les deux. */
+  --t-affiche: clamp(1.625rem, 3.4vw, 2.625rem);  /* 26-42  ce qui doit rester */
+  --t-nom:     clamp(1.25rem, 2.8vw, 2.125rem);   /* 20-34  qui parle, un jalon */
+  --t-titre:   clamp(1.25rem, 2vw, 1.625rem);     /* 20-26  le nom d'une section */
+  --t-section: 1.25rem;                           /* 20     un titre de bloc     */
+  --t-corps:   1.0625rem;                         /* 17     tout le texte        */
+  --t-source:  .9375rem;                          /* 15     une attribution      */
 }
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--creme); color:var(--vert);
   font-family:Montserrat,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  font-size:var(--t-corps); line-height:1.55; font-weight:400;
+  font-size:var(--t-corps); line-height:1.55;
 }
-.enveloppe{max-width:var(--large); margin:0 auto; padding:0 20px}
-section{padding:40px 0}                    /* etait 56 : 18 px x 2 x 11 sections */
+.dedans{max-width:var(--large); margin:0 auto; padding:0 20px}
+section{padding:40px 0}
 section+section{border-top:1px solid var(--gris)}
-h1,h2,h3{line-height:1.15; margin:0; font-weight:700; letter-spacing:-.01em}
+h1,h2,h3{margin:0; font-weight:700; line-height:1.15; letter-spacing:-.01em}
 h2{font-size:var(--t-titre); margin-bottom:8px}
 h3{font-size:var(--t-section)}
 p{margin:0 0 12px}
 p:last-child{margin-bottom:0}
-/* R9 : la mesure. Une colonne de 900 px à 17 px donne ~85 signes par ligne,
-   au-delà des 65-75 confortables. Les cartes gardent la pleine largeur (leur
-   texte est court), le texte suivi est bridé. */
-.mineur{color:var(--vert2); max-width:68ch}
+
+/* 🔴 UNE CLASSE EST UN RÔLE, JAMAIS UN EMPLACEMENT. Une règle qui se nomme par
+   ce qui l'entoure (« la source, dans le bloc du haut ») finit par attraper des
+   choses qui n'ont rien à voir : une signature d'auteur et l'attribution d'un
+   chiffre ne sont pas la même chose et ne peuvent pas partager un style. */
+.doux{color:var(--vert2); max-width:68ch}     /* ce qui accompagne */
 .source{font-size:var(--t-source); color:var(--vert2); margin-top:6px}
 
-/* ── En-tête ─────────────────────────────────────────────────────────── */
+/* ═══ En-tête ═════════════════════════════════════════════════════════════ */
 header{background:var(--vert); color:var(--blanc); padding:40px 0 36px}
-header .logo{height:26px; width:auto; display:block; margin-bottom:28px}
+header .logo{height:26px; display:block; margin-bottom:28px}
 header h1{font-size:var(--t-nom)}
-header .role{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps),2.6vw,var(--t-section))}
+header .role{color:var(--gris); margin-top:10px}
 
-/* La feuille : elle se pose sur le fond, sans cadre ni ombre. 🔴 Le masque est
-   DANS le PNG, decoupe par feuille_momenta.py. Ne JAMAIS lui remettre un
-   border-radius par-dessus : la fausse forme abimerait la vraie. */
-.bloc{display:flex; flex-direction:column-reverse; gap:24px}
+/* La feuille se pose telle quelle. 🔴 Le masque est DANS le PNG, découpé par
+   ~/bin/feuille_momenta.py. Ne jamais lui remettre un border-radius par-dessus :
+   la vraie forme est une superellipse, la fausse l'abîmerait. */
+.duo{display:flex; flex-direction:column-reverse; gap:26px}
 .portrait{width:min(230px,58%); height:auto; display:block; align-self:flex-start}
 @media(min-width:760px){
-  .bloc{flex-direction:row; align-items:center; justify-content:space-between; gap:36px}
-  .bloc .texte{flex:1; min-width:0}
+  .duo{flex-direction:row; align-items:center; justify-content:space-between; gap:36px}
+  .duo .texte{flex:1; min-width:0}
   .portrait{width:250px; flex:none; align-self:center}
 }
 
-/* ── Les boutons de contact, le geste le plus important de la page ───── */
+/* ═══ Les contacts, le geste le plus important de la page ═════════════════ */
 .contacts{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px}
 .contacts a{
   display:inline-flex; align-items:center; gap:8px;
   padding:12px 20px; border-radius:25px; text-decoration:none;
   font-size:var(--t-corps); font-weight:600; border:2px solid transparent;
-  /* R12 : deux propriétés nommées, jamais `all`, et 160 ms en ease-out.
-     Un bouton qui répond doit répondre vite ; ce qui entre sort en ease-out. */
   transition:background-color 160ms ease-out, color 160ms ease-out;
 }
-/* 🚨 R11. Il n'y avait AUCUN état de focus sur cette page, alors que son geste
-   principal est de cliquer un lien de contact. Quiconque navigue au clavier ne
-   voyait pas où il était. L'anneau est en corail, décollé de 3 px, et il ne
-   s'affiche qu'au clavier grâce à `:focus-visible`. */
-.contacts a:focus-visible,footer a:focus-visible{
-  outline:3px solid var(--corail); outline-offset:3px; border-radius:var(--rayon-bouton);
-}
+.contacts .plein{background:var(--corail); color:var(--blanc)}
+.contacts .plein:hover{background:#ff8a86}
+.contacts .vide{border-color:var(--gris); color:var(--blanc)}
+.contacts .vide:hover{background:rgba(255,255,255,.08)}
+.contacts svg{width:17px; height:17px; flex:none; fill:currentColor}
 .contacts a:active{transform:translateY(1px)}
-footer a{color:inherit; text-decoration:underline; text-underline-offset:2px}
-footer a:hover{color:var(--blanc)}
-/* R7 : le blanc pur n'existe pas dans le kit. Le blanc cassé, si. */
-.principal{background:var(--corail); color:var(--blanc)}
-.principal:hover{background:#ff8a86}
-.secondaire{border-color:var(--gris); color:var(--blanc)}
-.secondaire:hover{background:rgba(255,255,255,.08)}
-.contacts svg{width:17px;height:17px;flex:none;fill:currentColor}
-
-/* ── Le message à retenir ────────────────────────────────────────────── */
-.retenir p.phrase{
-  font-size:var(--t-affiche); font-weight:700; line-height:1.18;
-  letter-spacing:-.015em; margin-bottom:16px;
-}
-/* 🐛 Mesuré dans Chrome, pas déduit : l'accroche tenait sur QUATRE lignes sur un
-   téléphone, même après être descendue à 26 px. La cause n'était pas la taille
-   mais le `<br>` du contenu, écrit pour couper la phrase en deux sur un écran
-   large. Sur 390 px, chacune de ses deux moitiés se recassait, et une accroche
-   sur quatre lignes ne s'accroche plus, elle se lit.
-   Le saut forcé est neutralisé sous 640 px : la phrase se coupe où la largeur le
-   décide, ce qui la ramène à trois lignes. */
-@media(max-width:640px){.retenir p.phrase br{display:none}}
-/* ── La signature d'un auteur, qui n'est PAS une attribution de source ──────
-   ✏️ David, 2026-08-27 : « Marie-Claude Viau, fondatrice de Momenta, c'est trop
-   petit ». Puis, quelques heures plus tard : « la hiérarchie de ça est mauvaise »,
-   en pointant le bloc de fermeture.
-
-   🐛 LES DEUX REMARQUES ONT LA MÊME CAUSE, et j'ai créé la seconde en corrigeant
-   la première. La règle s'appelait `.retenir .source` : elle se définissait par
-   son EMPLACEMENT, pas par son rôle. Or les deux blocs `.retenir` portent des
-   choses opposées. Sous l'accroche, c'est une SIGNATURE : qui parle. Sous la
-   fermeture, c'est une ATTRIBUTION : d'où vient le 88 %. En agrandissant la
-   première, j'ai agrandi la seconde, et « Statistique Canada » s'est mis à peser
-   20 px gras au-dessus du chiffre à 17 px qu'il servait à sourcer.
-
-   🔴 UNE CLASSE = UN RÔLE, JAMAIS UN EMPLACEMENT. C'est la seule règle qui
-   empêche ce défaut de revenir : tant qu'un style se définit par « ce qui
-   l'entoure », il attrape des choses qui n'ont rien à voir. */
-/* 🐛 La signature était montée à 20 px gras le matin, en réponse à « c'est trop
-   petit » quand elle valait 12. Entre les deux il y avait 15 et 17, et à 20 px
-   gras vert nuit sur un téléphone elle rivalisait avec la phrase qu'elle signe.
-   Elle redescend au corps : le gras, le vert nuit et le filet corail la
-   distinguent déjà de l'appui, qui est en gris et sans graisse. */
-.signature{
-  font-size:var(--t-corps); font-weight:700; color:var(--vert); margin-top:20px;
-  padding-top:12px; border-top:2px solid var(--corail); display:inline-block;
+/* Le geste principal de cette page est de cliquer un lien. Sans anneau de
+   focus, qui navigue au clavier ne sait pas où il est. */
+.contacts a:focus-visible,footer a:focus-visible{
+  outline:3px solid var(--corail); outline-offset:3px; border-radius:25px;
 }
 
-/* ── Le mur de logos ─────────────────────────────────────────────────────
-   Hauteur EGALE pour les trois, marges transparentes deja rognees a la source :
-   deux logos a la meme hauteur CSS n'ont pas la meme taille optique si leurs
-   marges different.
-   🐛 Le carre de Noovo a d'abord ete REDUIT, ce qui etait l'inverse du bon geste :
-   son lettrage n'occupe que ~60 % de sa hauteur, alors qu'un mot-symbole l'occupe
-   en entier. A hauteur egale son texte fait la moitie des autres. On l'agrandit
-   donc pour egaliser la hauteur des LETTRES, pas celle des cadres. */
-.logos{display:flex; flex-wrap:wrap; align-items:center; gap:24px 36px; margin:16px 0 16px}
+/* ═══ L'accroche ══════════════════════════════════════════════════════════ */
+.phrase{font-size:var(--t-affiche); font-weight:700; line-height:1.18;
+  letter-spacing:-.015em; margin-bottom:16px}
+/* Un filet à gauche, jamais un cadre : le kit ne cerne rien. Il marque la phrase
+   comme une parole rapportée, et il empêche les trois sections crème de se
+   suivre sans relief. */
+.citation{padding-left:22px; border-left:3px solid var(--corail); margin:0}
+/* Le saut est écrit pour couper la phrase en deux sur un écran large. Sur un
+   téléphone chaque moitié se recasse, et une accroche sur quatre lignes ne
+   s'accroche plus, elle se lit. */
+@media(max-width:640px){.phrase br{display:none}}
+/* 🔴 La signature a disparu avec l'appui : dès lors que la page entière est
+   écrite au « je », elle est signée de bout en bout et une attribution sous la
+   citation redirait le nom qui est déjà dans l'en-tête. */
+
+/* ═══ Les cartes ══════════════════════════════════════════════════════════ */
+.trois{display:grid; gap:12px; grid-template-columns:1fr; margin:16px 0}
+@media(min-width:760px){.trois{grid-template-columns:repeat(3,1fr)}}
+.carte{background:var(--blanc); border-radius:var(--rayon); padding:20px}
+.carte h3{color:var(--corail); line-height:1.3}
+.carte p{font-size:var(--t-corps); color:var(--vert2); margin:8px 0 0}
+
+/* ═══ Les jalons ══════════════════════════════════════════════════════════ */
+.jalons{display:flex; flex-wrap:wrap; gap:24px; margin:4px 0 16px}
+.jalon .n{font-size:var(--t-nom); font-weight:700; color:var(--corail); line-height:1}
+.jalon p{margin:4px 0 0; color:var(--vert2); max-width:225px}
+
+/* ═══ Les formatrices ═════════════════════════════════════════════════════
+   Une liste, pas des cartes : ce sont des noms qu'on parcourt pour en
+   reconnaître un. Une grille de six ferait un mur à déchiffrer. */
+.gens{margin:14px 0 4px}
+.qui{padding:12px 0; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}
+.qui+.qui{border-top:1px solid var(--gris)}
+.qui strong{font-size:var(--t-corps); min-width:214px}
+.qui span{font-size:var(--t-corps); color:var(--vert2); flex:1}
+@media(max-width:640px){
+  .qui{display:block}
+  .qui strong{display:block; min-width:0}
+  .qui span{display:block; margin-top:2px}
+}
+
+/* ═══ Les logos ═══════════════════════════════════════════════════════════
+   Hauteur des LETTRES égalisée, pas celle des cadres : le carré de Noovo
+   n'occupe que ~60 % de sa hauteur en lettrage, il monte donc plus haut. */
+.logos{display:flex; flex-wrap:wrap; align-items:center; gap:26px 36px; margin:16px 0}
 .logos img{height:34px; width:auto; display:block}
 .logos img[width="102"]{height:52px}
-@media(max-width:520px){.logos{gap:22px 26px} .logos img{height:27px}
-  .logos img[width="102"]{height:42px}}
-
-/* ── Les formatrices ─────────────────────────────────────────────────────
-   Une liste, pas des cartes : ce sont des noms qu'on parcourt à la verticale
-   pour en reconnaître un. Une grille de six cartes ferait un mur à déchiffrer. */
-.formatrices{margin:14px 0 4px}
-.formatrice{padding:12px 0; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}
-.formatrice+.formatrice{border-top:1px solid var(--gris)}
-.preuve{font-size:var(--t-corps); margin:0}
-.formatrice strong{font-size:var(--t-corps); min-width:214px}
-.formatrice span{font-size:var(--t-corps); color:var(--vert2); flex:1}
-/* 🐛 Sur téléphone, le `min-width` du nom laissait au titre un rail d'environ
-   130 px : « Ph. D., directrice du Centre d'études sur le stress humain » sortait
-   sur six lignes de deux mots. Sous 640 px, le nom prend sa ligne et le titre la
-   suivante, en pleine largeur. */
-@media(max-width:640px){
-  .formatrice{display:block}
-  .formatrice strong{min-width:0; display:block}
-  .formatrice span{display:block; margin-top:2px}
+@media(max-width:520px){
+  .logos{gap:22px 26px} .logos img{height:27px}
+  .logos img[width="102"]{height:42px}
 }
+.puces{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px}
+.puces span{background:var(--gris); border-radius:25px; padding:8px 16px;
+  font-size:var(--t-corps)}
 
-/* ── Citation : un filet à gauche, jamais un cadre. Le kit ne cerne rien ── */
-.cite{margin:0 0 18px; padding:2px 0 2px 20px; border-left:3px solid var(--corail)}
-.cite p{font-size:var(--t-titre); font-weight:600; margin:0; line-height:1.3}
+/* ═══ L'appel, la dernière chose qu'on lit ════════════════════════════════ */
+.appel{background:var(--vert); color:var(--blanc)}
+.appel h2{color:var(--blanc)}
+.appel .phrase{margin-bottom:12px}
+.appel .doux{color:var(--gris)}
+.appel .source{color:var(--gris)}
 
-/* ── Pied ────────────────────────────────────────────────────────────── */
-footer{background:var(--vert); color:var(--gris); padding:32px 0; font-size:var(--t-corps)}
-footer a{color:var(--blanc); text-decoration:none; border-bottom:1px solid var(--vert2)}
-footer .logo{height:22px; margin-bottom:20px; display:block}
+footer{background:var(--vert); color:var(--gris); padding:32px 0;
+  font-size:var(--t-source)}
+footer .logo{height:22px; display:block; margin-bottom:20px}
+footer a{color:inherit; text-decoration:underline; text-underline-offset:2px}
+footer a:hover{color:var(--blanc)}
 
-/* ── Impression : MC veut que la page devienne la pièce jointe ───────── */
+/* La page imprimée devient la pièce jointe qu'on fait suivre à son comité. */
 @media print{
-  /* 🐛 Ce bloc nommait encore .honnete, .chiffre.fort, .res et .offre, quatre
-     sections retirées de la page. Le CSS d'impression est l'endroit où le code
-     mort survit le plus longtemps : personne ne le regarde. */
   body{background:var(--blanc); font-size:11pt}
-  header,footer,.panel{background:var(--blanc)!important; color:#01282b!important}
-  header .role,footer,.panel p,.panel .source{color:#3e5b5d!important}
+  header,footer,.appel{background:var(--blanc)!important; color:var(--vert)!important}
+  header .role,footer,.appel .doux{color:var(--vert2)!important}
   .contacts{display:none}
   .portrait{width:150px}
   section{padding:16px 0; break-inside:avoid}
-  .titre-conf,.panel{border:1px solid #ded9d4}
+  .carte{border:1px solid var(--gris)}
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="enveloppe">
-    <img class="logo" src="assets/logo-light.png" alt="Momenta">
-    <div class="bloc">
+<header><div class="dedans">
+  <img class="logo" src="assets/logo-light.png" alt="Momenta">
+  <div class="duo">
     <div class="texte">
-    <h1>Marie-Claude Viau</h1>
-    <div class="role">Fondatrice de Momenta · Conférencière et panéliste</div>
-    <div class="contacts">
-      <a class="principal" href="mailto:mcviau@momentareseau.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Écrire à Marie-Claude</a>
-      <a class="secondaire" href="tel:+15148899649"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.6 3.5 1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
-      <a class="secondaire" href="https://www.linkedin.com/company/momentareseau"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 21h4V9H3v12zM9 21h4v-6.5c0-1.7 2-1.8 2 0V21h4v-7.9c0-4.5-4.9-4.3-6-2.1V9H9v12z"/></svg>LinkedIn</a>
-      <a class="secondaire" href="https://www.momentareseau.com"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-2.9a15.6 15.6 0 00-1.4-3.7A8 8 0 0118.9 8zM12 4c.8 1.1 1.4 2.5 1.8 4h-3.6C10.6 6.5 11.2 5.1 12 4zM4.3 14a8 8 0 010-4h3.3a17 17 0 000 4H4.3zm.8 2h2.9c.3 1.3.8 2.6 1.4 3.7A8 8 0 015.1 16zm2.9-8H5.1a8 8 0 014.3-3.7A15.6 15.6 0 008 8zm4 12c-.8-1.1-1.4-2.5-1.8-4h3.6c-.4 1.5-1 2.9-1.8 4zm2.2-6H9.8a15 15 0 010-4h4.4a15 15 0 010 4zm.4 5.7c.6-1.1 1.1-2.4 1.4-3.7h2.9a8 8 0 01-4.3 3.7zM16.4 14a17 17 0 000-4h3.3a8 8 0 010 4h-3.3z"/></svg>momentareseau.com</a>
-    </div>
+      <h1>Marie-Claude Viau</h1>
+      <div class="role">Fondatrice de Momenta · Conférencière et panéliste</div>
+      <div class="contacts">
+        <a href="mailto:mcviau@momentareseau.com" class="plein"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Écrire à Marie-Claude</a>
+        <a href="tel:+15148899649" class="vide"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.2.2 2.4.6 3.5a1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
+        <a href="https://www.linkedin.com/company/momentareseau" class="vide"><svg viewBox="0 0 24 24"><path d="M6.9 21H3.4V9h3.5v12zM5.1 7.4a2 2 0 110-4.1 2 2 0 010 4.1zM21 21h-3.5v-5.8c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1V21H9.9V9h3.3v1.6h.1a3.7 3.7 0 013.3-1.8c3.5 0 4.2 2.3 4.2 5.3V21z"/></svg>LinkedIn</a>
+        <a href="https://www.momentareseau.com" class="vide"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3a15.6 15.6 0 00-1.4-3.6A8 8 0 0118.9 8zM12 4c.7 1 1.2 2.3 1.6 4h-3.2c.4-1.7.9-3 1.6-4zM4.3 14a8 8 0 010-4h3.4a16.6 16.6 0 000 4H4.3zm.8 2h3a15.6 15.6 0 001.4 3.6A8 8 0 015.1 16zm3-8h-3a8 8 0 014.4-3.6A15.6 15.6 0 008.1 8zM12 20c-.7-1-1.2-2.3-1.6-4h3.2c-.4 1.7-.9 3-1.6 4zm2-6h-4a14.7 14.7 0 010-4h4a14.7 14.7 0 010 4zm.5 5.6a15.6 15.6 0 001.4-3.6h3a8 8 0 01-4.4 3.6zm1.8-5.6a16.6 16.6 0 000-4h3.4a8 8 0 010 4h-3.4z"/></svg>momentareseau.com</a>
+      </div>
     </div>
     <img class="portrait" src="assets/mc-feuille.png"
          alt="Portrait de Marie-Claude Viau" width="760" height="760">
-    </div>
   </div>
-</header>
+</div></header>
 
-<section class="retenir"><div class="enveloppe">
-  <p class="phrase">Je bâtis ce que j’aurais voulu trouver <br>lors de ma propre transition parentale.</p>
-  <p class="mineur">Ce que je cherchais, ce n’était pas un soin. C’était un réseau. Sentir que je n’étais pas la seule.</p>
-  <div class="signature">Marie-Claude Viau, fondatrice de Momenta</div>
+<section><div class="dedans">
+  <p class="phrase citation">« Je bâtis ce que j’aurais voulu trouver <br>lors de ma propre transition parentale. »</p>
 </div></section>
 
-<!-- ✏️ David, 2026-08-27 : « diminue le contenu au strict minimum. Ce qu'on veut
-     c'est générer un appel et une demande. Pas booker tout de suite la vente. »
+<section><div class="dedans">
+  <h2>Ce que vous pouvez me demander</h2>
+  <p class="doux">Deux sujets : la transition parentale, et l’accomplissement personnel.</p>
+  <div class="trois"><div class="carte"><h3>Une conférence d’inspiration</h3><p>Mon récit, seule sur scène, en ouverture ou en clôture de journée.</p></div><div class="carte"><h3>Une place en panel</h3><p>Mon expertise sur la transition parentale et l’accomplissement personnel, dans un format de discussion.</p></div><div class="carte"><h3>De la formation sur mesure</h3><p>En entreprise, sur la conciliation travail-famille, en particulier pour les femmes en transition parentale.</p></div></div>
+</div></section>
 
-     🔴 La page était un DOSSIER DE VENTE : chiffres sourcés, scores de cohorte
-     avant-après, quatre volets d'offre avec le prix. Tout ça répond à des
-     questions qu'un acheteur ne se pose qu'APRÈS avoir décidé de parler à
-     quelqu'un. Avant, il n'en a qu'une : « est-ce que je l'appelle ? »
-     Une page qui répond trop tôt remplace l'appel au lieu de le provoquer.
-
-     Ce qui est sorti, et pourquoi : les quatre chiffres (c'est la matière de la
-     conférence, pas un argument d'achat) · le tableau de cohorte et le NPS (ça
-     vend le parcours à un DRH, pas une conférence à un planificateur) · les
-     quatre volets d'offre avec le prix (c'est la vente elle-même) · « Ce qu'elle
-     raconte » (doublait les trois conférences).
-
-     Ce qui reste répond à trois questions et s'arrête : pourquoi la croire, quoi
-     lui demander, comment la joindre. -->
-
-<section><div class="enveloppe">
-  <h2>Qui parle</h2>
-  <div class="appuis jalons"><div class="appui"><div class="n">20 ans</div><p>dans le milieu des affaires</p></div><div class="appui"><div class="n">15 ans</div><p>dans le milieu de la conférence</p></div><div class="appui"><div class="n">10 ans</div><p>à former des femmes en leadership</p></div></div>
-  <p class="mineur">À l’Institut de Leadership, Marie-Claude Viau a cofondé le programme Femmes Leaders. Dix ans à écouter des femmes parler d’ambition en salle et de charge mentale aux pauses.</p>
-  <p class="mineur">Elle est certifiée en transition parentale par le Center for Parental Leave Leadership, l’organisme américain fondé par Amy Beacom (Ph. D.).</p>
+<section><div class="dedans">
+  <h2>D’où je parle</h2>
+  <div class="jalons"><div class="jalon"><div class="n">20 ans</div><p>dans le milieu des affaires</p></div><div class="jalon"><div class="n">15 ans</div><p>dans le milieu de la conférence</p></div><div class="jalon"><div class="n">10 ans</div><p>à former des femmes en leadership</p></div></div>
+  <p class="doux">À l’Institut de Leadership, j’ai cofondé le programme Femmes Leaders. Dix ans à écouter des femmes parler d’ambition en salle et de charge mentale aux pauses.</p>
+  <p class="doux">Je suis certifiée en transition parentale par le Center for Parental Leave Leadership, l’organisme américain fondé par Amy Beacom (Ph. D.).</p>
   <div class="logos"><img src="assets/medias/radio-canada.png" alt="Radio-Canada" width="584" height="102" loading="lazy"><img src="assets/medias/tva-nouvelles.png" alt="TVA Nouvelles" width="341" height="102" loading="lazy"><img src="assets/medias/noovo-info.png" alt="Noovo Info" width="102" height="102" loading="lazy"></div>
-  <p class="mineur">Marie-Claude porte le sujet dans les médias québécois depuis 2026.</p>
-  <div class="etiquettes"><span>Elles, le balado</span><span>Bon Papa</span><span>Startop</span><span>UMEA</span></div>
-  <!-- 🔴 Le prix sort de `.source`. Une attribution se lit une fois et peut vivre
-       à 12 px ; un prix PROUVE quelque chose et doit se lire du premier coup. -->
-  <p class="mineur preuve">Prix coup de cœur au Défi OSEntreprendre 2026, volet régional Haute-Yamaska et Brome-Missisquoi</p>
-</div></section>
-
-<section><div class="enveloppe">
-  <h2>Ce qu’on peut lui demander</h2>
-  <p class="mineur">Deux sujets : la transition parentale, et l’accomplissement.</p>
-  <div class="titres"><div class="titre-conf"><h3>Une conférence d’inspiration</h3><p>Son récit, seule sur scène. Le format qu’elle porte elle-même, en ouverture ou en clôture de journée.</p></div><div class="titre-conf"><h3>Une place en panel</h3><p>Une position tenue en réaction, sans support et sans minutage à elle.</p></div><div class="titre-conf"><h3>De la formation sur mesure en entreprise</h3><p>Sur la conciliation travail-famille, ajustée aux thèmes que vous voulez travailler avec vos équipes.</p></div></div>
-  <div class="panel">
-    <p class="dit">En juin 2026, elle a siégé au panel de l’Ordre des CRHA sur la Loi 27 et les risques psychosociaux, devant un auditoire de professionnels agréés.</p>
-    <blockquote class="cite cite-clair"><p>La conformité sans accompagnement, c’est du papier.</p>
-      <div class="source">Marie-Claude Viau, panel de l’Ordre des CRHA sur la Loi 27</div></blockquote>
-  </div>
-  <!-- 🐛 Ce n'est pas une source, c'est une information que l'acheteur cherche.
-       Elle était en `.source` par habitude, donc à 15 px, parce qu'elle finissait
-       la section. La position dans un bloc ne dit rien du rôle. -->
-  <p class="mineur">Durées, formats et disponibilités sur demande.</p>
-</div></section>
-
-<!-- 🔴 L'idée est de MC : « ils vont voir OK, elle a une crédibilité waouh, elle
-     travaille avec des tops ». Nommer des sommités fait plus pour sa crédibilité
-     que n'importe quelle phrase qu'elle écrirait sur elle-même, et c'est le
-     déclencheur d'appel qu'elle décrit : « Sonia Lupien dans ton parcours,
-     est-ce que vous la vendez ? » -->
-<section><div class="enveloppe">
-  <h2>Avec qui elle travaille</h2>
-  <p class="mineur">Le parcours Momenta est animé par des sommités québécoises. Elles interviennent aussi en entreprise.</p>
-  <div class="formatrices"><div class="formatrice"><strong>Sonia Lupien</strong><span>Ph. D., directrice du Centre d’études sur le stress humain, autrice de « Par amour du stress »</span></div><div class="formatrice"><strong>Lory Zéphyr</strong><span>Ph. D., psychologue en périnatalité, autrice aux Éditions de l’Homme</span></div><div class="formatrice"><strong>Marylise Champagne</strong><span>Conseillère en orientation, fondatrice de Dix mille matins</span></div><div class="formatrice"><strong>Mylène Houle Morency</strong><span>Formatrice agréée et autrice en conciliation travail-famille</span></div><div class="formatrice"><strong>Marie-Hélène Langlois</strong><span>Associée et consultante principale, SISMIK Impact</span></div><div class="formatrice"><strong>Amélie Mongrain</strong><span>M. Sc., fondatrice d’Ella Conseils, spécialiste de la transition parentale</span></div></div>
+  <p class="doux">Je porte le sujet dans les médias québécois depuis 2026.</p>
+  <div class="puces"><span>Elles, le balado</span><span>Bon Papa</span><span>Startop</span><span>UMEA</span></div>
+  <p class="doux">Prix coup de cœur au Défi OSEntreprendre 2026, volet régional Haute-Yamaska et Brome-Missisquoi</p>
+  <h3 style="margin-top:28px">Avec qui je travaille</h3>
+  <p class="doux">Le parcours que j’ai bâti est animé par des sommités
+     québécoises. Elles interviennent aussi en entreprise.</p>
+  <div class="gens"><div class="qui"><strong>Sonia Lupien</strong><span>Ph. D., directrice du Centre d’études sur le stress humain, autrice de « Par amour du stress »</span></div><div class="qui"><strong>Lory Zéphyr</strong><span>Ph. D., psychologue en périnatalité, autrice aux Éditions de l’Homme</span></div><div class="qui"><strong>Marylise Champagne</strong><span>Conseillère en orientation, fondatrice de Dix mille matins</span></div><div class="qui"><strong>Mylène Houle Morency</strong><span>Formatrice agréée et autrice en conciliation travail-famille</span></div><div class="qui"><strong>Marie-Hélène Langlois</strong><span>Associée et consultante principale, SISMIK Impact</span></div><div class="qui"><strong>Amélie Mongrain</strong><span>M. Sc., fondatrice d’Ella Conseils, spécialiste de la transition parentale</span></div></div>
   <div class="source">momentareseau.com, parcours Essentielle</div>
 </div></section>
 
-<section class="retenir"><div class="enveloppe">
-  <p class="phrase">L’État mesure si je reviens.<br>Personne ne mesure si je reste.</p>
-  <p class="mineur">88 % des mères canadiennes reviennent au travail après leur congé.</p>
-  <div class="source">Statistique Canada, Enquête sur la couverture de l’assurance-emploi</div>
-</div></section>
-
-<!-- 🔴 Le seul appel à l'action de la page, et il est en bas. La règle du
-     peak-end vaut ici comme sur scène : ce qu'on lit en dernier pèse le plus.
-     Il ne demande pas d'acheter, il demande de parler. -->
-<section class="appel"><div class="enveloppe">
+<section class="appel"><div class="dedans">
   <h2>Une date, une programmation, une idée ?</h2>
-  <p>Dites à Marie-Claude ce que vous organisez et ce que vous cherchez à faire vivre à votre salle. Elle répond elle-même.</p>
+  <p class="doux">Dites-moi ce que vous organisez et ce que vous cherchez à faire vivre à votre salle. Je réponds moi-même.</p>
+  <!-- ✏️ David : « le seul call to action c'est écrire à MC ». Le téléphone
+       sort d'ici. Deux boutons côte à côte ne sont pas un appel, c'est un choix,
+       et un choix se remet à plus tard. Le numéro reste joignable dans l'en-tête
+       et dans le pied, où il est une coordonnée et non une action. -->
   <div class="contacts">
-    <a class="principal" href="mailto:mcviau@momentareseau.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Écrire à Marie-Claude</a>
-    <a class="secondaire" href="tel:+15148899649"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.6 3.5 1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
+    <a href="mailto:mcviau@momentareseau.com" class="plein"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Écrire à Marie-Claude</a>
   </div>
 </div></section>
 
-<footer><div class="enveloppe">
+<footer><div class="dedans">
   <img class="logo" src="assets/logo-light.png" alt="Momenta">
   <p>Marie-Claude Viau · Bromont, Québec<br>
-  <a href="mailto:mcviau@momentareseau.com">mcviau@momentareseau.com</a> ·
-  <a href="tel:+15148899649">514 889-9649</a></p>
-  <p><a href="https://www.linkedin.com/company/momentareseau">LinkedIn</a> · <a href="https://www.momentareseau.com">momentareseau.com</a></p>
+    <a href="mailto:mcviau@momentareseau.com">mcviau@momentareseau.com</a> ·
+    <a href="tel:+15148899649">514 889-9649</a></p>
+  <p><a href="https://www.linkedin.com/company/momentareseau">LinkedIn</a> ·
+     <a href="https://www.momentareseau.com">momentareseau.com</a></p>
 </div></footer>
 
 </body></html>
