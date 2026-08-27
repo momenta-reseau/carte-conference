@@ -33,19 +33,29 @@ MC = {
     "ville": "Bromont, Québec",
 }
 
-# ✏️ David, 2026-08-27 : « la première citation parle de l'État et c'est pas la
-# plus punchy ». Remplacee par le titre de la LETTRE OUVERTE de MC dans le Journal
-# de Montreal, 8 mars 2026 (📄 Presences-medias.md). Trois raisons de preferer
-# celle-la : elle est d'elle, elle a deja ete testee sur un large public
-# (170 000 vues en 48 h), et « nous coute des talents » est la langue de
-# l'acheteur. La phrase sur l'Etat n'est pas perdue : elle ferme la carte, comme
-# elle ferme le talk.
+# ✏️ David, 2026-08-27 : l'accroche « nous coûte des talents » doit être
+# remplacée par « quelque chose de plus senti et proche de la mission ».
+#
+# 🔴 C'est la bonne correction, et pour une raison que j'avais ratée : « nous
+# coûte des talents » est la langue d'un acheteur RH. Or la salle est faite de
+# PLANIFICATEURS D'ÉVÉNEMENTS. Eux n'achètent pas un argument de rétention, ils
+# achètent quelqu'un qui va tenir leur salle. La promesse d'une fondatrice à la
+# première personne leur parle mieux qu'un calcul de talents.
+#
+# 📄 La phrase est confirmée à TROIS endroits du wiki : le post de lancement de
+# cohorte (avril 2026), Experts-Modules-FINAL, et l'offre ASCENSION v2 pour
+# cabinets. C'est une phrase établie, pas une trouvaille.
+#
+# 📄 Et elle dit la mission, telle que Mission-positionnement.md la porte :
+# transformer ce moment charnière en levier de leadership. Sauf qu'elle la dit
+# par le manque plutôt que par l'objectif, ce qui est exactement ce qu'on
+# cherchait.
 TAKE_HOME = {
-    "phrase": "Le silence sur le post-partum<br>nous coûte des talents.",
-    "appui": "Pas le congé. L’atterrissage. Le moment qui casse une carrière n’est pas "
-             "le départ, ce sont les douze à dix-huit mois qui suivent le retour.",
-    "source": "Lettre ouverte de Marie-Claude Viau, Journal de Montréal, 8 mars 2026. "
-              "Thèse portée au panel de l’Ordre des CRHA, juin 2026",
+    "phrase": "Je bâtis ce que j’aurais voulu trouver<br>"
+              "lors de ma propre transition parentale.",
+    "appui": "Ce que je cherchais, ce n’était pas un soin. C’était un réseau. "
+             "Sentir que je n’étais pas la seule femme à vivre cette transition-là.",
+    "source": "Marie-Claude Viau, fondatrice de Momenta",
 }
 
 # La phrase qui ferme la carte, comme elle ferme la conference.
