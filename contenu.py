@@ -60,7 +60,7 @@ TAKE_HOME = {
     "phrase": "Je bâtis ce que j’aurais voulu trouver<br>"
               "lors de ma propre transition parentale.",
     "appui": "Ce que je cherchais, ce n’était pas un soin. C’était un réseau. "
-             "Sentir que je n’étais pas la seule femme à vivre cette transition-là.",
+             "Sentir que je n’étais pas la seule.",
     "source": "Marie-Claude Viau, fondatrice de Momenta",
 }
 
@@ -99,13 +99,18 @@ QUI_PARLE = {
         ("15 ans", "dans le milieu de la conférence"),
         ("10 ans", "à former des femmes en leadership"),
     ],
+    # 🐛 « la transition parentale, que personne n'outille » redisait la phrase de
+    # fermeture, qui le dit mieux et sans le nommer. Ne reste que le fait : d'où
+    # elle tient ce qu'elle sait.
     "parcours": "À l’Institut de Leadership, Marie-Claude Viau a cofondé le programme "
-                "Femmes Leaders. C’est là, cohorte après cohorte, qu’elle a vu revenir "
-                "le même angle mort : la transition parentale, que personne n’outille.",
+                "Femmes Leaders. Dix ans à écouter des femmes parler d’ambition en "
+                "salle et de charge mentale aux pauses.",
+    # 🐛 La phrase finissait par « elle a traversé cette transition et elle en
+    # connaît la littérature », qui redisait l'accroche de la page (elle l'a
+    # traversée) et commentait le fait au lieu de le laisser porter.
     "certification": "Elle est certifiée en transition parentale par le Center for "
                      "Parental Leave Leadership, l’organisme américain fondé par "
-                     "Amy Beacom (Ph. D.). Elle a traversé cette transition et elle en "
-                     "connaît la littérature.",
+                     "Amy Beacom (Ph. D.).",
     "engagements": "Momenta est liée à la Fondation Mères avec Pouvoir, qui soutient "
                    "les cheffes de famille monoparentale à faible revenu ayant de jeunes "
                    "enfants. Marie-Claude est impliquée dans le Bromont Ultra, un "
@@ -218,8 +223,10 @@ APPEL = {
 # La phrase qui ferme la carte, comme elle ferme la conference.
 FERMETURE = {
     "phrase": "L’État mesure si je reviens.<br>Personne ne mesure si je reste.",
-    "appui": "88 % des mères canadiennes reviennent au travail après leur congé. "
-             "Le retour n’est pas l’enjeu. C’est ce qui se passe dans les mois qui suivent.",
+    # 🐛 « Le retour n'est pas l'enjeu, c'est ce qui se passe dans les mois qui
+    # suivent » paraphrasait la phrase juste au-dessus. Le chiffre suffit : c'est
+    # lui qui rend la phrase vraie, pas une glose.
+    "appui": "88 % des mères canadiennes reviennent au travail après leur congé.",
     "source": "Statistique Canada, Enquête sur la couverture de l’assurance-emploi",
 }
 
@@ -273,10 +280,12 @@ FORMATS = {
     ],
     "panel": {
         "titre": "En panel ou en table ronde",
-        "texte": "Marie-Claude a une position et elle la tient en réaction, sans "
-                 "support et sans minutage à elle. En juin 2026, elle a siégé au "
-                 "panel de l’Ordre des CRHA sur la Loi 27 et les risques "
-                 "psychosociaux, devant un auditoire de professionnels agréés.",
+        # 🐛 Ce bloc répétait mot pour mot la carte « Une place en panel » posée
+        # juste au-dessus. Il ne garde que ce qu'il est seul à apporter : la preuve
+        # qu'elle l'a déjà fait, devant un auditoire exigeant.
+        "texte": "En juin 2026, elle a siégé au panel de l’Ordre des CRHA sur la "
+                 "Loi 27 et les risques psychosociaux, devant un auditoire de "
+                 "professionnels agréés.",
         "citation": "La conformité sans accompagnement, c’est du papier.",
         "source": "Marie-Claude Viau, panel de l’Ordre des CRHA sur la Loi 27",
     },

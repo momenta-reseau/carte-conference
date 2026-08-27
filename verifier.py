@@ -62,9 +62,13 @@ if re.search(r"[—–]", texte):
 #
 # Ce qui reste autorisé en dur : les grands titres, qui vivent en `clamp()` et
 # dépassent tous le cran le plus haut, et le CSS d'impression en points.
-CRANS = {"var(--t-titre)", "var(--t-section)", "var(--t-corps)",
-         "var(--t-detail)", "var(--t-etiquette)"}
-PLANCHER_PX = 15   # `--t-detail`. Legge et Bigelow 2011 : 14 px passent sous la
+# 🔴 Deuxième passe, le même jour. `--t-detail` est SUPPRIMÉ de la liste, pas
+# renommé : c'était un second corps de texte que rien ne distinguait du premier,
+# et son nom accueillait n'importe quoi. Quatre crans, un par rôle. Si ce
+# contrôle échoue sur un cran inconnu, la bonne réponse est de rattacher la règle
+# à un rôle existant, jamais d'ajouter une entrée ici.
+CRANS = {"var(--t-titre)", "var(--t-section)", "var(--t-corps)", "var(--t-source)"}
+PLANCHER_PX = 15   # `--t-source`. Legge et Bigelow 2011 : 14 px passent sous la
                    # plage de lecture fluente dès que le téléphone s'éloigne.
 
 for m in re.finditer(r"font-size:\s*([^;}\n]+)", brut):
@@ -84,5 +88,5 @@ if fautes:
     sys.exit(1)
 
 print(f"ok  {len(INTERDITS)} interdits vérifiés, aucun présent")
-print(f"ok  échelle typographique : cinq crans, plancher à {PLANCHER_PX} px")
+print(f"ok  échelle typographique : {len(CRANS)} crans, plancher à {PLANCHER_PX} px")
 print(f"ok  {len(texte.split())} mots dans la page")

@@ -97,17 +97,30 @@ CSS = f"""
      Vision 2011 : la plage de lecture fluente commence à 1,40 mm de hauteur d'x
      à 40 cm. Sur un iPhone 15, avec la hauteur d'x réelle de Montserrat, 14 px
      donnent 1,32 mm et 15 px donnent 1,41 mm. Un pixel, et ça change de camp.
-     C'est pourquoi `--t-detail` vaut 15 et non 14 : Mon Espace l'a monté le
+     C'est pourquoi `--t-source` vaut 15 et non 14 : Mon Espace l'a monté le
      2026-08-19 après que David ait demandé « est-ce qu'on est sur la limite ? ».
 
      🟡 L'étiquette reste à 12 px. Elle ne porte que des attributions de source,
      qu'on lit une fois, jamais pendant la lecture. Ce qui prouvait quelque chose
      (le prix OSEntreprendre) en est sorti et monte d'un cran. */
   --t-titre: 1.625rem;      /* 26 px  le nom d'une section                     */
-  --t-section: 1.25rem;     /* 20 px  un intertitre, un nom de formatrice      */
-  --t-corps: 1.0625rem;     /* 17 px  le texte qu'on lit                       */
-  --t-detail: .9375rem;     /* 15 px  ce qui accompagne. LE PLANCHER.          */
-  --t-etiquette: .75rem;    /* 12 px  ce qui attribue une source               */
+  --t-section: 1.25rem;     /* 20 px  un intertitre, un titre de bloc          */
+  --t-corps: 1.0625rem;     /* 17 px  TOUT le texte qu'on lit                  */
+  --t-source: .9375rem;     /* 15 px  une attribution. LE PLANCHER.            */
+
+  /* 🐛 Deuxieme passe, le meme jour. David : « la hierarchie de grosseur de texte
+     n'a plus tellement son sens ». Il a raison, et j'avais fait le menage a
+     moitie : je gardais DEUX corps de texte, 17 et 15, que rien ne distinguait.
+     Un descriptif de carte a 15 px et un paragraphe de bloc a 17 px disent la
+     meme sorte de chose ; la taille suggerait une hierarchie qui n'existait pas.
+
+     🔴 Un cran par ROLE, jamais un cran par emplacement. `--t-detail` a disparu :
+     son nom meme invitait la derive, puisque « detail » ne dit rien du role et
+     accueille donc n'importe quoi. `--t-source` ne peut servir qu'a une chose.
+
+     🔴 C'est la regle de Mon Espace appliquee jusqu'au bout : LA HIERARCHIE SE
+     FAIT PAR LA GRAISSE ET LA COULEUR. Ce qui accompagne n'est pas plus petit,
+     il est en `--vert2` ; ce qui porte est en `--vert`. Meme corps pour les deux. */
 }}
 html{{-webkit-text-size-adjust:100%}}
 body{{
@@ -116,18 +129,21 @@ body{{
   font-size:var(--t-corps); line-height:1.55; font-weight:400;
 }}
 .enveloppe{{max-width:var(--large); margin:0 auto; padding:0 20px}}
-section{{padding:38px 0}}                    /* etait 56 : 18 px x 2 x 11 sections */
+section{{padding:40px 0}}                    /* etait 56 : 18 px x 2 x 11 sections */
 section+section{{border-top:1px solid var(--gris)}}
 h1,h2,h3{{line-height:1.15; margin:0; font-weight:700; letter-spacing:-.01em}}
 h2{{font-size:clamp(var(--t-titre),4.4vw,1.75rem); margin-bottom:8px}}
 h3{{font-size:var(--t-section)}}
 p{{margin:0 0 12px}}
 p:last-child{{margin-bottom:0}}
-.mineur{{color:var(--vert2)}}
-.source{{font-size:var(--t-etiquette); color:var(--vert2); margin-top:6px}}
+/* R9 : la mesure. Une colonne de 900 px à 17 px donne ~85 signes par ligne,
+   au-delà des 65-75 confortables. Les cartes gardent la pleine largeur (leur
+   texte est court), le texte suivi est bridé. */
+.mineur{{color:var(--vert2); max-width:68ch}}
+.source{{font-size:var(--t-source); color:var(--vert2); margin-top:6px}}
 
 /* ── En-tête ─────────────────────────────────────────────────────────── */
-header{{background:var(--vert); color:var(--blanc); padding:38px 0 34px}}
+header{{background:var(--vert); color:var(--blanc); padding:40px 0 36px}}
 header .logo{{height:26px; width:auto; display:block; margin-bottom:28px}}
 header h1{{font-size:clamp(30px,7vw,46px)}}
 header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps),2.6vw,var(--t-section))}}
@@ -135,7 +151,7 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps)
 /* La feuille : elle se pose sur le fond, sans cadre ni ombre. 🔴 Le masque est
    DANS le PNG, decoupe par feuille_momenta.py. Ne JAMAIS lui remettre un
    border-radius par-dessus : la fausse forme abimerait la vraie. */
-.bloc{{display:flex; flex-direction:column-reverse; gap:26px}}
+.bloc{{display:flex; flex-direction:column-reverse; gap:24px}}
 .portrait{{width:min(230px,58%); height:auto; display:block; align-self:flex-start}}
 @media(min-width:760px){{
   .bloc{{flex-direction:row; align-items:center; justify-content:space-between; gap:36px}}
@@ -144,14 +160,27 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps)
 }}
 
 /* ── Les boutons de contact, le geste le plus important de la page ───── */
-.contacts{{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px}}
+.contacts{{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px}}
 .contacts a{{
-  display:inline-flex; align-items:center; gap:9px;
-  padding:13px 20px; border-radius:25px; text-decoration:none;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:12px 20px; border-radius:25px; text-decoration:none;
   font-size:var(--t-corps); font-weight:600; border:2px solid transparent;
-  transition:background .2s,color .2s;
+  /* R12 : deux propriétés nommées, jamais `all`, et 160 ms en ease-out.
+     Un bouton qui répond doit répondre vite ; ce qui entre sort en ease-out. */
+  transition:background-color 160ms ease-out, color 160ms ease-out;
 }}
-.principal{{background:var(--corail); color:#fff}}
+/* 🚨 R11. Il n'y avait AUCUN état de focus sur cette page, alors que son geste
+   principal est de cliquer un lien de contact. Quiconque navigue au clavier ne
+   voyait pas où il était. L'anneau est en corail, décollé de 3 px, et il ne
+   s'affiche qu'au clavier grâce à `:focus-visible`. */
+.contacts a:focus-visible,footer a:focus-visible{{
+  outline:3px solid var(--corail); outline-offset:3px; border-radius:var(--rayon-bouton);
+}}
+.contacts a:active{{transform:translateY(1px)}}
+footer a{{color:inherit; text-decoration:underline; text-underline-offset:2px}}
+footer a:hover{{color:var(--blanc)}}
+/* R7 : le blanc pur n'existe pas dans le kit. Le blanc cassé, si. */
+.principal{{background:var(--corail); color:var(--blanc)}}
 .principal:hover{{background:#ff8a86}}
 .secondaire{{border-color:var(--gris); color:var(--blanc)}}
 .secondaire:hover{{background:rgba(255,255,255,.08)}}
@@ -170,8 +199,8 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps)
    d'auteur n'est pas une note de bas de tableau : elle passe a 17 px, en vert
    nuit et en demi-gras, sous un filet corail qui la rattache a la citation. */
 .retenir .source{{
-  font-size:var(--t-section); font-weight:600; color:var(--vert); margin-top:18px;
-  padding-top:14px; border-top:2px solid var(--corail); display:inline-block;
+  font-size:var(--t-section); font-weight:600; color:var(--vert); margin-top:20px;
+  padding-top:12px; border-top:2px solid var(--corail); display:inline-block;
 }}
 
 /* ── Les chiffres ────────────────────────────────────────────────────── */
@@ -180,29 +209,29 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps)
 .chiffre{{background:var(--blanc); border-radius:var(--rayon); padding:22px}}
 .chiffre .n{{font-size:clamp(32px,7vw,42px); font-weight:700; color:var(--corail);
   line-height:1; letter-spacing:-.02em}}
-.chiffre p{{margin:12px 0 0; font-size:var(--t-detail)}}
+.chiffre p{{margin:12px 0 0; font-size:var(--t-corps)}}
 .chiffre.fort{{background:var(--vert); color:var(--blanc)}}
 .chiffre.fort .source{{color:var(--gris)}}
 @media(min-width:640px){{.chiffre.fort{{grid-column:1/-1}}}}
 
 /* ── Les résultats ───────────────────────────────────────────────────── */
 .res{{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin-top:14px}}
-.ligne{{display:flex; align-items:baseline; gap:12px; padding:11px 0}}
+.ligne{{display:flex; align-items:baseline; gap:12px; padding:12px 0}}
 .ligne+.ligne{{border-top:1px solid var(--gris)}}
-.ligne .lib{{flex:1; font-size:var(--t-detail); color:var(--vert2)}}
-.ligne .av{{color:var(--vert2); font-size:var(--t-detail)}}
+.ligne .lib{{flex:1; font-size:var(--t-corps); color:var(--vert2)}}
+.ligne .av{{color:var(--vert2); font-size:var(--t-corps)}}
 .ligne .fl{{color:var(--gris)}}
 .ligne .ap{{font-weight:700; font-size:var(--t-section); min-width:44px; text-align:right}}
 .ligne.vedette .lib{{color:var(--vert); font-weight:600}}
 .ligne.vedette .ap{{color:var(--corail); font-size:var(--t-titre)}}
 .appuis{{display:flex; flex-wrap:wrap; gap:24px; margin-top:18px}}
 .appui .n{{font-size:var(--t-titre); font-weight:700; color:var(--corail); line-height:1}}
-.appui p{{margin:4px 0 0; font-size:var(--t-detail); color:var(--vert2); max-width:210px}}
+.appui p{{margin:4px 0 0; font-size:var(--t-corps); color:var(--vert2); max-width:210px}}
 /* Les trois jalons de « Qui parle » ouvrent une section : ils portent plus que
    les appuis d'un tableau de résultats, d'où la taille et l'espace au-dessous. */
-.jalons{{margin:4px 0 18px}}
+.jalons{{margin:4px 0 16px}}
 .jalons .n{{font-size:clamp(28px,5vw,34px)}}
-.jalons p{{font-size:var(--t-detail); max-width:235px}}   /* « dans le milieu de la conférence » sur une ligne */
+.jalons p{{font-size:var(--t-corps); max-width:235px}}   /* « dans le milieu de la conférence » sur une ligne */
 
 /* ── Le mur de logos ─────────────────────────────────────────────────────
    Hauteur EGALE pour les trois, marges transparentes deja rognees a la source :
@@ -212,7 +241,7 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps)
    son lettrage n'occupe que ~60 % de sa hauteur, alors qu'un mot-symbole l'occupe
    en entier. A hauteur egale son texte fait la moitie des autres. On l'agrandit
    donc pour egaliser la hauteur des LETTRES, pas celle des cadres. */
-.logos{{display:flex; flex-wrap:wrap; align-items:center; gap:26px 36px; margin:16px 0 16px}}
+.logos{{display:flex; flex-wrap:wrap; align-items:center; gap:24px 36px; margin:16px 0 16px}}
 .logos img{{height:34px; width:auto; display:block}}
 .logos img[width="102"]{{height:52px}}
 @media(max-width:520px){{.logos{{gap:22px 26px}} .logos img{{height:27px}}
@@ -220,10 +249,10 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps)
 
 /* ── Preuve de scène ─────────────────────────────────────────────────── */
 .etiquettes{{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px}}
-.etiquettes span{{background:var(--gris); border-radius:25px; padding:7px 15px; font-size:var(--t-detail)}}
+.etiquettes span{{background:var(--gris); border-radius:25px; padding:8px 16px; font-size:var(--t-corps)}}
 .scene{{padding:10px 0}}
 .scene+.scene{{border-top:1px solid var(--gris)}}
-.scene p{{margin:3px 0 0; font-size:var(--t-detail); color:var(--vert2)}}
+.scene p{{margin:4px 0 0; font-size:var(--t-corps); color:var(--vert2)}}
 
 /* ── Offre ───────────────────────────────────────────────────────────── */
 /* Quatre blocs courts empilés laissaient une colonne de vide à droite sur tout
@@ -232,25 +261,25 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps)
 .grille-offre{{display:grid; gap:14px; grid-template-columns:1fr}}
 @media(min-width:700px){{.grille-offre{{grid-template-columns:1fr 1fr}}}}
 .offre{{background:var(--blanc); border-radius:var(--rayon); padding:22px; margin:0}}
-.offre p{{font-size:var(--t-detail); margin:8px 0 0}}
-.offre .modalite{{font-size:var(--t-detail); color:var(--vert2); margin-top:10px}}
+.offre p{{font-size:var(--t-corps); margin:8px 0 0}}
+.offre .modalite{{font-size:var(--t-corps); color:var(--vert2); margin-top:10px}}
 
 /* ── Les trois conférences, réduites au titre et à la case ────────────────
    🐛 Le style de `.case` était accroché à `.theme`, qui n'existe plus depuis
    l'allègement : la case de programmation sortait en gris ordinaire et le titre
    la dominait, alors que c'est elle qui dit à un planificateur où ça rentre. */
 .titre-conf h3{{color:var(--corail); line-height:1.3}}
-.titre-conf p{{font-size:var(--t-detail); color:var(--vert2); margin:8px 0 0}}
+.titre-conf p{{font-size:var(--t-corps); color:var(--vert2); margin:8px 0 0}}
 
 /* ── Les formatrices ─────────────────────────────────────────────────────
    Une liste, pas des cartes : ce sont des noms qu'on parcourt à la verticale
    pour en reconnaître un. Une grille de six cartes ferait un mur à déchiffrer. */
 .formatrices{{margin:14px 0 4px}}
-.formatrice{{padding:11px 0; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}}
+.formatrice{{padding:12px 0; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}}
 .formatrice+.formatrice{{border-top:1px solid var(--gris)}}
-.preuve{{font-size:var(--t-detail); margin:0}}
+.preuve{{font-size:var(--t-corps); margin:0}}
 .formatrice strong{{font-size:var(--t-corps); min-width:214px}}
-.formatrice span{{font-size:var(--t-detail); color:var(--vert2); flex:1}}
+.formatrice span{{font-size:var(--t-corps); color:var(--vert2); flex:1}}
 /* 🐛 Sur téléphone, le `min-width` du nom laissait au titre un rail d'environ
    130 px : « Ph. D., directrice du Centre d'études sur le stress humain » sortait
    sur six lignes de deux mots. Sous 640 px, le nom prend sa ligne et le titre la
@@ -268,11 +297,11 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps)
    programmation que la carte oubliait de proposer. */
 .sujets{{display:grid; gap:14px; grid-template-columns:1fr; margin:14px 0}}
 @media(min-width:640px){{.sujets{{grid-template-columns:1fr 1fr}}}}
-.sujet{{background:var(--blanc); border-radius:var(--rayon); padding:20px 22px}}
+.sujet{{background:var(--blanc); border-radius:var(--rayon); padding:20px}}
 .sujet h3{{color:var(--corail)}}
-.sujet p{{font-size:var(--t-detail); margin:8px 0 0; color:var(--vert2)}}
+.sujet p{{font-size:var(--t-corps); margin:8px 0 0; color:var(--vert2)}}
 .panel{{background:var(--vert); color:var(--blanc); border-radius:var(--rayon);
-  padding:22px 24px}}
+  padding:24px}}
 .panel h3{{font-size:var(--t-section)}}
 .panel p{{font-size:var(--t-corps); margin:0; color:var(--gris)}}
 .panel .source{{color:var(--gris)}}
@@ -299,7 +328,7 @@ header .role{{color:var(--gris); margin-top:10px; font-size:clamp(var(--t-corps)
 .honnete p{{font-size:var(--t-corps); margin:0}}
 
 /* ── Pied ────────────────────────────────────────────────────────────── */
-footer{{background:var(--vert); color:var(--gris); padding:32px 0; font-size:var(--t-detail)}}
+footer{{background:var(--vert); color:var(--gris); padding:32px 0; font-size:var(--t-corps)}}
 footer a{{color:var(--blanc); text-decoration:none; border-bottom:1px solid var(--vert2)}}
 footer .logo{{height:22px; margin-bottom:20px; display:block}}
 
