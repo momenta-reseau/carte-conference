@@ -78,9 +78,24 @@ ACCROCHE = {
     # 🔴 Les organisations descendent donc dans l'appui, et n'y perdent rien :
     # c'est la ligne que lit un acheteur qui se demande si ça le concerne, et il
     # la lit de toute façon puisqu'elle est juste dessous.
-    "phrase": "« Je fais de la transition parentale <br>un tremplin. »",
-    "appui": "Pour les femmes comme pour leurs organisations. "
-             "J’ai bâti ce que j’aurais voulu trouver lors de la mienne.",
+    # ✏️ David, 2026-08-27 : « Momenta accompagne le moment que personne
+    # n'accompagne, on travaille autour de ça ».
+    #
+    # 🔴 « Accompagner » plutôt que « préparer » : c'est son métier, c'est le mot
+    # du wiki, et la répétition fait toute la phrase. Elle pose un manque au lieu
+    # de décrire un service, ce qu'un planificateur retient mieux.
+    #
+    # 🐛 « Momenta accompagne » ne rentre pas. Mesuré aux deux coupes possibles :
+    # quatre lignes sur iPhone dans les deux cas, contre trois pour le « je ». Un
+    # mot de plus et l'affiche devient un paragraphe. Momenta est de toute façon
+    # nommé trois fois ailleurs : le logo, le rôle sous le nom, et le pied.
+    #
+    # 🔴 La phrase seule ne dit pas DE QUEL moment il s'agit. L'appui le nomme en
+    # premier mot, avant tout le reste : sans lui, l'accroche est une devinette.
+    "phrase": "« J’accompagne le moment <br>que personne n’accompagne. »",
+    "appui": "Le retour au travail après un congé parental. J’ai bâti ce que "
+             "j’aurais voulu trouver lors du mien, pour les femmes comme pour "
+             "leurs organisations.",
 }
 
 # Trois demandes, et pas un catalogue. Chacune est une case différente dans une
