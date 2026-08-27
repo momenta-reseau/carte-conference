@@ -81,7 +81,7 @@ header .role{color:var(--gris); margin-top:10px}
 }
 
 /* ═══ Les contacts, le geste le plus important de la page ═════════════════ */
-.contacts{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px}
+.contacts{display:flex; flex-wrap:wrap; align-items:center; gap:10px 22px; margin-top:24px}
 .contacts a{
   display:inline-flex; align-items:center; gap:8px;
   padding:12px 20px; border-radius:25px; text-decoration:none;
@@ -90,8 +90,13 @@ header .role{color:var(--gris); margin-top:10px}
 }
 .contacts .plein{background:var(--corail); color:var(--blanc)}
 .contacts .plein:hover{background:#ff8a86}
-.contacts .vide{border-color:var(--gris); color:var(--blanc)}
-.contacts .vide:hover{background:rgba(255,255,255,.08)}
+/* ✏️ David : « enlève les contours blancs ». Ils faisaient quatre boutons de
+   poids égal dans l'en-tête, donc quatre appels à l'action, donc aucun. Le
+   courriel garde seul sa pastille corail ; les trois autres redeviennent ce
+   qu'ils sont, des coordonnées qu'on consulte. Ils passent au gris chaud pour
+   descendre d'un cran sans devenir illisibles : 11,3:1 sur le vert nuit. */
+.contacts .vide{border-color:transparent; color:var(--gris); padding:12px 6px}
+.contacts .vide:hover{color:var(--blanc)}
 .contacts svg{width:17px; height:17px; flex:none; fill:currentColor}
 .contacts a:active{transform:translateY(1px)}
 /* Le geste principal de cette page est de cliquer un lien. Sans anneau de
