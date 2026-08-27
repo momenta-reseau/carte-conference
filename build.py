@@ -191,14 +191,23 @@ footer a:hover{{color:var(--blanc)}}
   font-size:clamp(26px,5.6vw,38px); font-weight:700; line-height:1.18;
   letter-spacing:-.015em; margin-bottom:16px;
 }}
-/* ✏️ David, 2026-08-27 : « Marie-Claude Viau, fondatrice de Momenta, c'est trop
-   petit ».
-   🔴 Il a raison et le defaut etait structurel : `.source` sert partout a
-   attribuer un CHIFFRE (« Statistique Canada », « n = 22 »), ou le petit corps
-   est juste. Ici la meme classe attribuait la PHRASE de la page. Une signature
-   d'auteur n'est pas une note de bas de tableau : elle passe a 17 px, en vert
-   nuit et en demi-gras, sous un filet corail qui la rattache a la citation. */
-.retenir .source{{
+/* ── La signature d'un auteur, qui n'est PAS une attribution de source ──────
+   ✏️ David, 2026-08-27 : « Marie-Claude Viau, fondatrice de Momenta, c'est trop
+   petit ». Puis, quelques heures plus tard : « la hiérarchie de ça est mauvaise »,
+   en pointant le bloc de fermeture.
+
+   🐛 LES DEUX REMARQUES ONT LA MÊME CAUSE, et j'ai créé la seconde en corrigeant
+   la première. La règle s'appelait `.retenir .source` : elle se définissait par
+   son EMPLACEMENT, pas par son rôle. Or les deux blocs `.retenir` portent des
+   choses opposées. Sous l'accroche, c'est une SIGNATURE : qui parle. Sous la
+   fermeture, c'est une ATTRIBUTION : d'où vient le 88 %. En agrandissant la
+   première, j'ai agrandi la seconde, et « Statistique Canada » s'est mis à peser
+   20 px gras au-dessus du chiffre à 17 px qu'il servait à sourcer.
+
+   🔴 UNE CLASSE = UN RÔLE, JAMAIS UN EMPLACEMENT. C'est la seule règle qui
+   empêche ce défaut de revenir : tant qu'un style se définit par « ce qui
+   l'entoure », il attrape des choses qui n'ont rien à voir. */
+.signature{{
   font-size:var(--t-section); font-weight:600; color:var(--vert); margin-top:20px;
   padding-top:12px; border-top:2px solid var(--corail); display:inline-block;
 }}
@@ -454,7 +463,7 @@ def rendre():
 <section class="retenir"><div class="enveloppe">
   <p class="phrase">{e(C.TAKE_HOME['phrase'])}</p>
   <p class="mineur">{e(C.TAKE_HOME['appui'])}</p>
-  <div class="source">{e(C.TAKE_HOME['source'])}</div>
+  <div class="signature">{e(C.TAKE_HOME['source'])}</div>
 </div></section>
 
 <!-- ✏️ David, 2026-08-27 : « diminue le contenu au strict minimum. Ce qu'on veut
@@ -497,7 +506,10 @@ def rendre():
     <blockquote class="cite cite-clair"><p>{e(C.FORMATS['panel']['citation'])}</p>
       <div class="source">{e(C.FORMATS['panel']['source'])}</div></blockquote>
   </div>
-  <div class="source">{e(C.CONFERENCE['formats'])}</div>
+  <!-- 🐛 Ce n'est pas une source, c'est une information que l'acheteur cherche.
+       Elle était en `.source` par habitude, donc à 15 px, parce qu'elle finissait
+       la section. La position dans un bloc ne dit rien du rôle. -->
+  <p class="mineur">{e(C.CONFERENCE['formats'])}</p>
 </div></section>
 
 <!-- 🔴 L'idée est de MC : « ils vont voir OK, elle a une crédibilité waouh, elle

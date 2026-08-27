@@ -81,6 +81,29 @@ for m in re.finditer(r"font-size:\s*([^;}\n]+)", brut):
     elif px and float(px.group(1)) <= 26:
         fautes.append(f"font-size:{v} — taille en dur hors des cinq crans")
 
+# ── Une attribution ne pèse jamais plus que ce qu'elle attribue ──────────────
+#
+# ✏️ David, 2026-08-27 : « la hiérarchie de ça est mauvaise », en pointant le bloc
+# de fermeture, où « Statistique Canada » s'affichait à 20 px gras au-dessus du
+# 88 % à 17 px qu'il servait à sourcer.
+#
+# 🐛 Cause : la règle s'appelait `.retenir .source`, donc elle se définissait par
+# son EMPLACEMENT. Les deux blocs `.retenir` portent pourtant des choses opposées,
+# une signature d'auteur d'un côté, une attribution de l'autre. En grossissant la
+# première, j'ai grossi la seconde.
+#
+# 🔴 UNE CLASSE = UN RÔLE, JAMAIS UN EMPLACEMENT. Ce contrôle interdit toute règle
+# qui redéfinit la taille ou la graisse de `.source` : si un texte a besoin d'être
+# plus gros, ce n'est pas une source, et il lui faut sa propre classe.
+for m in re.finditer(r"([^{}\n]*\.source[^{}\n]*)\{([^}]*)\}", brut):
+    sel, corps = m.group(1).strip(), m.group(2)
+    if sel.startswith(".source") and "font-size:var(--t-source)" in corps:
+        continue                      # la définition elle-même
+    if "font-size" in corps or "font-weight" in corps:
+        fautes.append(
+            f"`{sel}` redéfinit la taille ou la graisse d'une attribution — "
+            "une classe se définit par son rôle, jamais par son emplacement")
+
 if fautes:
     print("\nPUBLICATION REFUSÉE\n" + "-" * 19)
     for f in fautes:
