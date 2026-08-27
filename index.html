@@ -39,6 +39,17 @@ header .logo{height:26px; width:auto; display:block; margin-bottom:34px}
 header h1{font-size:clamp(30px,7vw,46px)}
 header .role{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px)}
 
+/* La feuille : elle se pose sur le fond, sans cadre ni ombre. 🔴 Le masque est
+   DANS le PNG, decoupe par feuille_momenta.py. Ne JAMAIS lui remettre un
+   border-radius par-dessus : la fausse forme abimerait la vraie. */
+.bloc{display:flex; flex-direction:column-reverse; gap:26px}
+.portrait{width:min(230px,58%); height:auto; display:block; align-self:flex-start}
+@media(min-width:760px){
+  .bloc{flex-direction:row; align-items:center; justify-content:space-between; gap:36px}
+  .bloc .texte{flex:1; min-width:0}
+  .portrait{width:250px; flex:none; align-self:center}
+}
+
 /* ── Les boutons de contact, le geste le plus important de la page ───── */
 .contacts{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}
 .contacts a{
@@ -115,6 +126,7 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
   header,footer,.honnete,.chiffre.fort{background:#fff!important; color:#01282b!important}
   header .role,footer,.chiffre.fort .source{color:#3e5b5d!important}
   .contacts{display:none}
+  .portrait{width:150px}
   section{padding:16px 0; break-inside:avoid}
   .chiffre,.res,.offre{border:1px solid #ded9d4}
 }
@@ -125,6 +137,8 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
 <header>
   <div class="enveloppe">
     <img class="logo" src="assets/logo-light.png" alt="Momenta">
+    <div class="bloc">
+    <div class="texte">
     <h1>Marie-Claude Viau</h1>
     <div class="role">Fondatrice de Momenta · Conférencière</div>
     <div class="contacts">
@@ -132,6 +146,10 @@ footer .logo{height:22px; margin-bottom:20px; display:block}
       <a class="secondaire" href="tel:+15148899649"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.6 3.5 1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
       <a class="secondaire" href="https://www.linkedin.com/company/momentareseau"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 21h4V9H3v12zM9 21h4v-6.5c0-1.7 2-1.8 2 0V21h4v-7.9c0-4.5-4.9-4.3-6-2.1V9H9v12z"/></svg>LinkedIn</a>
       <a class="secondaire" href="https://www.momentareseau.com"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-2.9a15.6 15.6 0 00-1.4-3.7A8 8 0 0118.9 8zM12 4c.8 1.1 1.4 2.5 1.8 4h-3.6C10.6 6.5 11.2 5.1 12 4zM4.3 14a8 8 0 010-4h3.3a17 17 0 000 4H4.3zm.8 2h2.9c.3 1.3.8 2.6 1.4 3.7A8 8 0 015.1 16zm2.9-8H5.1a8 8 0 014.3-3.7A15.6 15.6 0 008 8zm4 12c-.8-1.1-1.4-2.5-1.8-4h3.6c-.4 1.5-1 2.9-1.8 4zm2.2-6H9.8a15 15 0 010-4h4.4a15 15 0 010 4zm.4 5.7c.6-1.1 1.1-2.4 1.4-3.7h2.9a8 8 0 01-4.3 3.7zM16.4 14a17 17 0 000-4h3.3a8 8 0 010 4h-3.3z"/></svg>momentareseau.com</a>
+    </div>
+    </div>
+    <img class="portrait" src="assets/mc-feuille.png"
+         alt="Portrait de Marie-Claude Viau" width="760" height="760">
     </div>
   </div>
 </header>

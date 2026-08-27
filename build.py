@@ -99,6 +99,17 @@ header .logo{{height:26px; width:auto; display:block; margin-bottom:34px}}
 header h1{{font-size:clamp(30px,7vw,46px)}}
 header .role{{color:var(--gris); margin-top:10px; font-size:clamp(15px,2.6vw,18px)}}
 
+/* La feuille : elle se pose sur le fond, sans cadre ni ombre. 🔴 Le masque est
+   DANS le PNG, decoupe par feuille_momenta.py. Ne JAMAIS lui remettre un
+   border-radius par-dessus : la fausse forme abimerait la vraie. */
+.bloc{{display:flex; flex-direction:column-reverse; gap:26px}}
+.portrait{{width:min(230px,58%); height:auto; display:block; align-self:flex-start}}
+@media(min-width:760px){{
+  .bloc{{flex-direction:row; align-items:center; justify-content:space-between; gap:36px}}
+  .bloc .texte{{flex:1; min-width:0}}
+  .portrait{{width:250px; flex:none; align-self:center}}
+}}
+
 /* ── Les boutons de contact, le geste le plus important de la page ───── */
 .contacts{{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}}
 .contacts a{{
@@ -175,6 +186,7 @@ footer .logo{{height:22px; margin-bottom:20px; display:block}}
   header,footer,.honnete,.chiffre.fort{{background:#fff!important; color:{VERT}!important}}
   header .role,footer,.chiffre.fort .source{{color:{VERT_2}!important}}
   .contacts{{display:none}}
+  .portrait{{width:150px}}
   section{{padding:16px 0; break-inside:avoid}}
   .chiffre,.res,.offre{{border:1px solid {GRIS_CHAUD}}}
 }}
@@ -248,6 +260,8 @@ def rendre():
 <header>
   <div class="enveloppe">
     <img class="logo" src="assets/logo-light.png" alt="Momenta">
+    <div class="bloc">
+    <div class="texte">
     <h1>{e(C.MC['nom'])}</h1>
     <div class="role">{e(C.MC['role'])}</div>
     <div class="contacts">
@@ -255,6 +269,10 @@ def rendre():
       {bouton("tel:" + C.MC['telephone_lien'], C.MC['telephone'], "tel")}
       {bouton(C.MC['linkedin'], "LinkedIn", "in")}
       {bouton(C.MC['site'], "momentareseau.com", "web")}
+    </div>
+    </div>
+    <img class="portrait" src="assets/mc-feuille.png"
+         alt="Portrait de {e(C.MC['nom'])}" width="760" height="760">
     </div>
   </div>
 </header>
