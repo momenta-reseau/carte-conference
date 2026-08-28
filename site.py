@@ -146,7 +146,7 @@ CHIFFRES_TITRE = "Le sujet en trois chiffres"
 # remontée par la course, et ce qu'elle a quitté pour fonder Momenta. Tout est
 # déjà public (LinkedIn, Noovo, la lettre ouverte).
 DEMANDES = [
-    ("Une conférence d’inspiration",
+    ("micro", "Une conférence d’inspiration",
      "Mon récit, seule sur scène : le postpartum que je n’ai pas vu venir, la "
      "remontée par la course, et ce que j’ai quitté pour bâtir Momenta. En "
      "ouverture ou en clôture de journée."),
@@ -157,10 +157,10 @@ DEMANDES = [
     # nomme les dispositifs où elle entre : c'est ce qu'un planificateur coche
     # quand il remplit une grille, et ça suit la logique de la carte de gauche,
     # qui se termine elle aussi par un renseignement de programmation.
-    ("Une place comme panéliste",
+    ("panel", "Une place comme panéliste",
      "Mon expertise sur la transition parentale et l’accomplissement personnel, "
      "en table ronde, sur un plateau ou devant une salle."),
-    ("De la formation sur mesure",
+    ("tableau", "De la formation sur mesure",
      "En entreprise, sur la conciliation travail-famille, en particulier pour les "
      "femmes en transition parentale."),
 ]
@@ -555,6 +555,13 @@ header .role{color:var(--gris); margin-top:10px}
 .trois{display:grid; gap:12px; grid-template-columns:1fr; margin:16px 0}
 @media(min-width:760px){.trois{grid-template-columns:repeat(3,1fr)}}
 .carte{background:var(--blanc); border-radius:var(--rayon); padding:20px}
+/* 🔴 Le glyphe est décoratif, pas informatif : le titre dit déjà tout, et un
+   lecteur d'écran qui annoncerait « image » avant chaque carte ajouterait du
+   bruit. D'où `aria-hidden` dans le HTML et aucun texte de remplacement.
+   🔴 Il porte le corail du titre plutôt qu'un gris : deux accents dans une même
+   carte en feraient deux points d'entrée, alors que le glyphe et le titre sont
+   la même chose vue deux fois. */
+.carte svg{width:22px; height:22px; display:block; fill:var(--corail); margin-bottom:12px}
 .carte h3{color:var(--corail); line-height:1.3}
 .carte p{font-size:var(--t-corps); color:var(--vert2); margin:0}
 
@@ -671,6 +678,34 @@ ICONES = {
     "contact": 'M20 2H8a2 2 0 00-2 2v3H4v2h2v3H4v2h2v3H4v2h2v3a2 2 0 002 2h12a2 2 0 '
                '002-2V4a2 2 0 00-2-2zm-6 4.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM19 18H9v-1.1'
                'c0-2 4-3.1 5-3.1s5 1.1 5 3.1V18z',
+    # ✏️ David, 2026-08-28 : trois glyphes pour les trois demandes.
+    #
+    # 🔴 Chacun se lit à sa SILHOUETTE, la leçon du carnet d'adresses plus haut :
+    # un micro est haut et étroit, une table ronde est ronde et pointillée, un
+    # tableau est large et carré. Posés côte à côte, on les distingue sans les
+    # regarder. Trois glyphes qui se ressembleraient, trois personnages par
+    # exemple, ne diraient rien de plus que le titre qu'ils surplombent.
+    #
+    # 🐛 Première tentative pour le panel : une table ronde vue de haut, cinq
+    # places autour d'un plateau, pour reprendre les mots de la carte. Rendue à
+    # 22 px et regardée, elle se lisait comme un SOLEIL. Un cercle entouré de
+    # points équidistants est une forme déjà prise, et le contexte de la carte
+    # ne la récupérait pas. Remplacée par trois têtes derrière une tribune :
+    # c'est la silhouette que tout le monde associe à un panel, et elle survit
+    # à la réduction parce qu'elle repose sur un rythme, trois formes égales,
+    # pas sur un détail.
+    # 🔴 Les têtes gardent 2 px entre elles et 3 px au-dessus de la tribune. En
+    # dessous, elles se soudent et il ne reste qu'une barre bosselée.
+    "micro": 'M12 14a3 3 0 003-3V5a3 3 0 00-6 0v6a3 3 0 003 3z'
+             'M17 11a1 1 0 00-2 0 3 3 0 01-6 0 1 1 0 00-2 0 5 5 0 004 4.9V19H8a1 '
+             '1 0 000 2h8a1 1 0 000-2h-3v-3.1a5 5 0 004-4.9z',
+    "panel": 'M5.2 5a2.4 2.4 0 110 4.8 2.4 2.4 0 110-4.8z'
+             'M12 5a2.4 2.4 0 110 4.8 2.4 2.4 0 110-4.8z'
+             'M18.8 5a2.4 2.4 0 110 4.8 2.4 2.4 0 110-4.8z'
+             'M3.3 13h17.4a1.8 1.8 0 011.8 1.8v1.9a1.8 1.8 0 01-1.8 1.8H3.3'
+             'a1.8 1.8 0 01-1.8-1.8v-1.9A1.8 1.8 0 013.3 13z',
+    "tableau": 'M4.5 3.5h15a2 2 0 012 2v8a2 2 0 01-2 2h-15a2 2 0 01-2-2v-8a2 2 0 012-2z'
+               'M11 15.5h2v4.5h3a1 1 0 010 2H8a1 1 0 010-2h3z',
     "web": 'M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3a15.6 15.6 0 00-1.4-3.6A8 8 '
            '0 0118.9 8zM12 4c.7 1 1.2 2.3 1.6 4h-3.2c.4-1.7.9-3 1.6-4zM4.3 14a8 8 0 '
            '010-4h3.4a16.6 16.6 0 000 4H4.3zm.8 2h3a15.6 15.6 0 001.4 3.6A8 8 0 015.1 '
@@ -687,8 +722,11 @@ def lien(url, texte, icone, plein=False):
 
 
 def rendre():
-    demandes = "".join(f'<div class="carte"><h3>{e(t)}</h3><p>{e(d)}</p></div>'
-                       for t, d in DEMANDES)
+    demandes = "".join(
+        f'<div class="carte">'
+        f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{ICONES[i]}"/></svg>'
+        f'<h3>{e(t)}</h3><p>{e(d)}</p></div>'
+        for i, t, d in DEMANDES)
     jalons = "".join(f'<div class="jalon"><div class="n">{e(n)}</div><p>{e(t)}</p></div>'
                      for n, t in JALONS)
     gens = "".join(f'<div class="qui"><strong>{e(n)}</strong><span>{e(t)}</span></div>'
