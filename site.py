@@ -250,7 +250,11 @@ def vcard():
         f"N:Viau;Marie-Claude;;;",
         f"FN:{MC['nom']}",
         "ORG:Momenta",
-        "TITLE:Fondatrice · Conférencière et panéliste",
+        # ✏️ David : « son titre doit être simplement Fondatrice de Momenta ».
+        # 🔴 Une fiche de contact dit ce que quelqu'un EST, pas ce qu'il vend. Le
+        # champ ORG porte déjà Momenta ; certains carnets d'adresses recollent les
+        # deux et affichaient « Fondatrice · Conférencière et panéliste, Momenta ».
+        "TITLE:Fondatrice de Momenta",
         f"EMAIL;type=INTERNET;type=WORK:{MC['courriel']}",
         f"TEL;type=CELL;type=VOICE:{MC['tel_lien']}",
         f"URL:{MC['site']}",
