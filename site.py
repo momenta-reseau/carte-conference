@@ -80,6 +80,50 @@ ACCROCHE = {
              "organisations qui traversent cette transition.",
 }
 
+# ✏️ David, 2026-08-28 : « une section statistique qui fait sortir les
+# statistiques les plus percutantes qu'on a dans le wiki », trois d'entre elles.
+#
+# 📄 Autorité : `Ce-que-je-vends/Stats-conge-parental-sources.md`, où chaque
+# chiffre porte sa source, son échantillon et la réponse à donner si on la
+# challenge. Trois sur une trentaine, et le tri n'a pas été fait sur le punch :
+# la moitié de l'arsenal est inutilisable ICI. Les outcomes du programme sont
+# sous Signal-012 (provenance jamais documentée), les montants en dollars sont
+# interdits sur une page qui ne vend rien, et les stats de cabinets d'avocats
+# parlent à un acheteur B2B, pas à un planificateur.
+#
+# 🔴 L'ordre fait l'argument, et il n'est pas décoratif : elles reviennent toutes,
+# une sur trois y laisse sa confiance, et le soutien change la donne. Le premier
+# chiffre installe, le deuxième blesse, le troisième répond. Retirer celui du
+# milieu laisserait un problème sans dommage ; retirer le dernier laisserait un
+# dommage sans issue, et la page se terminerait sur un constat déprimant.
+#
+# 🟡 Le troisième est reformulé par rapport au pitch du wiki, qui dit « le
+# soutien structuré au retour de congé réduit la dépression et le burnout ». La
+# revue du Lancet mesure l'effet du CONGÉ PARENTAL sur la santé mentale des
+# parents, pas celui d'un accompagnement au retour. La formulation d'ici reste
+# ce que la revue démontre vraiment. Un chiffre qu'on affiche sur une page
+# publique doit tenir si quelqu'un ouvre l'article, et celui-là est le seul des
+# trois dont le pitch oral s'éloignait de la source.
+#
+# 🔴 La source se lit sous chaque chiffre, pas en note de bas de page. C'est ce
+# qui sépare une page de conférencière d'une infographie : un planificateur qui
+# reprend un chiffre dans sa propre note interne a besoin de savoir d'où il
+# vient, et il ne reviendra pas le chercher.
+CHIFFRES = [
+    ("88 %",
+     "des mères canadiennes retournent au travail après leur congé parental.",
+     "Statistique Canada, cohortes 2009 et 2019"),
+    ("1 sur 3",
+     "perd confiance en ses capacités professionnelles au retour.",
+     "Benefits Canada, sondage auprès de 1 000 Canadiennes"),
+    ("49 études",
+     "recensées par The Lancet. Mieux le congé parental est soutenu, meilleure "
+     "est la santé mentale des mères.",
+     "The Lancet Public Health, 2023, revue systématique"),
+]
+CHIFFRES_TITRE = "Le sujet en trois chiffres"
+CHIFFRES_INTRO = "Les chiffres que je cite en salle, avec leur source."
+
 # Trois demandes, et pas un catalogue. Chacune est une case différente dans une
 # programmation, avec un budget et un risque différents.
 # ✏️ David : « donne un peu plus de détails » sur la conférence, et « une place
@@ -489,6 +533,22 @@ header .role{color:var(--gris); margin-top:10px}
 .jalon .n{font-size:var(--t-nom); font-weight:700; color:var(--corail); line-height:1}
 .jalon p{margin:4px 0 0; color:var(--vert2); max-width:225px}
 
+/* ═══ Les chiffres ════════════════════════════════════════════════════════
+   Un chiffre n'est PAS un jalon, même s'il lui ressemble : le jalon dit qui
+   elle est et se lit d'un coup, le chiffre traîne une source qu'il faut pouvoir
+   vérifier. Deux rôles, deux classes, et la même valeur de `--t-nom` pour le
+   nombre lui-même parce que c'est le même geste de lecture.
+
+   🔴 Sans carte, contrairement aux demandes qui suivent juste en dessous. Deux
+   rangées de trois rectangles blancs à la file se liraient comme une seule et
+   la page perdrait son rythme. Ici le corail des nombres suffit à poser le
+   bloc sur le crème. */
+.chiffres{display:grid; gap:24px; grid-template-columns:1fr; margin:18px 0 0}
+@media(min-width:760px){.chiffres{grid-template-columns:repeat(3,1fr); gap:32px}}
+.chiffre .n{font-size:var(--t-nom); font-weight:700; color:var(--corail); line-height:1}
+.chiffre p{margin:6px 0 0; color:var(--vert2)}
+.chiffre .source{margin-top:8px}
+
 /* ═══ Les formatrices ═════════════════════════════════════════════════════
    Une liste, pas des cartes : ce sont des noms qu'on parcourt pour en
    reconnaître un. Une grille de six ferait un mur à déchiffrer. */
@@ -603,6 +663,10 @@ def rendre():
                      for n, t in JALONS)
     gens = "".join(f'<div class="qui"><strong>{e(n)}</strong><span>{e(t)}</span></div>'
                    for n, t in FORMATRICES)
+    chiffres = "".join(
+        f'<div class="chiffre"><div class="n">{e(n)}</div><p>{e(t)}</p>'
+        f'<p class="source">{e(src)}</p></div>'
+        for n, t, src in CHIFFRES)
     logos = "".join(
         f'<a href="{url}" target="_blank" rel="noopener" aria-label="{e(alt)}, lire l\'article">'
         f'<img src="{src}" alt="{e(alt)}" width="{w}" height="{h}" loading="lazy"></a>'
@@ -658,6 +722,18 @@ def rendre():
 <section><div class="dedans">
   <p class="phrase citation">{e(ACCROCHE['phrase'])}</p>
   <p class="doux apres-citation">{e(ACCROCHE['appui'])}</p>
+</div></section>
+
+<!-- 🔴 Les chiffres se posent APRÈS l'accroche et AVANT les demandes. La phrase
+     affirme ; les trois nombres l'appuient ; la demande suit. Les mettre plus
+     bas, dans « D'où je parle », les aurait rangés parmi les preuves qu'elle
+     est légitime, alors qu'ils prouvent que le SUJET est légitime. Ce n'est pas
+     la même chose et un planificateur n'a pas besoin des deux au même moment :
+     il doit d'abord défendre le thème devant son comité. -->
+<section><div class="dedans">
+  <h2>{e(CHIFFRES_TITRE)}</h2>
+  <p class="doux">{e(CHIFFRES_INTRO)}</p>
+  <div class="chiffres">{chiffres}</div>
 </div></section>
 
 <section><div class="dedans">

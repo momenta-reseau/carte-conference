@@ -17,7 +17,14 @@ peut être publié.
 
 Elle s'adresse à un planificateur qui vient de voir Marie-Claude parler douze
 minutes, debout, sur son téléphone. Elle lui donne trois choses dans cet ordre :
-de quoi la joindre, quoi lui demander, pourquoi elle valait le coup.
+de quoi la joindre, de quoi défendre le sujet, quoi lui demander, pourquoi
+elle valait le coup.
+
+Les trois chiffres viennent de `Ce-que-je-vends/Stats-conge-parental-sources.md`
+dans le wiki Momenta, qui fait autorité sur leur source et leur échantillon.
+Ils ne sont pas là pour impressionner : un planificateur doit vendre le thème à
+son comité avant de réserver une date, et il ne reviendra pas chercher les
+sources lui-même. Toute modification passe par le fichier du wiki d'abord.
 
 Elle ne vend rien. Aucun prix, aucun formulaire, aucun catalogue. Marie-Claude,
 le 2026-08-27 : « je veux pas vendre de conférence, c'est pas dans mon carré de

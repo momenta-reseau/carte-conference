@@ -150,6 +150,22 @@ header .role{color:var(--gris); margin-top:10px}
 .jalon .n{font-size:var(--t-nom); font-weight:700; color:var(--corail); line-height:1}
 .jalon p{margin:4px 0 0; color:var(--vert2); max-width:225px}
 
+/* ═══ Les chiffres ════════════════════════════════════════════════════════
+   Un chiffre n'est PAS un jalon, même s'il lui ressemble : le jalon dit qui
+   elle est et se lit d'un coup, le chiffre traîne une source qu'il faut pouvoir
+   vérifier. Deux rôles, deux classes, et la même valeur de `--t-nom` pour le
+   nombre lui-même parce que c'est le même geste de lecture.
+
+   🔴 Sans carte, contrairement aux demandes qui suivent juste en dessous. Deux
+   rangées de trois rectangles blancs à la file se liraient comme une seule et
+   la page perdrait son rythme. Ici le corail des nombres suffit à poser le
+   bloc sur le crème. */
+.chiffres{display:grid; gap:24px; grid-template-columns:1fr; margin:18px 0 0}
+@media(min-width:760px){.chiffres{grid-template-columns:repeat(3,1fr); gap:32px}}
+.chiffre .n{font-size:var(--t-nom); font-weight:700; color:var(--corail); line-height:1}
+.chiffre p{margin:6px 0 0; color:var(--vert2)}
+.chiffre .source{margin-top:8px}
+
 /* ═══ Les formatrices ═════════════════════════════════════════════════════
    Une liste, pas des cartes : ce sont des noms qu'on parcourt pour en
    reconnaître un. Une grille de six ferait un mur à déchiffrer. */
@@ -253,6 +269,18 @@ footer .logo{height:15px; display:block; margin:0 auto}
 <section><div class="dedans">
   <p class="phrase citation">On prépare toujours le départ.<br>Jamais le retour.</p>
   <p class="doux apres-citation">Le retour au travail après un congé parental : j’ai bâti ce que j’aurais voulu trouver à ce moment-là, pour les femmes et les organisations qui traversent cette transition.</p>
+</div></section>
+
+<!-- 🔴 Les chiffres se posent APRÈS l'accroche et AVANT les demandes. La phrase
+     affirme ; les trois nombres l'appuient ; la demande suit. Les mettre plus
+     bas, dans « D'où je parle », les aurait rangés parmi les preuves qu'elle
+     est légitime, alors qu'ils prouvent que le SUJET est légitime. Ce n'est pas
+     la même chose et un planificateur n'a pas besoin des deux au même moment :
+     il doit d'abord défendre le thème devant son comité. -->
+<section><div class="dedans">
+  <h2>Le sujet en trois chiffres</h2>
+  <p class="doux">Les chiffres que je cite en salle, avec leur source.</p>
+  <div class="chiffres"><div class="chiffre"><div class="n">88 %</div><p>des mères canadiennes retournent au travail après leur congé parental.</p><p class="source">Statistique Canada, cohortes 2009 et 2019</p></div><div class="chiffre"><div class="n">1 sur 3</div><p>perd confiance en ses capacités professionnelles au retour.</p><p class="source">Benefits Canada, sondage auprès de 1 000 Canadiennes</p></div><div class="chiffre"><div class="n">49 études</div><p>recensées par The Lancet. Mieux le congé parental est soutenu, meilleure est la santé mentale des mères.</p><p class="source">The Lancet Public Health, 2023, revue systématique</p></div></div>
 </div></section>
 
 <section><div class="dedans">
