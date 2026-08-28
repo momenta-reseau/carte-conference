@@ -263,10 +263,10 @@ def vcard():
         f"X-SOCIALPROFILE;type=linkedin:{MC['linkedin_perso']}",
         f"URL;type=LinkedIn:{MC['linkedin_perso']}",
         "ADR;type=WORK:;;;Bromont;Québec;;Canada",
-        # 🔴 La note porte le lien de cette page. Six mois plus tard, la fiche
-        # dans son téléphone ramène à ce qu'elle fait, pas seulement à son nom.
-        "NOTE:Conférencière et panéliste sur la transition parentale et "
-        "l'accomplissement personnel. momentareseau.com/conference2026",
+        # ✏️ David, 2026-08-28 : la note s'en va. Elle décrivait son offre dans un
+        # champ que les carnets d'adresses affichent en gros bloc de texte sous la
+        # fiche, ce qui donne à un contact l'allure d'une annonce. Une fiche porte
+        # des coordonnées ; ce qu'elle fait se lit sur la page, pas dans le carnet.
         f"PHOTO;ENCODING=b;TYPE=JPEG:{photo}",
         "END:VCARD",
     ]
