@@ -206,8 +206,13 @@ header .role{color:var(--gris); margin-top:10px}
 /* Le pied ne porte plus qu'un logo, centré. Il prolonge le vert nuit de l'appel
    sans filet entre les deux : la page se termine sur un aplat, pas sur une
    dernière rangée d'informations. */
-footer{background:var(--vert); padding:36px 0 40px}
-footer .logo{height:24px; display:block; margin:0 auto}
+/* ✏️ David, 2026-08-28 : « on va rapetisser beaucoup le logo en pied de page ».
+   🔴 Il passe de 24 à 15 px, presque de moitié. À cette taille il ne se lit plus
+   comme un titre mais comme une signature, ce qu'il est : le pied ne dit plus
+   rien depuis qu'on en a retiré les coordonnées, il ferme. Le logo de l'en-tête
+   reste à 26 px, et l'écart entre les deux dit lequel des deux compte. */
+footer{background:var(--vert); padding:32px 0 34px}
+footer .logo{height:15px; display:block; margin:0 auto}
 
 /* La page imprimée devient la pièce jointe qu'on fait suivre à son comité. */
 @media print{
