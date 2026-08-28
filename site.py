@@ -121,8 +121,12 @@ CHIFFRES = [
      "est la santé mentale des mères.",
      "The Lancet Public Health, 2023, revue systématique"),
 ]
+# ✏️ David, 2026-08-28 : la ligne d'intro s'en va (« Les chiffres que je cite en
+# salle, avec leur source »).
+# 🔴 Elle annonçait ce que le lecteur voyait déjà : trois nombres avec une source
+# écrite dessous. Une phrase qui décrit le bloc qu'elle surplombe retarde la
+# lecture sans rien apprendre, et le titre suffit à nommer ce qui suit.
 CHIFFRES_TITRE = "Le sujet en trois chiffres"
-CHIFFRES_INTRO = "Les chiffres que je cite en salle, avec leur source."
 
 # Trois demandes, et pas un catalogue. Chacune est une case différente dans une
 # programmation, avec un budget et un risque différents.
@@ -550,7 +554,7 @@ header .role{color:var(--gris); margin-top:10px}
    rangées de trois rectangles blancs à la file se liraient comme une seule et
    la page perdrait son rythme. Ici le corail des nombres suffit à poser le
    bloc sur le crème. */
-.chiffres{display:grid; gap:24px; grid-template-columns:1fr; margin:18px 0 0}
+.chiffres{display:grid; gap:24px; grid-template-columns:1fr; margin:4px 0 0}
 @media(min-width:760px){.chiffres{grid-template-columns:repeat(3,1fr); gap:32px}}
 .chiffre .n{font-size:var(--t-nom); font-weight:700; color:var(--corail); line-height:1}
 .chiffre p{margin:6px 0 0; color:var(--vert2)}
@@ -749,7 +753,6 @@ def rendre():
      question et les fondre les affaiblirait tous les deux. -->
 <section><div class="dedans">
   <h2>{e(CHIFFRES_TITRE)}</h2>
-  <p class="doux">{e(CHIFFRES_INTRO)}</p>
   <div class="chiffres">{chiffres}</div>
 </div></section>
 
