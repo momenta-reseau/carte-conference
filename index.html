@@ -31,7 +31,16 @@
    Vision 2011 : la lecture fluente commence à 1,40 mm de hauteur d'x à 40 cm.
    Sur un iPhone avec Montserrat, 14 px donnent 1,32 mm et 15 px donnent 1,41. */
 :root{
-  --vert:#01282b; --vert2:#3e5b5d; --corail:#ff706b;
+  /* ✏️ David, 2026-08-28 : la fiche de contact devient un bouton, « plus neutre,
+     soit en gris ou en vert ». Vert, et voici pourquoi le gris était le piège :
+     le --gris du kit est un gris CHAUD ET CLAIR, et sur le vert nuit de
+     l'en-tête il ressort plus fort que le corail. Un bouton secondaire plus
+     lumineux que le principal inverse la hiérarchie qu'on venait d'établir.
+     🔴 --vert3 est un troisième cran de la même rampe, choisi pour tenir le 3:1
+     que demande la WCAG entre un bouton et son fond : il mesure 3,02:1 sur le
+     vert nuit, et son texte blanc 5,05:1. Un cran plus sombre aurait été plus
+     discret et n'aurait plus été un bouton, juste une forme devinée. */
+  --vert:#01282b; --vert2:#3e5b5d; --vert3:#4f7376; --corail:#ff706b;
   --creme:#f2f0eb; --blanc:#fcfcfa; --gris:#ded9d4;
   --rayon:12px; --large:900px;
   /* 🔄 L'affiche remonte à 26-42. Elle était descendue à 24-38 pour faire entrer
@@ -118,6 +127,17 @@ header .role{color:var(--gris); margin-top:10px}
   transition:background-color 160ms ease-out, color 160ms ease-out;
 }
 .contacts .plein{background:var(--corail); color:var(--blanc)}
+/* 🔴 Sur sa propre ligne, sous le courriel, et pas à côté : les deux ne
+   demandent pas la même chose. Écrire engage une conversation aujourd'hui ;
+   enregistrer un contact est un geste qu'on pose pour plus tard. Côte à côte
+   ils se seraient concurrencés ; empilés, ils se lisent dans l'ordre. */
+.contacts.suite{margin-top:12px}
+/* Les coordonnées reculent d'un cran de plus : elles ne sont pas un troisième
+   bouton, et l'écart le dit avant qu'on lise. Leur retrait à gauche s'annule
+   pour qu'elles s'alignent sur le bord des deux boutons au-dessus. */
+.contacts.coord{margin-top:20px; margin-left:-6px}
+.contacts .fiche{background:var(--vert3); color:var(--blanc)}
+.contacts .fiche:hover{background:#5b8285}
 .contacts .plein:hover{background:#ff8a86}
 /* ✏️ David : « enlève les contours blancs ». Ils faisaient quatre boutons de
    poids égal dans l'en-tête, donc quatre appels à l'action, donc aucun. Le
@@ -279,14 +299,25 @@ footer .logo{height:15px; display:block; margin:0 auto}
     <div class="texte">
       <h1>Marie-Claude Viau</h1>
       <div class="role">Fondatrice de Momenta · Conférencière et panéliste</div>
+      <!-- 🔴 Trois lignes, dans l'ordre où on s'en sert : ce qu'on fait
+           maintenant, ce qu'on garde pour plus tard, où la joindre autrement.
+           🐛 Les cinq tenaient sur une seule rangée qui s'enroulait toute seule,
+           et « momentareseau.com » se retrouvait orphelin sur sa propre ligne
+           entre les deux boutons. La colonne de texte fait 574 px à côté du
+           portrait, jamais assez pour cinq. Les séparer les met dans un ordre
+           choisi plutôt que dans celui que l'enroulement décide. -->
       <div class="contacts">
         <a href="mailto:mcviau@momentareseau.com" class="plein"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Écrire à Marie-Claude</a>
+      </div>
+      <!-- 🔴 `download` force l'enregistrement plutôt que l'affichage. Sur iOS
+           le fichier s'ouvre dans l'aperçu de contact avec « Ajouter aux
+           contacts » ; sur Android il se télécharge puis s'ouvre pareil. -->
+      <div class="contacts suite">
+        <a href="marie-claude-viau.vcf" download class="fiche"><svg viewBox="0 0 24 24"><path d="M20 2H8a2 2 0 00-2 2v3H4v2h2v3H4v2h2v3H4v2h2v3a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm-6 4.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM19 18H9v-1.1c0-2 4-3.1 5-3.1s5 1.1 5 3.1V18z"/></svg>Ajouter à mes contacts</a>
+      </div>
+      <div class="contacts coord">
         <a href="tel:+15148899649" class="vide"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.5.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.2.2 2.4.6 3.5a1 1 0 01-.3 1l-2.2 2.3z"/></svg>514 889-9649</a>
         <a href="https://www.linkedin.com/company/momentareseau" class="vide"><svg viewBox="0 0 24 24"><path d="M6.9 21H3.4V9h3.5v12zM5.1 7.4a2 2 0 110-4.1 2 2 0 010 4.1zM21 21h-3.5v-5.8c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1V21H9.9V9h3.3v1.6h.1a3.7 3.7 0 013.3-1.8c3.5 0 4.2 2.3 4.2 5.3V21z"/></svg>LinkedIn</a>
-        <!-- 🔴 `download` force l'enregistrement plutôt que l'affichage. Sur iOS
-             le fichier s'ouvre dans l'aperçu de contact avec « Ajouter aux
-             contacts » ; sur Android il se télécharge puis s'ouvre pareil. -->
-        <a href="marie-claude-viau.vcf" download class="vide"><svg viewBox="0 0 24 24"><path d="M20 2H8a2 2 0 00-2 2v3H4v2h2v3H4v2h2v3H4v2h2v3a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm-6 4.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM19 18H9v-1.1c0-2 4-3.1 5-3.1s5 1.1 5 3.1V18z"/></svg>Ajouter à mes contacts</a>
         <a href="https://www.momentareseau.com" class="vide"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3a15.6 15.6 0 00-1.4-3.6A8 8 0 0118.9 8zM12 4c.7 1 1.2 2.3 1.6 4h-3.2c.4-1.7.9-3 1.6-4zM4.3 14a8 8 0 010-4h3.4a16.6 16.6 0 000 4H4.3zm.8 2h3a15.6 15.6 0 001.4 3.6A8 8 0 015.1 16zm3-8h-3a8 8 0 014.4-3.6A15.6 15.6 0 008.1 8zM12 20c-.7-1-1.2-2.3-1.6-4h3.2c-.4 1.7-.9 3-1.6 4zm2-6h-4a14.7 14.7 0 010-4h4a14.7 14.7 0 010 4zm.5 5.6a15.6 15.6 0 001.4-3.6h3a8 8 0 01-4.4 3.6zm1.8-5.6a16.6 16.6 0 000-4h3.4a8 8 0 010 4h-3.4z"/></svg>momentareseau.com</a>
       </div>
     </div>

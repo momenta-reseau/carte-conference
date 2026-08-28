@@ -449,7 +449,16 @@ CSS = """
    Vision 2011 : la lecture fluente commence à 1,40 mm de hauteur d'x à 40 cm.
    Sur un iPhone avec Montserrat, 14 px donnent 1,32 mm et 15 px donnent 1,41. */
 :root{
-  --vert:#01282b; --vert2:#3e5b5d; --corail:#ff706b;
+  /* ✏️ David, 2026-08-28 : la fiche de contact devient un bouton, « plus neutre,
+     soit en gris ou en vert ». Vert, et voici pourquoi le gris était le piège :
+     le --gris du kit est un gris CHAUD ET CLAIR, et sur le vert nuit de
+     l'en-tête il ressort plus fort que le corail. Un bouton secondaire plus
+     lumineux que le principal inverse la hiérarchie qu'on venait d'établir.
+     🔴 --vert3 est un troisième cran de la même rampe, choisi pour tenir le 3:1
+     que demande la WCAG entre un bouton et son fond : il mesure 3,02:1 sur le
+     vert nuit, et son texte blanc 5,05:1. Un cran plus sombre aurait été plus
+     discret et n'aurait plus été un bouton, juste une forme devinée. */
+  --vert:#01282b; --vert2:#3e5b5d; --vert3:#4f7376; --corail:#ff706b;
   --creme:#f2f0eb; --blanc:#fcfcfa; --gris:#ded9d4;
   --rayon:12px; --large:900px;
   /* 🔄 L'affiche remonte à 26-42. Elle était descendue à 24-38 pour faire entrer
@@ -536,6 +545,17 @@ header .role{color:var(--gris); margin-top:10px}
   transition:background-color 160ms ease-out, color 160ms ease-out;
 }
 .contacts .plein{background:var(--corail); color:var(--blanc)}
+/* 🔴 Sur sa propre ligne, sous le courriel, et pas à côté : les deux ne
+   demandent pas la même chose. Écrire engage une conversation aujourd'hui ;
+   enregistrer un contact est un geste qu'on pose pour plus tard. Côte à côte
+   ils se seraient concurrencés ; empilés, ils se lisent dans l'ordre. */
+.contacts.suite{margin-top:12px}
+/* Les coordonnées reculent d'un cran de plus : elles ne sont pas un troisième
+   bouton, et l'écart le dit avant qu'on lise. Leur retrait à gauche s'annule
+   pour qu'elles s'alignent sur le bord des deux boutons au-dessus. */
+.contacts.coord{margin-top:20px; margin-left:-6px}
+.contacts .fiche{background:var(--vert3); color:var(--blanc)}
+.contacts .fiche:hover{background:#5b8285}
 .contacts .plein:hover{background:#ff8a86}
 /* ✏️ David : « enlève les contours blancs ». Ils faisaient quatre boutons de
    poids égal dans l'en-tête, donc quatre appels à l'action, donc aucun. Le
@@ -774,14 +794,25 @@ def rendre():
     <div class="texte">
       <h1>{e(MC['nom'])}</h1>
       <div class="role">{e(MC['role'])}</div>
+      <!-- 🔴 Trois lignes, dans l'ordre où on s'en sert : ce qu'on fait
+           maintenant, ce qu'on garde pour plus tard, où la joindre autrement.
+           🐛 Les cinq tenaient sur une seule rangée qui s'enroulait toute seule,
+           et « momentareseau.com » se retrouvait orphelin sur sa propre ligne
+           entre les deux boutons. La colonne de texte fait 574 px à côté du
+           portrait, jamais assez pour cinq. Les séparer les met dans un ordre
+           choisi plutôt que dans celui que l'enroulement décide. -->
       <div class="contacts">
         {lien("mailto:" + MC['courriel'], "Écrire à Marie-Claude", "courriel", True)}
+      </div>
+      <!-- 🔴 `download` force l'enregistrement plutôt que l'affichage. Sur iOS
+           le fichier s'ouvre dans l'aperçu de contact avec « Ajouter aux
+           contacts » ; sur Android il se télécharge puis s'ouvre pareil. -->
+      <div class="contacts suite">
+        <a href="marie-claude-viau.vcf" download class="fiche"><svg viewBox="0 0 24 24"><path d="{ICONES['contact']}"/></svg>Ajouter à mes contacts</a>
+      </div>
+      <div class="contacts coord">
         {lien("tel:" + MC['tel_lien'], MC['tel'], "tel")}
         {lien(MC['linkedin'], "LinkedIn", "in")}
-        <!-- 🔴 `download` force l'enregistrement plutôt que l'affichage. Sur iOS
-             le fichier s'ouvre dans l'aperçu de contact avec « Ajouter aux
-             contacts » ; sur Android il se télécharge puis s'ouvre pareil. -->
-        <a href="marie-claude-viau.vcf" download class="vide"><svg viewBox="0 0 24 24"><path d="{ICONES['contact']}"/></svg>Ajouter à mes contacts</a>
         {lien(MC['site'], "momentareseau.com", "web")}
       </div>
     </div>
