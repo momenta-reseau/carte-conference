@@ -1,7 +1,7 @@
 # Marie-Claude Viau — conférencière et panéliste
 
 Page remise aux planificateurs d'événements après une présentation.
-En ligne : https://momenta-reseau.github.io/carte-conference/
+En ligne : https://momenta-reseau.github.io/conference2026/
 
 ## Régénérer
 

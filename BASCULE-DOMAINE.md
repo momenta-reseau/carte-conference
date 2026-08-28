@@ -1,7 +1,13 @@
 # Passer à info.momentareseau.com
 
-Aujourd'hui la page vit à `momenta-reseau.github.io/carte-conference/`. Le mot
-« github » y est visible, et l'adresse fait cinquante caractères.
+Aujourd'hui la page vit à `momenta-reseau.github.io/conference2026/`. Le mot
+« github » y est visible, et l'adresse fait quarante-huit caractères.
+
+🐛 **Et le renommage du 2026-08-27 a montré ce que ça coûte.** Le dépôt est passé
+de `carte-conference` à `conference2026`, et l'ancienne adresse a répondu **404
+immédiatement** : GitHub redirige les dépôts renommés, mais PAS leurs Pages. Tout
+code QR déjà partagé aurait été mort. Un domaine à soi, ou une redirection qu'on
+contrôle, absorbe ce genre de changement. Une adresse GitHub, non.
 
 Un sous-domaine de `momentareseau.com` règle les deux. C'est gratuit, GitHub le
 supporte nativement, et le certificat HTTPS s'installe tout seul.
@@ -42,7 +48,7 @@ GitHub (185.199.108.153 à 111.153). Compter de quelques minutes à deux heures.
 ```bash
 echo "info.momentareseau.com" > CNAME
 git add CNAME && git commit -m "Domaine : info.momentareseau.com" && git push
-gh api -X PUT repos/momenta-reseau/carte-conference/pages \
+gh api -X PUT repos/momenta-reseau/conference2026/pages \
   -f "cname=info.momentareseau.com" -F "https_enforced=true"
 ```
 
@@ -64,7 +70,7 @@ réponde** : un QR qui mène à une erreur est pire qu'un QR long.
 
 | | aujourd'hui | après |
 |---|---|---|
-| Adresse | momenta-reseau.github.io/carte-conference | **info.momentareseau.com** |
+| Adresse | momenta-reseau.github.io/conference2026 | **info.momentareseau.com** |
 | Longueur | 50 caractères | **30** |
 | Code QR | version 6, 49 × 49 modules | **version 4, 41 × 41** |
 
