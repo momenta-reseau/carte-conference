@@ -463,6 +463,16 @@ h1,h2,h3{margin:0; font-weight:700; line-height:1.15; letter-spacing:-.01em}
    dès qu'on change ce qui suit. */
 h2,h3{margin-bottom:8px}
 h2{font-size:var(--t-titre)}
+/* ✏️ David, 2026-08-28 : « il manque un peu d'espace après ce type de titre »,
+   en pointant « Le sujet en trois chiffres » et « Mon expérience ». 24 px.
+   🔴 Ce sont les deux titres qui donnent DIRECTEMENT sur un bloc, sans
+   paragraphe d'introduction entre les deux. Un titre suivi de son propre texte
+   se tient à 8 px, parce que ce texte lui appartient ; un titre posé au-dessus
+   d'une grille a besoin de trois fois ça pour ne pas s'y coller.
+   🔴 L'espace est porté par LE TITRE et le bloc perd sa marge du haut, sinon
+   les deux s'additionnent et 24 en fait 28. C'est la règle du fichier : un
+   espacement posé sur le voisin se perd dès qu'on change le voisin. */
+h2.sur-bloc{margin-bottom:24px}
 h3{font-size:var(--t-section)}
 /* Un titre de bloc à l'intérieur d'une section a besoin d'air AU-DESSUS pour se
    détacher de ce qui précède. C'était un style en ligne dans le HTML. */
@@ -545,7 +555,7 @@ header .role{color:var(--gris); margin-top:10px}
 .carte p{font-size:var(--t-corps); color:var(--vert2); margin:0}
 
 /* ═══ Les jalons ══════════════════════════════════════════════════════════ */
-.jalons{display:flex; flex-wrap:wrap; gap:24px; margin:4px 0 16px}
+.jalons{display:flex; flex-wrap:wrap; gap:24px; margin:0 0 16px}
 .jalon .n{font-size:var(--t-nom); font-weight:700; color:var(--corail); line-height:1}
 .jalon p{margin:4px 0 0; color:var(--vert2); max-width:225px}
 
@@ -559,7 +569,7 @@ header .role{color:var(--gris); margin-top:10px}
    rangées de trois rectangles blancs à la file se liraient comme une seule et
    la page perdrait son rythme. Ici le corail des nombres suffit à poser le
    bloc sur le crème. */
-.chiffres{display:grid; gap:24px; grid-template-columns:1fr; margin:4px 0 0}
+.chiffres{display:grid; gap:24px; grid-template-columns:1fr; margin:0}
 @media(min-width:760px){.chiffres{grid-template-columns:repeat(3,1fr); gap:32px}}
 .chiffre .n{font-size:var(--t-nom); font-weight:700; color:var(--corail); line-height:1}
 .chiffre p{margin:6px 0 0; color:var(--vert2)}
@@ -757,7 +767,7 @@ def rendre():
      légitime, pas qu'elle l'est. Les deux blocs ne répondent pas à la même
      question et les fondre les affaiblirait tous les deux. -->
 <section><div class="dedans">
-  <h2>{e(CHIFFRES_TITRE)}</h2>
+  <h2 class="sur-bloc">{e(CHIFFRES_TITRE)}</h2>
   <div class="chiffres">{chiffres}</div>
 </div></section>
 
@@ -767,7 +777,7 @@ def rendre():
        la section pour savoir ce qu'elle contient. Celui-ci le dit avant qu'on
        entre, et c'est le mot qu'un planificateur cherche quand il vérifie
        qu'elle a déjà fait ça. -->
-  <h2>Mon expérience</h2>
+  <h2 class="sur-bloc">Mon expérience</h2>
   <div class="jalons">{jalons}</div>
   <p class="doux">{e(PARCOURS)}</p>
   <p class="doux">{e(CERTIFICATION)}</p>
