@@ -103,7 +103,13 @@ p:last-child{margin-bottom:0}
 
 /* ═══ En-tête ═════════════════════════════════════════════════════════════ */
 header{background:var(--vert); color:var(--blanc); padding:40px 0 36px}
-header .logo{height:26px; display:block; margin-bottom:28px}
+/* ✏️ David, 2026-08-28 : « on va réduire un peu le logo de Momenta en haut ».
+   26 → 22 px, et « un peu » est pris au mot : c'est le cran en dessous, pas une
+   refonte. Le logo n'est pas le sujet de la page, c'est Marie-Claude ; à 22 px
+   il passe sous la hauteur des lettres de son nom et cesse de lui disputer
+   l'entrée. Il reste à 7 px du logo du pied, l'écart qui dit lequel des deux
+   ouvre et lequel signe. */
+header .logo{height:22px; display:block; margin-bottom:28px}
 header h1{font-size:var(--t-nom)}
 header .role{color:var(--gris); margin-top:10px}
 
@@ -275,7 +281,7 @@ header .role{color:var(--gris); margin-top:10px}
    🔴 Il passe de 24 à 15 px, presque de moitié. À cette taille il ne se lit plus
    comme un titre mais comme une signature, ce qu'il est : le pied ne dit plus
    rien depuis qu'on en a retiré les coordonnées, il ferme. Le logo de l'en-tête
-   reste à 26 px, et l'écart entre les deux dit lequel des deux compte. */
+   reste plus grand, et l'écart entre les deux dit lequel des deux compte. */
 footer{background:var(--vert); padding:32px 0 34px}
 footer .logo{height:15px; display:block; margin:0 auto}
 
