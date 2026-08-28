@@ -169,7 +169,7 @@ SUJETS = "Deux sujets : la transition parentale, et l’accomplissement personne
 
 JALONS = [
     ("20 ans", "dans le milieu des affaires"),
-    ("15 ans", "dans le milieu de la conférence"),
+    ("15 ans", "dans le milieu de la conférence et de la formation"),
     ("10 ans", "à former des femmes en leadership"),
 ]
 
