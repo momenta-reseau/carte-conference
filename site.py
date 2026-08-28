@@ -461,18 +461,22 @@ h1,h2,h3{margin:0; font-weight:700; line-height:1.15; letter-spacing:-.01em}
    et « Avec qui je travaille », qui n'a pas ce voisin, se retrouvait collé à son
    texte : zéro pixel, mesuré. Un espacement qui dépend de ce qui suit se perd
    dès qu'on change ce qui suit. */
-h2,h3{margin-bottom:8px}
-h2{font-size:var(--t-titre)}
+h3{margin-bottom:8px}
 /* ✏️ David, 2026-08-28 : « il manque un peu d'espace après ce type de titre »,
-   en pointant « Le sujet en trois chiffres » et « Mon expérience ». 24 px.
-   🔴 Ce sont les deux titres qui donnent DIRECTEMENT sur un bloc, sans
-   paragraphe d'introduction entre les deux. Un titre suivi de son propre texte
-   se tient à 8 px, parce que ce texte lui appartient ; un titre posé au-dessus
-   d'une grille a besoin de trois fois ça pour ne pas s'y coller.
-   🔴 L'espace est porté par LE TITRE et le bloc perd sa marge du haut, sinon
-   les deux s'additionnent et 24 en fait 28. C'est la règle du fichier : un
-   espacement posé sur le voisin se perd dès qu'on change le voisin. */
-h2.sur-bloc{margin-bottom:24px}
+   en pointant « Le sujet en trois chiffres » et « Mon expérience », puis
+   « applique à tous les titres similaires ». 24 px sous les quatre titres de
+   section, et une seule valeur au lieu d'une exception à retenir.
+   🔴 Un h2 nomme une section, un h3 nomme un bloc à l'intérieur : ils ne
+   pèsent pas pareil et ne reculent pas pareil. Le h3 reste à 8 px, sinon les
+   titres des cartes blanches décolleraient de leur propre texte.
+   🔴 L'espace est porté par LE TITRE et les blocs qui le suivent perdent leur
+   marge du haut, sinon les deux s'additionnent et 24 en fait 28. C'est la règle
+   du fichier : un espacement posé sur le voisin se perd dès qu'on change le
+   voisin.
+   📄 Le seul h3 suivi directement d'un bloc, « Je porte le sujet dans les
+   médias québécois », est déjà à 24 px : 8 du titre et 16 de la rangée de
+   logos. Il n'y avait rien à y changer. */
+h2{font-size:var(--t-titre); margin-bottom:24px}
 h3{font-size:var(--t-section)}
 /* Un titre de bloc à l'intérieur d'une section a besoin d'air AU-DESSUS pour se
    détacher de ce qui précède. C'était un style en ligne dans le HTML. */
@@ -767,7 +771,7 @@ def rendre():
      légitime, pas qu'elle l'est. Les deux blocs ne répondent pas à la même
      question et les fondre les affaiblirait tous les deux. -->
 <section><div class="dedans">
-  <h2 class="sur-bloc">{e(CHIFFRES_TITRE)}</h2>
+  <h2>{e(CHIFFRES_TITRE)}</h2>
   <div class="chiffres">{chiffres}</div>
 </div></section>
 
@@ -777,7 +781,7 @@ def rendre():
        la section pour savoir ce qu'elle contient. Celui-ci le dit avant qu'on
        entre, et c'est le mot qu'un planificateur cherche quand il vérifie
        qu'elle a déjà fait ça. -->
-  <h2 class="sur-bloc">Mon expérience</h2>
+  <h2>Mon expérience</h2>
   <div class="jalons">{jalons}</div>
   <p class="doux">{e(PARCOURS)}</p>
   <p class="doux">{e(CERTIFICATION)}</p>
