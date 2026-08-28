@@ -156,15 +156,23 @@ header .role{color:var(--gris); margin-top:10px}
 .trois{display:grid; gap:12px; grid-template-columns:1fr; margin:16px 0}
 @media(min-width:760px){.trois{grid-template-columns:repeat(3,1fr)}}
 .carte{background:var(--blanc); border-radius:var(--rayon); padding:20px}
-/* 🔴 Le glyphe est décoratif, pas informatif : le titre dit déjà tout, et un
-   lecteur d'écran qui annoncerait « image » avant chaque carte ajouterait du
-   bruit. D'où `aria-hidden` dans le HTML et aucun texte de remplacement.
-   🔴 Il porte le corail du titre plutôt qu'un gris : deux accents dans une même
-   carte en feraient deux points d'entrée, alors que le glyphe et le titre sont
-   la même chose vue deux fois. */
-.carte svg{width:22px; height:22px; display:block; fill:var(--corail); margin-bottom:12px}
+/* ✏️ David, 2026-08-28 : les glyphes des cartes s'en vont. Ils étaient au-dessus
+   des titres, un par demande. Essayés, rendus, regardés : trois silhouettes qui
+   se distinguaient bien, mais qui redisaient le titre sous elles sans rien y
+   ajouter, et qui mettaient trois accents corail de plus dans une page qui en
+   tient deux pour cent. La rangée est plus calme sans eux. */
 .carte h3{color:var(--corail); line-height:1.3}
 .carte p{font-size:var(--t-corps); color:var(--vert2); margin:0}
+/* 🔴 Pas de puce ronde héritée du navigateur : elle arrive en gris système,
+   à sa propre taille, et jure avec un kit qui ne cerne et ne pointe rien. Un
+   filet corail de 6 px tient le rôle, dans l'accent que la carte porte déjà.
+   🔴 Les lignes gardent l'interligne du corps : c'est une énumération à lire,
+   pas un menu à cliquer, et les tasser en ferait une étiquette. */
+.carte ul{margin:0; padding:0; list-style:none; color:var(--vert2)}
+.carte li{position:relative; padding-left:16px}
+.carte li+li{margin-top:8px}
+.carte li::before{content:""; position:absolute; left:0; top:.62em;
+  width:6px; height:2px; background:var(--corail)}
 
 /* ═══ Les jalons ══════════════════════════════════════════════════════════ */
 .jalons{display:flex; flex-wrap:wrap; gap:24px; margin:0 0 16px}
@@ -295,7 +303,7 @@ footer .logo{height:15px; display:block; margin:0 auto}
 <section><div class="dedans">
   <h2>Ce que vous pouvez me demander</h2>
   <p class="doux">Deux sujets : la transition parentale, et l’accomplissement personnel.</p>
-  <div class="trois"><div class="carte"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 003-3V5a3 3 0 00-6 0v6a3 3 0 003 3zM17 11a1 1 0 00-2 0 3 3 0 01-6 0 1 1 0 00-2 0 5 5 0 004 4.9V19H8a1 1 0 000 2h8a1 1 0 000-2h-3v-3.1a5 5 0 004-4.9z"/></svg><h3>Une conférence d’inspiration</h3><p>Mon récit, seule sur scène : le postpartum que je n’ai pas vu venir, la remontée par la course, et ce que j’ai quitté pour bâtir Momenta. En ouverture ou en clôture de journée.</p></div><div class="carte"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 5a2.4 2.4 0 110 4.8 2.4 2.4 0 110-4.8zM12 5a2.4 2.4 0 110 4.8 2.4 2.4 0 110-4.8zM18.8 5a2.4 2.4 0 110 4.8 2.4 2.4 0 110-4.8zM3.3 13h17.4a1.8 1.8 0 011.8 1.8v1.9a1.8 1.8 0 01-1.8 1.8H3.3a1.8 1.8 0 01-1.8-1.8v-1.9A1.8 1.8 0 013.3 13z"/></svg><h3>Une place comme panéliste</h3><p>Mon expertise sur la transition parentale et l’accomplissement personnel, en table ronde, sur un plateau ou devant une salle.</p></div><div class="carte"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 3.5h15a2 2 0 012 2v8a2 2 0 01-2 2h-15a2 2 0 01-2-2v-8a2 2 0 012-2zM11 15.5h2v4.5h3a1 1 0 010 2H8a1 1 0 010-2h3z"/></svg><h3>De la formation sur mesure</h3><p>En entreprise, sur la conciliation travail-famille, en particulier pour les femmes en transition parentale.</p></div></div>
+  <div class="trois"><div class="carte"><h3>Une conférence d’inspiration</h3><p>Mon récit, seule sur scène : le postpartum que je n’ai pas vu venir, la remontée par la course, et ce que j’ai quitté pour bâtir Momenta. En ouverture ou en clôture de journée.</p></div><div class="carte"><h3>Une place comme panéliste</h3><p>Mon expertise sur la transition parentale et l’accomplissement personnel, en table ronde, sur un plateau ou devant une salle.</p></div><div class="carte"><h3>De l’accompagnement en entreprise</h3><ul><li>Parcours d’accompagnement pour les femmes</li><li>Formation pour les gestionnaires</li><li>Coaching individuel</li></ul></div></div>
 </div></section>
 
 <!-- ✏️ David, 2026-08-28 : les chiffres passent en troisième, après la demande.
