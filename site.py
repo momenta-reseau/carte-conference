@@ -754,7 +754,12 @@ def rendre():
 </div></section>
 
 <section><div class="dedans">
-  <h2>D’où je parle</h2>
+  <!-- ✏️ David, 2026-08-28 : « D'où je parle » devient « Mon expérience ».
+       🔴 Le titre d'avant nommait une posture, pas un contenu. Il fallait lire
+       la section pour savoir ce qu'elle contient. Celui-ci le dit avant qu'on
+       entre, et c'est le mot qu'un planificateur cherche quand il vérifie
+       qu'elle a déjà fait ça. -->
+  <h2>Mon expérience</h2>
   <div class="jalons">{jalons}</div>
   <p class="doux">{e(PARCOURS)}</p>
   <p class="doux">{e(CERTIFICATION)}</p>
