@@ -141,9 +141,16 @@ DEMANDES = [
      "Mon récit, seule sur scène : le postpartum que je n’ai pas vu venir, la "
      "remontée par la course, et ce que j’ai quitté pour bâtir Momenta. En "
      "ouverture ou en clôture de journée."),
+    # ✏️ David, 2026-08-28 : « en discussion et sans support » s'en va.
+    # 🔴 La phrase disait ce qu'elle n'apporte PAS. « Sans support » est un
+    # renseignement de régie, pas un argument, et il fallait déjà savoir que
+    # « support » veut dire diapositives pour le comprendre. Ce qui le remplace
+    # nomme les dispositifs où elle entre : c'est ce qu'un planificateur coche
+    # quand il remplit une grille, et ça suit la logique de la carte de gauche,
+    # qui se termine elle aussi par un renseignement de programmation.
     ("Une place comme panéliste",
      "Mon expertise sur la transition parentale et l’accomplissement personnel, "
-     "en discussion et sans support."),
+     "en table ronde, sur un plateau ou devant une salle."),
     ("De la formation sur mesure",
      "En entreprise, sur la conciliation travail-famille, en particulier pour les "
      "femmes en transition parentale."),
@@ -724,22 +731,26 @@ def rendre():
   <p class="doux apres-citation">{e(ACCROCHE['appui'])}</p>
 </div></section>
 
-<!-- 🔴 Les chiffres se posent APRÈS l'accroche et AVANT les demandes. La phrase
-     affirme ; les trois nombres l'appuient ; la demande suit. Les mettre plus
-     bas, dans « D'où je parle », les aurait rangés parmi les preuves qu'elle
-     est légitime, alors qu'ils prouvent que le SUJET est légitime. Ce n'est pas
-     la même chose et un planificateur n'a pas besoin des deux au même moment :
-     il doit d'abord défendre le thème devant son comité. -->
-<section><div class="dedans">
-  <h2>{e(CHIFFRES_TITRE)}</h2>
-  <p class="doux">{e(CHIFFRES_INTRO)}</p>
-  <div class="chiffres">{chiffres}</div>
-</div></section>
-
 <section><div class="dedans">
   <h2>Ce que vous pouvez me demander</h2>
   <p class="doux">{e(SUJETS)}</p>
   <div class="trois">{demandes}</div>
+</div></section>
+
+<!-- ✏️ David, 2026-08-28 : les chiffres passent en troisième, après la demande.
+     🔴 Ils étaient entre l'accroche et la demande, où ils retardaient la seule
+     chose que la page a à offrir. L'ordre qui tient : elle affirme, elle dit ce
+     qu'on peut lui demander, PUIS elle donne de quoi le défendre. Un
+     planificateur convaincu par la phrase veut savoir ce qu'il peut réserver
+     avant de savoir pourquoi le sujet compte ; les chiffres, il ne s'en sert
+     qu'après, devant son comité.
+     🔴 Ils restent AVANT « D'où je parle » : ils prouvent que le sujet est
+     légitime, pas qu'elle l'est. Les deux blocs ne répondent pas à la même
+     question et les fondre les affaiblirait tous les deux. -->
+<section><div class="dedans">
+  <h2>{e(CHIFFRES_TITRE)}</h2>
+  <p class="doux">{e(CHIFFRES_INTRO)}</p>
+  <div class="chiffres">{chiffres}</div>
 </div></section>
 
 <section><div class="dedans">
