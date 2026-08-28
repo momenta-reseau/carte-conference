@@ -75,9 +75,14 @@ ACCROCHE = {
     # une phrase trop longue et pouvaient tomber ailleurs sans dommage ; celui-ci
     # sépare deux propositions qui s'opposent. Le supprimer casserait la phrase.
     "phrase": "On prépare toujours le départ.<br>Jamais le retour.",
-    "appui": "Le retour au travail après un congé parental : j’ai bâti ce que "
-             "j’aurais voulu trouver à ce moment-là, pour les femmes et les "
-             "organisations qui traversent cette transition.",
+    # ✏️ David, 2026-08-28, sa formulation. L'appui commençait par un
+    # deux-points qui posait le sujet sans rien en dire : « Le retour au travail
+    # après un congé parental : j'ai bâti… ». Il y a maintenant un constat avant
+    # le « je », et la phrase du haut cesse d'être seule à porter l'argument.
+    "appui": "Le retour au travail après un congé parental est rarement soutenu "
+             "adéquatement. J’ai bâti ce que j’aurais voulu trouver à ce "
+             "moment-là, pour les femmes et les organisations qui traversent "
+             "cette transition.",
 }
 
 # ✏️ David, 2026-08-28 : « une section statistique qui fait sortir les
