@@ -217,6 +217,49 @@ APPEL = {
 }
 
 # ═════════════════════════════════════════════════════════════════════════════
+# LA FICHE DE CONTACT
+# ═════════════════════════════════════════════════════════════════════════════
+#
+# ✏️ David, 2026-08-28 : « est-ce qu'on peut ajouter un bouton Ajouter
+# Marie-Claude à mes contacts ? »
+#
+# 🔴 C'est le geste que fait vraiment un planificateur après une conférence, et
+# aucun formulaire ne le remplace. Un courriel se remet à demain ; un contact
+# enregistré survit à la journée et remonte tout seul le jour où il cherche
+# quelqu'un pour une date.
+#
+# 📄 Format vCard 3.0 et pas 4.0 : c'est le seul que lisent à la fois iOS,
+# Android, Outlook et Google Contacts. Les fins de ligne sont en CRLF parce que
+# la RFC 6350 l'impose et que certains lecteurs Android refusent le fichier sans.
+#
+# 🔴 La photo est aplatie sur le crème avant d'être encodée : le PNG d'origine est
+# une feuille découpée sur fond transparent, et la transparence devient NOIRE en
+# JPEG. Sept kilo-octets, ce qui garde la fiche sous les dix.
+
+def vcard():
+    """La fiche, prête à ouvrir dans les contacts."""
+    photo = (RACINE / "assets" / "mc-photo-b64.txt").read_text().strip()
+    lignes = [
+        "BEGIN:VCARD", "VERSION:3.0",
+        f"N:Viau;Marie-Claude;;;",
+        f"FN:{MC['nom']}",
+        "ORG:Momenta",
+        "TITLE:Fondatrice · Conférencière et panéliste",
+        f"EMAIL;type=INTERNET;type=WORK:{MC['courriel']}",
+        f"TEL;type=CELL;type=VOICE:{MC['tel_lien']}",
+        f"URL:{MC['site']}",
+        "ADR;type=WORK:;;;Bromont;Québec;;Canada",
+        # 🔴 La note porte le lien de cette page. Six mois plus tard, la fiche
+        # dans son téléphone ramène à ce qu'elle fait, pas seulement à son nom.
+        "NOTE:Conférencière et panéliste sur la transition parentale et "
+        "l'accomplissement personnel. momentareseau.com/conference2026",
+        f"PHOTO;ENCODING=b;TYPE=JPEG:{photo}",
+        "END:VCARD",
+    ]
+    return "\r\n".join(lignes) + "\r\n"
+
+
+# ═════════════════════════════════════════════════════════════════════════════
 # LES CONTRÔLES — ils tournent avant l'écriture, pas après
 # ═════════════════════════════════════════════════════════════════════════════
 
@@ -517,6 +560,9 @@ ICONES = {
     "in": 'M6.9 21H3.4V9h3.5v12zM5.1 7.4a2 2 0 110-4.1 2 2 0 010 4.1zM21 21h-3.5v-5.8'
           'c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1V21H9.9V9h3.3v1.6h.1a3.7 3.7 0 013.3-1.8'
           'c3.5 0 4.2 2.3 4.2 5.3V21z',
+    "contact": 'M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.4 0-8 2.2-8 5v3h11.2a6.5 '
+               '6.5 0 01-.2-1.5 6.5 6.5 0 016.5-6.5c.2 0 .3 0 .5.1V19c0-2.8-3.6-5-8-5z'
+               'M18.5 15v2.5H16v1.5h2.5V21H20v-2h2.5v-1.5H20V15h-1.5z',
     "web": 'M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3a15.6 15.6 0 00-1.4-3.6A8 8 '
            '0 0118.9 8zM12 4c.7 1 1.2 2.3 1.6 4h-3.2c.4-1.7.9-3 1.6-4zM4.3 14a8 8 0 '
            '010-4h3.4a16.6 16.6 0 000 4H4.3zm.8 2h3a15.6 15.6 0 001.4 3.6A8 8 0 015.1 '
@@ -579,6 +625,10 @@ def rendre():
         {lien("mailto:" + MC['courriel'], "Écrire à Marie-Claude", "courriel", True)}
         {lien("tel:" + MC['tel_lien'], MC['tel'], "tel")}
         {lien(MC['linkedin'], "LinkedIn", "in")}
+        <!-- 🔴 `download` force l'enregistrement plutôt que l'affichage. Sur iOS
+             le fichier s'ouvre dans l'aperçu de contact avec « Ajouter aux
+             contacts » ; sur Android il se télécharge puis s'ouvre pareil. -->
+        <a href="marie-claude-viau.vcf" download class="vide"><svg viewBox="0 0 24 24"><path d="{ICONES['contact']}"/></svg>Ajouter à mes contacts</a>
         {lien(MC['site'], "momentareseau.com", "web")}
       </div>
     </div>
@@ -653,8 +703,11 @@ if __name__ == "__main__":
             print(f"  ⛔ {f}")
         sys.exit(1)
     SORTIE.write_text(page, encoding="utf-8")
+    fiche = RACINE / "marie-claude-viau.vcf"
+    fiche.write_text(vcard(), encoding="utf-8")
     lisible = re.sub(r"<[^>]+>", " ", re.sub(r"<style[^>]*>.*?</style>", " ", page, flags=re.S))
     mots = len(lisible.split())
     print(f"écrit : {SORTIE}")
     print(f"  {len(page)} octets · {mots} mots · {page.count('<section')+1} blocs")
+    print(f"  fiche de contact : {fiche.name}, {len(fiche.read_text())//1024} ko")
     print(f"  {len(INTERDITS)} interdits vérifiés · échelle à six crans · plancher 15 px")
