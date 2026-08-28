@@ -38,6 +38,12 @@ MC = {
     "tel": "514 889-9649",
     "tel_lien": "+15148899649",
     "linkedin": "https://www.linkedin.com/company/momentareseau",
+    # 🔴 Deux LinkedIn distincts, et ils ne servent pas la même chose. La PAGE de
+    # l'entreprise vit dans l'en-tête, parce qu'un acheteur qui explore veut voir
+    # Momenta. Le PROFIL de Marie-Claude va dans la fiche de contact, parce qu'un
+    # contact enregistré, c'est une personne. Confondre les deux fait suivre une
+    # marque à quelqu'un qui voulait suivre une personne.
+    "linkedin_perso": "https://www.linkedin.com/in/marieclaudeviau",
     "site": "https://www.momentareseau.com",
     "ville": "Bromont, Québec",
 }
@@ -248,6 +254,10 @@ def vcard():
         f"EMAIL;type=INTERNET;type=WORK:{MC['courriel']}",
         f"TEL;type=CELL;type=VOICE:{MC['tel_lien']}",
         f"URL:{MC['site']}",
+        # X-SOCIALPROFILE est la clé qu'iOS lit pour afficher un profil social
+        # dans la fiche ; les autres lecteurs retombent sur l'URL qui suit.
+        f"X-SOCIALPROFILE;type=linkedin:{MC['linkedin_perso']}",
+        f"URL;type=LinkedIn:{MC['linkedin_perso']}",
         "ADR;type=WORK:;;;Bromont;Québec;;Canada",
         # 🔴 La note porte le lien de cette page. Six mois plus tard, la fiche
         # dans son téléphone ramène à ce qu'elle fait, pas seulement à son nom.
@@ -560,9 +570,13 @@ ICONES = {
     "in": 'M6.9 21H3.4V9h3.5v12zM5.1 7.4a2 2 0 110-4.1 2 2 0 010 4.1zM21 21h-3.5v-5.8'
           'c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1V21H9.9V9h3.3v1.6h.1a3.7 3.7 0 013.3-1.8'
           'c3.5 0 4.2 2.3 4.2 5.3V21z',
-    "contact": 'M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.4 0-8 2.2-8 5v3h11.2a6.5 '
-               '6.5 0 01-.2-1.5 6.5 6.5 0 016.5-6.5c.2 0 .3 0 .5.1V19c0-2.8-3.6-5-8-5z'
-               'M18.5 15v2.5H16v1.5h2.5V21H20v-2h2.5v-1.5H20V15h-1.5z',
+    # 🐛 David : « l'icône avec la personne et le plus est curieuse, on voit très
+    # mal le + ». Vrai : à 17 px, un petit plus collé à une silhouette devient une
+    # tache. Remplacé par un carnet d'adresses, qui se lit à sa SILHOUETTE et non
+    # à un détail — un rectangle avec un onglet, reconnaissable même flou.
+    "contact": 'M20 2H8a2 2 0 00-2 2v3H4v2h2v3H4v2h2v3H4v2h2v3a2 2 0 002 2h12a2 2 0 '
+               '002-2V4a2 2 0 00-2-2zm-6 4.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM19 18H9v-1.1'
+               'c0-2 4-3.1 5-3.1s5 1.1 5 3.1V18z',
     "web": 'M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3a15.6 15.6 0 00-1.4-3.6A8 8 '
            '0 0118.9 8zM12 4c.7 1 1.2 2.3 1.6 4h-3.2c.4-1.7.9-3 1.6-4zM4.3 14a8 8 0 '
            '010-4h3.4a16.6 16.6 0 000 4H4.3zm.8 2h3a15.6 15.6 0 001.4 3.6A8 8 0 015.1 '
